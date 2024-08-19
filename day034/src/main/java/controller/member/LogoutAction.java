@@ -9,12 +9,10 @@ public class LogoutAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		ActionForward forward = new ActionForward();
+		ActionForward forward=new ActionForward();
 		forward.setRedirect(true); // 리다이렉트 방식
 		forward.setPath("main.do");
 		return forward;
 	}
-
-	
 
 }

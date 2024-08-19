@@ -8,8 +8,8 @@ import jakarta.servlet.http.HttpSession;
 import model.dao.MemberDAO;
 import model.dto.MemberDTO;
 
-public class LoginAction implements Action{
-	
+public class LoginAction implements Action {
+
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		MemberDAO memberDAO=new MemberDAO();

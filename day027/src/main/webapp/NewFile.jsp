@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" errorPage="error.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,12 +8,13 @@
 </head>
 <body>
 
-<c:if empty data ="데이터가 없습니다!">
-${data.title} <br>
-${data.content} <br>
-${data.writer} <br>
-${data.cnt} <br>
-${data.regtime} <br>
-</c:if>
+	<%
+		int n1 = 10;
+		int n2 = 0;
+		int res = n1 / n2;
+		out.println("<h1>"+n1+" / "+n2+" = "+res+"<h1>");
+	
+	%>
+
 </body>
 </html>

@@ -6,6 +6,9 @@ public class MemberDTO {
 	private String name;
 	private String role;
 	private String imagepath;
+	
+	
+	
 	public String getMid() {
 		return mid;
 	}

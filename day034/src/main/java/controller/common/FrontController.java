@@ -2,11 +2,6 @@ package controller.common;
 
 import java.io.IOException;
 
-import controller.board.MainAction;
-import controller.member.JoinAction;
-import controller.member.LoginAction;
-import controller.member.LogoutAction;
-import controller.page.JoinPageAction;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,9 +13,10 @@ import jakarta.servlet.http.HttpServletResponse;
 // 톰캣(server)이 구동될때, xxx.do로 끝나는 요청에 대하여 FC를 호출하게됨
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-   
+   private HandlerMapper mappings;
     public FrontController() {
         super();
+        this.mappings = new HandlerMapper();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,27 +35,13 @@ public class FrontController extends HttpServlet {
 		System.out.println("command : "+command);
 		
 		// 2. 요청을 수행
-		ActionForward forward=null;
-		if(command.equals("/main.do")) {
-			MainAction mainAction=new MainAction();
-			forward = mainAction.execute(request, response);
-		}
-		else if(command.equals("/login.do")) {
-			LoginAction loginAction=new LoginAction();
-			forward = loginAction.execute(request, response);
-		}
-		else if(command.equals("/joinPage.do")) {
-			JoinPageAction joinPageAction=new JoinPageAction();
-			forward = joinPageAction.execute(request, response);
-		}
-		else if(command.equals("/join.do")) {
-			JoinAction joinAction=new JoinAction();
-			forward = joinAction.execute(request, response);
-		}
-		else if(command.equals("/logout.do")) {
-			LogoutAction logoutAction=new LogoutAction();
-			forward = logoutAction.execute(request, response);
-		}
+		
+		//Action action = this.mappings.getMapper().get(command); // 내가 요청한 값에 대한 action을 가져올거야
+		Action action = this.mappings.getAction(command);
+		//action 가져오면 execute 할거야
+		ActionForward forward = action.execute(request,response);
+		
+		
 		
 		// 3. 응답(페이지 이동 등)
 		//  1) 전달할 데이터가 있니? 없니? == 포워드? 리다이렉트?

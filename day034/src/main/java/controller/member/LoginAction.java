@@ -14,16 +14,16 @@ public class LoginAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		MemberDAO memberDAO=new MemberDAO();
 		MemberDTO memberDTO=new MemberDTO();
-		///memberDTO.setMid(request.getParameter("mid"));
-		///memberDTO.setPassword(request.getParameter("password"));
-		///memberDTO = memberDAO.selectOne(memberDTO);
+		memberDTO.setMid(request.getParameter("mid"));
+		memberDTO.setPassword(request.getParameter("password"));
+		memberDTO = memberDAO.selectOne(memberDTO);
 		if(memberDTO != null) {
 			HttpSession session=request.getSession();
-			///session.setAttribute("loginInfo", memberDTO.getMid());
+			session.setAttribute("loginInfo", memberDTO.getMid());
 		}
 		
 		ActionForward forward=new ActionForward();
-		forward.setRedirect(true); // 리다이렉트 방식
+		forward.setRedirect(false); // 리다이렉트 방식
 		forward.setPath("main.do");
 		return forward;
 	}

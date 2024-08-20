@@ -8,10 +8,12 @@ import java.util.ArrayList;
 
 import model.common.JDBCUtil;
 import model.dto.BoardDTO;
+import model.dto.ReplyDTO;
 
 public class BoardDAO {
-	private final String SELECTALL = "SELECT B.TITLE,M.NAME,B.REGTIME FROM BOARD B JOIN MEMBER M ON B.WRITER=M.MID";
-	
+	private final String SELECTALL = "SELECT B.BID,B.TITLE,M.NAME,B.REGTIME FROM BOARD B JOIN MEMBER M ON B.WRITER=M.MID";
+	private final String SELECTONE = "SELECT BID, TITLE, CONTENT, WRITER, REGTIME FROM BOARD WHERE BID=?";
+
 	public ArrayList<BoardDTO> selectAll(BoardDTO boardDTO){
 		ArrayList<BoardDTO> datas=new ArrayList<BoardDTO>();
 		
@@ -22,20 +24,39 @@ public class BoardDAO {
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
 				BoardDTO data=new BoardDTO();
+				data.setBid(rs.getInt("BID"));
 				data.setTitle(rs.getString("TITLE"));
 				data.setWriter(rs.getString("NAME"));
 				data.setRegtime(rs.getString("REGTIME"));
 				datas.add(data);
 			}
 		} catch (SQLException e) {
-			System.out.println("SQL문 실패");
+			System.out.println("SQL문 실패 - BoardDAO.selectAll");
 		}
-		JDBCUtil.disconnect(pstmt,conn);
+		JDBCUtil.disconnect(conn,pstmt);
 
 		return datas;
 	}
-	public BoardDTO selectOne(BoardDTO boardDTO){
+	public BoardDTO selectOne(BoardDTO boardDTO) {
 		BoardDTO data=null;
+		
+		Connection conn=JDBCUtil.connect();
+		PreparedStatement pstmt=null;
+		try {
+			pstmt=conn.prepareStatement(SELECTONE);
+			pstmt.setInt(1, boardDTO.getBid());
+			ResultSet rs=pstmt.executeQuery();
+			if(rs.next()) {
+				data = new BoardDTO();
+				data.setBid(rs.getInt("BID"));
+				data.setTitle(rs.getString("TITLE"));
+				data.setContent(rs.getString("CONTENT"));
+				data.setWriter(rs.getString("WRITER"));
+				data.setRegtime(rs.getString("REGTIME"));
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL문 실패 - BoardDAO.selectOne");
+		}
 		
 		return data;
 	}

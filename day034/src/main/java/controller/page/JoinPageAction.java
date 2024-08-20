@@ -11,7 +11,7 @@ public class JoinPageAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward=new ActionForward();
 		forward.setPath("join.jsp");
-		forward.setRedirect(true);
+		forward.setRedirect(false);
 		return forward;
 	}
 

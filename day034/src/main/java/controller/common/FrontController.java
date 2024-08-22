@@ -36,9 +36,9 @@ public class FrontController extends HttpServlet {
 		
 		// 2. 요청을 수행
 		
-		//Action action = this.mappings.getMapper().get(command); // 내가 요청한 값에 대한 action을 가져올거야
+		//Action action = this.mappings.getMapper().get(command); // 내가 요청한 값에 대한 action을 가져오기
 		Action action = this.mappings.getAction(command);
-		//action 가져오면 execute 할거야
+		//action 가져오면 execute 
 		ActionForward forward = action.execute(request,response);
 		
 		

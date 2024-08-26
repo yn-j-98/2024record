@@ -14,31 +14,26 @@
 		$(document).ready(function() {
 			
 			 $("#checkButton").click(function(){
-				var id = $("#userId").val(); // 입력 필드에서 아이디 값을 가져옵니다
+				var id = $('input[name=mid]').val(); // 입력 필드에서 아이디 값을 가져옵니다
 	            
 	            if (id) { 
 					$.ajax({
 						type : "GET",
 						url : "CheckId.do",
 						data: { id: id }, // 서버에 전송할 데이터 (아이디)
-						dataType : "text",
-						success : function(response) { 
-							try {
+						dataType : "text", // 기본값: text, 즉..안써도됨
+						success : function(data) { 
                                 // 응답 텍스트를 그대로 처리
-                                if (response.includes("true")) { // true 라면
+                                if (data.includes("true")) { // true 라면
                                     $("#result").text("아이디 사용 가능!");
-                                } else if (response.includes("false")) { // false라면
+                                } else if (data.includes("false")) { // false라면
                                     $("#result").text("아이디 중복!");
                                 } else {
                                     $("#result").text("서버 응답 오류!");
                                 }
-                            } catch (e) {
-                                console.error("응답 처리 오류: ", e);
-                                $("#result").text("서버 응답 오류!");
-                            }
                         },
-                        error: function(xhr, status, error) {
-                            console.error("요청실패 : " + status + " " + error);
+                        error: function(error) {
+                            console.error("요청실패 : " + error);
                             $("#result").text("오류 발생");
 						}
 					});
@@ -52,7 +47,7 @@
 	</script>
 
 	<h1>아이디 중복 체크</h1>
-	<input type="text" id="userId" placeholder="아이디 입력">
+	<input type="text"  placeholder="아이디 입력" name="mid">
 	<button id="checkButton">중복 체크</button>
 	<p id="result"></p>
 </body>

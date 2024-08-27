@@ -206,7 +206,7 @@
         
      // 회원가입 버튼 onclick
         document.getElementById('signupBtn').onclick = function() {
-            window.location.href = 'joinAction.do'; // 회원가입 페이지로 이동
+            window.location.href = 'JOINACTION.do'; // V -> C -> V 회원가입 페이지로 이동
         };
 
     </script>

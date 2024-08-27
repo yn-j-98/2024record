@@ -9,6 +9,7 @@
 </head>
 <body>
  
+ <!-- C에서 받아온 DATA의 (글)제목, (글)내용, (글)작성자, (글)번호, (글)작성 시간 -->
 ${data.title} <br>
 ${data.content} <br>
 ${data.writer} <br>
@@ -17,6 +18,7 @@ ${data.regtime} <br>
 
 <hr>
 
+<!-- 커스텀 태그(reply.tag) datas 변수 전달 -->
 <mytag:reply datas="${datas}" />
 
 <hr>

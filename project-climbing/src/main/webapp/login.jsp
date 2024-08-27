@@ -111,10 +111,7 @@
 						<div class="row py-4">
 							<div class="col-md-6">
 								<!-- 네이버 로그인 버튼 노출 영역 -->
-								<!--  	<button type="button" class="btn btn-success" id="naverLoginBtn">네이버 로그인</button>-->
 								<div id="naver_id_login"></div>
-
-								<!-- 네이버 로그인 버튼 노출 영역 -->
 							</div>
 							<div class="col-md-6">
 								<!-- 카카오 로그인 버튼 -->
@@ -149,19 +146,6 @@
 		Kakao.init('f68644c7e9866ef898677d5e1a260265');
 		console.log('Kakao SDK 초기화 여부:', Kakao.isInitialized());
 
-		// 네이버 로그인 버튼 클릭 이벤트
-		//document.getElementById('naverLoginBtn').onclick = function() {
-		//	naverLogin.getLoginStatus(function(status) {
-		//		if (status) {
-		//			var email = naverLogin.user.getEmail();
-		//			sendToController({
-		//				email : email
-		//			});
-		//		} else {
-		//			console.log("네이버 로그인 실패");
-		//		}
-		//	});
-		//};
 
 		// 네이버 로그인
 		var naver_id_login = new naver_id_login( // 네이버 로그인을 위한 객체 생성
@@ -178,21 +162,21 @@
 		// 네이버 개발자 문서 - https://developers.naver.com/docs/login/bi/bi.md
 		naver_id_login.setButton("green", 2, 40);
 
-		// 이 로그인 API를 사용할 페이지의 주소를 설정합니다.
-		// 이 주소는 네이버 로그인 API에서 검증하는 페이지 주소입니다.
+		// 이 로그인 API를 사용할 페이지의 주소를 설정
+		// 이 주소는 네이버 로그인 API에서 검증하는 페이지 주소
 		naver_id_login
 				.setDomain("http://localhost:8088/project-climbing/login.jsp");
 
-		// 로그인 요청에 사용할 상태 값을 설정합니다.
-		// 이 값은 CSRF 공격을 방지하기 위해 사용됩니다. ( 사이트 간 요청 위조 )
+		// 로그인 요청에 사용할 상태 값을 설정
+		// 이 값은 CSRF 공격( 사이트 간 요청 위조 공격 )을 방지하기 위해 사용됨 
 		naver_id_login.setState(state);
 
-		// 로그인 팝업을 사용할 수 있도록 설정합니다.
-		// 사용자가 로그인 버튼을 클릭했을 때 팝업창이 열리게 됩니다.
+		// 로그인 팝업을 사용할 수 있도록 설정
+		// 사용자가 로그인 버튼을 클릭했을 때 팝업창이 열리게 됨
 		naver_id_login.setPopup();
 
-		// 네이버 로그인 초기화: 설정한 값을 바탕으로 네이버 로그인 기능을 초기화합니다.
-		// 이 메소드가 호출되어야 네이버 로그인 버튼이 제대로 작동합니다.
+		// 네이버 로그인 초기화: 설정한 값을 바탕으로 네이버 로그인 기능을 초기화
+		// 이 메소드가 호출되어야 네이버 로그인 버튼이 제대로 작동됨
 		naver_id_login.init_naver_id_login();
 
 		// 네이버 로그인 api 끝
@@ -229,7 +213,7 @@
 				data : userInfo,
 				success : function(response) {
 					console.log('서버 응답:', response);
-					window.location.href = 'MAINPAGEACTION.do'; // 로그인 후 리다이렉션 URL
+					window.location.href = 'MAINPAGEACTION.do'; // 로그인 후 이동하게 될 URL
 				},
 				error : function(error) {
 					console.error('통신 오류:', error);

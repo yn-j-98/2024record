@@ -10,6 +10,7 @@
 <body>
 
 <table border="1">
+<!-- C에서 데이터 가져오기 -->
 <c:forEach var="data" items="${datas}">
 	<tr><td><a href="board.do?bid=${data.bid}">${data.title}</a></td><td>${data.writer}</td><td>${data.regtime}</td></tr>
 </c:forEach>

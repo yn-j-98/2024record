@@ -25,10 +25,12 @@ public class MemberDAO {
 		Connection conn=JDBCUtil.connect();
 		PreparedStatement pstmt=null;
 		try {
+			// 아이디 중복검사
 			if(memberDTO.getCondition().equals("CHECKMID")) {
 				pstmt=conn.prepareStatement(SELECTONE_CHECKMID);
 				pstmt.setString(1, memberDTO.getMid());
 				ResultSet rs=pstmt.executeQuery();
+				// 결과처리
 				if(rs.next()) {
 					data=new MemberDTO();
 					data.setMid(rs.getString("MID"));

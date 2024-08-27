@@ -8,6 +8,7 @@
 </head>
 <body>
 
+<!-- C에서 데이터 가져오기 -->
 <img alt="${data.name}님의 프로필 이미지" src="images/${data.imagepath}">
 <ul>
 	<li>아이디 >> ${data.mid}</li>

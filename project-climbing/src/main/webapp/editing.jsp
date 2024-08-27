@@ -142,7 +142,7 @@
 	}
 	function submitEditing(){
 		 $.ajax({
-	            url: 'boardInsertAction.do',
+	            url: 'BOARDINSERTACTION.do',
 	            type: 'POST',
 	            data: {
 	                title: $('#BOARD_TITLE').val(),
@@ -150,7 +150,7 @@
 	            },
 	            success: function(response) {
 	                // 성공적으로 작성된 경우 글작성 C로 이동
-	                window.location.href = 'boardInsertAction.do'; // 성공 페이지로 리다이렉트
+	                window.location.href = 'BOARDINSERTACTION.do'; // 성공 페이지로 리다이렉트
 	            },
 	            error: function(xhr, status, error) {
 	                // 오류 코드에 따라 적절한 에러 페이지로 리다이렉트

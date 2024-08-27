@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>서버 내부 오류</title>
-<link rel="stylesheet" href="../css/error.css">
+<link rel="stylesheet" href="../assets/css/error.css">
 </head>
 <body>
   <div class="error-image-container">

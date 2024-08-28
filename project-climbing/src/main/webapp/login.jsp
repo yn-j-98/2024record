@@ -80,28 +80,28 @@
 		<div
 			class="page-inner w-100 vh-100 d-flex justify-content-center align-items-center">
 			<div class="card card-stats card-round p-3">
-				<div class="card-body">
+				<div class="card-body p-5">
 					<h3 class="text-center">로그인</h3>
-					<form id="loginForm" action="LOGINACTION.do" method="POST">
+					<form id="loginForm" action="LOGINACTION.do" method="POST" class="p-3">
 						<div class="row">
-							<div class="col-md-3 d-flex align-items-center">
+							<div class="col-md-3 d-flex justify-content-end align-items-center p-0">
 								<h6 class="m-0">아이디</h6>
 							</div>
-							<div class="col-md-9">
+							<div class="col-md-9 p-0">
 								<div class="form-group">
 									<input type="email" class="form-control" id="email"
-										name="email" placeholder="아이디를 입력해주세요" />
+										name="email" required placeholder="아이디를 입력해주세요" />
 								</div>
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-md-3 d-flex align-items-center">
+							<div class="col-md-3 d-flex justify-content-end align-items-center p-0">
 								<h6 class="m-0">비밀번호</h6>
 							</div>
-							<div class="col-md-9">
+							<div class="col-md-9 p-0">
 								<div class="form-group">
 									<input type="password" class="form-control" id="password"
-										name="password" placeholder="비밀번호를 입력해주세요" />
+										name="password" required placeholder="비밀번호를 입력해주세요" />
 								</div>
 							</div>
 						</div>
@@ -110,15 +110,19 @@
 							value="checkLogin">
 						<!-- 네이버 로그인 버튼 -->
 						<div class="row py-4">
-							<div class="col-md-6">
+							<div class="col-md-6 d-flex justify-content-center align-items-center">
 								<!-- 네이버 로그인 버튼 노출 영역 -->
 								<!-- 네이버 개발자 문서에서 가져옴 -->
 								<div id="naver_id_login"></div>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-6 d-flex justify-content-center align-items-center">
 								<!-- 카카오 로그인 버튼 -->
-								<button type="button" class="btn btn-warning" id="kakaoLoginBtn">카카오
-									로그인</button>
+								<!-- https://developers.kakao.com/tool/resource/login 에서 가져온 images 파일 -->
+								<a id="kakao-login-btn" href="javascript:loginWithKakao()">
+									<img
+									src="images/kakao_login_medium.png"
+									alt="카카오 로그인 버튼" />
+								</a>
 							</div>
 						</div>
 
@@ -140,9 +144,8 @@
 	</div>
 
 	<script type="text/javascript">
-		
 		// 네이버 로그인
-		// https://developers.naver.com/docs/login/devguide/devguide.md
+		//  https://developers.naver.com/docs/login/devguide/devguide.md
 		// 에서 데이터를 가져왔다고 보면 됨
 		var naver_id_login = new naver_id_login( // 네이버 로그인을 위한 객체 생성
 		"kQSIom2rw1yt29HcbNc8", // 내 client ID: 네이버 개발자 센터에서 발급받은 클라이언트 ID
@@ -174,48 +177,50 @@
 		// 네이버 로그인 초기화: 설정한 값을 바탕으로 네이버 로그인 기능을 초기화
 		// 이 메소드가 호출되어야 네이버 로그인 버튼이 제대로 작동됨
 		naver_id_login.init_naver_id_login();
-		
-		// 네이버 로그인 버튼 클릭 시 처리 함수
-	    function naverLoginCallback() {
-	    	// 네이버 사용자 정보 가져오기
-	        var naverUserInfo = naver_id_login.getProfile(); 
-	        if (naverUserInfo) {
-	        	// 이메일 추출
-	            var email = naverUserInfo.email; 
-	         // 이메일 정보 C에게 전송
-	            sendToController({ email: email }); 
-	        }
-	    }
 
-	    // 네이버 로그인 상태 확인 및 사용자 정보 처리 함수
-	    function getNaverUserInfo() {
-	    	// 네이버 로그인 상태라면
-	        if (naver_id_login.getLoginStatus()) {
-	            naverLoginCallback(); // 콜백 호출
-	        } else {
-	        	// 로그인 상태가 아닐 경우 경고
-	            alert("로그인 상태가 아닙니다."); 
-	        }
-	    }
+		// 네이버 로그인 버튼 클릭 시 처리 함수
+		function naverLoginCallback() {
+			// 네이버 사용자 정보 가져오기
+			var naverUserInfo = naver_id_login.getProfile();
+			if (naverUserInfo) {
+				// 이메일 추출
+				var email = naverUserInfo.email;
+				// 이메일 정보 C에게 전송
+				sendToController({
+					email : email
+				});
+			}
+		}
+
+		// 네이버 로그인 상태 확인 및 사용자 정보 처리 함수
+		function getNaverUserInfo() {
+			// 네이버 로그인 상태라면
+			if (naver_id_login.getLoginStatus()) {
+				naverLoginCallback(); // 콜백 호출
+			} else {
+				// 로그인 상태가 아닐 경우 경고
+				alert("로그인 상태가 아닙니다.");
+			}
+		}
 
 		// 네이버 로그인 api 끝
-		
-		
+
 		// 카카오 로그인 시작
 		// 카카오 developers에서 발급받은 내 client ID
 		Kakao.init('f68644c7e9866ef898677d5e1a260265');
 		// 로그 (true/false로 콘솔창에 출력됨)
 		console.log('Kakao SDK 초기화 여부:', Kakao.isInitialized());
-		
-		
+
 		// 카카오 로그인 버튼 클릭 이벤트
-		document.getElementById('kakaoLoginBtn').onclick = function() {
+		document.getElementById('kakao-login-btn').onclick = function() {
 			Kakao.Auth.login({
 				//로그인에 성공했다면
 				success : function(authObj) {
 					// 카카오 api에게 요청
 					Kakao.API.request({
 						// 사용자 정보 요청
+						// kakao.auth.login(auth)을 request하면 유효시간이 존재하는 토큰을 줌
+						// 그 url이 아래의 URL임
 						url : '/v2/user/me',
 						// 사용자 정보 요청을 성공했다면
 						success : function(res) {
@@ -241,8 +246,6 @@
 			});
 		};// 카카오 로그인 end
 
-		
-		
 		// C에게 사용자 정보 (이메일)전송하는 함수 (네이버, 카카오)
 		function sendToController(userInfo) {
 			$.ajax({
@@ -257,7 +260,7 @@
 					// true
 					console.log('서버 응답: ', response);
 					// 로그인 후 이동하게 될 URL
-					window.location.href = 'MAINPAGEACTION.do'; 
+					window.location.href = 'MAINPAGEACTION.do';
 				},
 				// 서버 응답 실패시
 				error : function(error) {
@@ -266,7 +269,7 @@
 					alert('로그인에 실패했습니다. 다시 시도해 주세요.');
 				}
 			});
-		} 
+		}
 
 		// 회원가입 버튼 onclick 이벤트
 		document.getElementById('signupBtn').onclick = function() {

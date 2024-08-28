@@ -105,12 +105,14 @@
 								</div>
 							</div>
 						</div>
+						<!-- 자동로그인 input -->
 						자동로그인 &nbsp;<input type="checkbox" name="AUTO_LOGIN"
 							value="checkLogin">
 						<!-- 네이버 로그인 버튼 -->
 						<div class="row py-4">
 							<div class="col-md-6">
 								<!-- 네이버 로그인 버튼 노출 영역 -->
+								<!-- 네이버 개발자 문서에서 가져옴 -->
 								<div id="naver_id_login"></div>
 							</div>
 							<div class="col-md-6">
@@ -138,16 +140,10 @@
 	</div>
 
 	<script type="text/javascript">
-		// 네이버 로그인 초기화
-		//var naverLogin = new naver_id_login("kQSIom2rw1yt29HcbNc8", "NAVER.do");
-		//naverLogin.init_naver_id_login();
-
-		// 카카오 로그인 초기화
-		Kakao.init('f68644c7e9866ef898677d5e1a260265');
-		console.log('Kakao SDK 초기화 여부:', Kakao.isInitialized());
-
-
+		
 		// 네이버 로그인
+		// https://developers.naver.com/docs/login/devguide/devguide.md
+		// 에서 데이터를 가져왔다고 보면 됨
 		var naver_id_login = new naver_id_login( // 네이버 로그인을 위한 객체 생성
 		"kQSIom2rw1yt29HcbNc8", // 내 client ID: 네이버 개발자 센터에서 발급받은 클라이언트 ID
 		"http://localhost:8088/project-climbing/main.jsp" // 내 callback url: 로그인 후 보여질 URL
@@ -178,53 +174,104 @@
 		// 네이버 로그인 초기화: 설정한 값을 바탕으로 네이버 로그인 기능을 초기화
 		// 이 메소드가 호출되어야 네이버 로그인 버튼이 제대로 작동됨
 		naver_id_login.init_naver_id_login();
+		
+		// 네이버 로그인 버튼 클릭 시 처리 함수
+	    function naverLoginCallback() {
+	    	// 네이버 사용자 정보 가져오기
+	        var naverUserInfo = naver_id_login.getProfile(); 
+	        if (naverUserInfo) {
+	        	// 이메일 추출
+	            var email = naverUserInfo.email; 
+	         // 이메일 정보 C에게 전송
+	            sendToController({ email: email }); 
+	        }
+	    }
+
+	    // 네이버 로그인 상태 확인 및 사용자 정보 처리 함수
+	    function getNaverUserInfo() {
+	    	// 네이버 로그인 상태라면
+	        if (naver_id_login.getLoginStatus()) {
+	            naverLoginCallback(); // 콜백 호출
+	        } else {
+	        	// 로그인 상태가 아닐 경우 경고
+	            alert("로그인 상태가 아닙니다."); 
+	        }
+	    }
 
 		// 네이버 로그인 api 끝
+		
+		
+		// 카카오 로그인 시작
+		// 카카오 developers에서 발급받은 내 client ID
+		Kakao.init('f68644c7e9866ef898677d5e1a260265');
+		// 로그 (true/false로 콘솔창에 출력됨)
+		console.log('Kakao SDK 초기화 여부:', Kakao.isInitialized());
 		
 		
 		// 카카오 로그인 버튼 클릭 이벤트
 		document.getElementById('kakaoLoginBtn').onclick = function() {
 			Kakao.Auth.login({
+				//로그인에 성공했다면
 				success : function(authObj) {
+					// 카카오 api에게 요청
 					Kakao.API.request({
+						// 사용자 정보 요청
 						url : '/v2/user/me',
+						// 사용자 정보 요청을 성공했다면
 						success : function(res) {
+							// 사용자 정보에서 이메일을 추출함
 							var email = res.kakao_account.email;
+							// 추출한 이메일을 C에게 전송
 							sendToController({
 								email : email
 							});
 						},
+						// 사용자 정보 요청을 실패했다면
 						fail : function(error) {
+							// 콘솔에 에러 로그 띄움
 							console.error('카카오 로그인 사용자 정보 요청 실패:', error);
 						}
 					});
 				},
+				// 카카오 로그인에 실패했다면
 				fail : function(error) {
+					// 콘솔에 로그인 실패 로그 띄움
 					console.error('카카오 로그인 실패:', error);
 				}
 			});
-		};
+		};// 카카오 로그인 end
 
-		// 서버로 사용자 정보 전송
+		
+		
+		// C에게 사용자 정보 (이메일)전송하는 함수 (네이버, 카카오)
 		function sendToController(userInfo) {
 			$.ajax({
+				// 서버 API URL
 				url : 'LOGINAPI.do', // 실제 API URL로 수정 필요
+				// 요청방식
 				method : 'POST',
+				// C에게 전송할 데이터
 				data : userInfo,
+				// C 응답 성공 시
 				success : function(response) {
-					console.log('서버 응답:', response);
-					window.location.href = 'MAINPAGEACTION.do'; // 로그인 후 이동하게 될 URL
+					// true
+					console.log('서버 응답: ', response);
+					// 로그인 후 이동하게 될 URL
+					window.location.href = 'MAINPAGEACTION.do'; 
 				},
+				// 서버 응답 실패시
 				error : function(error) {
-					console.error('통신 오류:', error);
+					console.error('서버 응답: ', error);
+					// 로그인 실패 알랏창 띄움
 					alert('로그인에 실패했습니다. 다시 시도해 주세요.');
 				}
 			});
-		}
+		} 
 
-		// 회원가입 버튼 onclick
+		// 회원가입 버튼 onclick 이벤트
 		document.getElementById('signupBtn').onclick = function() {
-			window.location.href = 'JOINACTION.do';
+			// 클릭시에 회원가입 페이지 action 서버로 이동
+			window.location.href = 'SIGNUPACTION.do';
 		};
 	</script>
 

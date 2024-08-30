@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="mytag" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,98 +19,9 @@
 
 </head>
 <body>
-	<!-- responsive side menu -->
-	<!-- mobile offcanvas -->
-	<div class="offcanvas-lg offcanvas-start d-lg-none" tabindex="-1"
-		id="offcanvasResponsive" aria-labelledby="offcanvasResponsiveLabel">
-		<div class="offcanvas-header">
-			<h5 class="offcanvas-title" id="offcanvasResponsiveLabel"></h5>
-			<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-				data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
-		</div>
-		<div class=" offcanvas-body py-3">
-			<nav class="navbar h-100 flex-column justify-content-between">
-				<ul class="navbar-nav text-center">
-					<li class="nav-item p-3"><a class="nav-link" href="#">상점</a></li>
-					<li class="nav-item p-3"><a class="nav-link" href="#">암벽장</a></li>
-					<li class="nav-item p-3"><a class="nav-link"
-						href="CREWPAGE.do">크루</a></li>
-					<li class="nav-item p-3"><a class="nav-link"
-						href="RANKPAGE.do">랭킹</a></li>
-					<li class="nav-item p-3"><a class="nav-link"
-						href="COMMUNITYPAGE.do">커뮤니티</a></li>
-				</ul>
-				<ul class="navbar-nav text-center">
-					<c:if test="${empty MEMBER_ID}">
-						<li class="nav-item p-3"><a class="nav-link"
-							href="LOGINPAGE.do">로그인</a></li>
-					</c:if>
-					<c:if test="${not empty MEMBER_ID}">
-						<li class="nav-item p-3"><a class="nav-link"
-							href="MYPAGEPAGE.do">마이페이지</a></li>
-						<li class="nav-item p-3"><a class="nav-link"
-							href="LOGOUTPAGE.do">로그아웃</a></li>
-					</c:if>
-				</ul>
-			</nav>
-		</div>
-	</div>
-	<div class="main-header">
-		<div class="main-header-logo">
-			<!-- Logo Header -->
-			<div class="logo-header" data-background-color="dark">
-				<a href="index.html" class="logo"> <img
-					src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand"
-					class="navbar-brand" height="20" />
-				</a>
-				<div class="nav-toggle" data-bs-toggle="offcanvas"
-					data-bs-target="#offcanvasResponsive"
-					aria-controls="offcanvasResponsive">
-					<button class="btn btn-toggle toggle-sidebar">
-						<i class="gg-menu-right"></i>
-					</button>
-					<button class="btn btn-toggle sidenav-toggler">
-						<i class="gg-menu-left"></i>
-					</button>
-				</div>
-			</div>
-			<!-- End Logo Header -->
-		</div>
-		<!-- Navbar Header -->
-		<nav
-			class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
-			<div class="container-fluid justify-content-between">
-				<nav
-					class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
-					<a class="navbar-brand"> <img
-						src="assets/img/kaiadmin/logo_light.svg" alt="navbar brand"
-						class="navbar-brand" height="20" />
-					</a>
-					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link" href="#">상점</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">암벽장</a></li>
-						<li class="nav-item"><a class="nav-link" href="CREWPAGE.do">크루</a></li>
-						<li class="nav-item"><a class="nav-link" href="RANKPAGE.do">랭킹</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="COMMUNITYPAGE.do">커뮤니티</a></li>
-					</ul>
-				</nav>
-				<ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
-					<c:if test="${empty MEMBER_ID}">
-						<li class="nav-item"><a class="nav-link" href="LOGINPAGE.do">
-								login </a></li>
-					</c:if>
-					<c:if test="${not empty MEMBER_ID}">
-						<li class="nav-item"><a class="nav-link" href="#"> 마이페이지 </a>
-						</li>
-						<li class="nav-item"><a class="nav-link" href="LOGINPAGE.do">
-								logout </a></li>
-					</c:if>
-				</ul>
-			</div>
-		</nav>
-		<!-- End Navbar -->
-	</div>
+	<!-- GNB 커스텀 태그 -->
+	<mytag:gnb member_id="${MEMBER_ID}" ></mytag:gnb>
+	
 	<!-- container start -->
 	<div class="container">
 		<div class="page-inner">
@@ -119,7 +31,7 @@
 						<div class="row">
 							<div class="col-md-3 col-lg-3">
 								<div class="form-group">
-									<select name="board_list" id="bord"
+									<select name="board_list"
 										class="form-select form-control-lg">
 										<option>글 제목</option>
 										<option>작성자</option>
@@ -142,7 +54,7 @@
 							</div>
 							<div
 								class="col-md-3 col-lg-2 d-flex align-items-center justify-content-end">
-								<a href="INSERTBOARD.do" class="d-block btn">
+								<a href="INSERTBOARDPAGEACTION.do" class="d-block btn">
 									<button type="button"
 										class="btn btn-primary btn-round px-5 py-3">글 작성</button>
 								</a>
@@ -153,18 +65,18 @@
 			</div>
 			<c:forEach var="board" items="${BOARD}">
 				<c:choose>
-					<c:when test="${board.BOARD_ID} > 0}">
+					<c:when test="${board.board_num> 0}">
 						<div class="row pt-5">
 							<div class="col-md-10">
-								<div class="card card-stats card-round">
+								<div class="card card-stats card-round mb-0">
 									<div class="card-body p-5 d-flex justify-content-between">
 										<h3 class="card-title">
-											<a href="MAINPAGEACTION.do?BOARD_ID=${board.BOARD_ID}"
-												class="link-dark"> ${board.BOARD_TITLE}</a>
+											<a href="BOARDONEPAGEACTION.do?board_num=${board.board_num}"
+												class="link-dark"> ${board.board_title}</a>
 										</h3>
 										<div class="info-user">
-											<div class="username">작성자 : ${board.BOARD_WRITER}</div>
-											<div class="status">글 조회수 : ${board.BOARD_CNT}</div>
+											<div class="username">작성자 : ${board.board_writer_id}</div>
+											<div class="status">글 조회수 : ${board.board_cnt}</div>
 										</div>
 									</div>
 								</div>
@@ -176,11 +88,11 @@
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
-			<div class="row pt-2">
+			<div class="row pt-5">
 				<div class="col-md-10 d-flex justify-content-center">
 					<nav aria-label="Page navigation">
 						<ul id="pagination" class="pagination justify-content-center">
-
+							
 						</ul>
 					</nav>
 				</div>
@@ -188,14 +100,14 @@
 		</div>
 		<!-- container end -->
 		<div class="cookies d-none" id="cookies">
-			<div class="cookies-header p-3 text-end">
+			<div class="cookies-header py-1 px-3 text-end">
 				<a id="cookies-cancel" class="btn btn-toggle">x</a>
 			</div>
 			<div class="cookies-body p-3 text-center">
 				<h2 class="text-white">최고의 클라이밍 슈즈</h2>
 				<p class="text-white">모멘텀 암벽화</p>
 				<img src="assets/img/shoes.png" />
-				<h2 class="text-white py-1">~ 50%</h2>
+				<h2 class="text-white">~ 50%</h2>
 				<button class="btn btn-info btn-round">바로 구매하기</button>
 				<a id="cookie-today-hide" class="btn btn-toogle text-white">오늘
 					하루 보지 않기</a>
@@ -216,8 +128,8 @@
 		var btnTodayHide = document.getElementById("cookie-today-hide");
 
 		// 최초 쿠키배너 노출
-		// cookieBanner 라는 이름의 쿠키가 존재하지 않으면 레이어 노출
-		if (!$.cookie('cookieBanner')) {
+		// cookie라는 이름의 쿠키가 존재하지 않으면 레이어 노출
+		if (!$.cookie('cookie')) {
 			cookieShow();
 		}
 
@@ -241,11 +153,11 @@
 			cookies.classList.add("d-none");
 			if (state === 1) {
 				// cookie 처리
-				// 'cookieBanner' 이름의 쿠키가 있는지 체크해본다
-				if ($.cookie('cookieBanner') == undefined) {
-					//'cookieBanner'이름을 넣고 1일 후 쿠키가 삭제되도록 
+				// 'cookie' 이름의 쿠키가 있는지 체크해본다
+				if ($.cookie('cookie') == undefined) {
+					//'cookie'이름을 넣고 1일 후 쿠키가 삭제되도록 
 					// path 값을 '/'를 주면 모든페이지에서 유효한 쿠키가 생성
-					$.cookie('cookieBanner', 'Y', {
+					$.cookie('cookie', 'Y', {
 						expires : 1,
 						path : '/'
 					});
@@ -262,100 +174,150 @@
 		// 화면에 보여질 마지막 페이지 = 화면에 보여질 페이지 그룹 * 한 화면에 나타낼 페이지
 		// 총 페이지 수 = Math.ceil(전체 개수 / 한 페이지에 나타낼 데이터 수)
 
+		// 페이지네이션 생성 함수
+		function renderpagination(currentPage, _totalCount,param) {
+		    // 현재 게시물의 전체 개수가 10개 이하면 pagination을 숨깁니다.
+		    if (_totalCount <= 10) return;
+		    
+		    let board_list = param.get('board_list');
+			console.log(board_list);
+		    let board_keyword = param.get('board_keyword'); // 서버에서 전달된 님 내용임 맞겠지
+			console.log(board_keyword);
+		    
+		    // 총 페이지 수 계산 (전체 게시물 수를 한 페이지에 보여줄 게시물 수로 나눈 값의 올림)
+		    const totalPage = Math.ceil(_totalCount / 10);
+		    
+		    // 현재 페이지 그룹 계산 (현재 페이지를 10으로 나눈 값의 올림)
+		    const pageGroup = Math.ceil(currentPage / 10);
 		
-		function renderPagination(currentPage) {
-		    // 현재 게시물의 전체 개수가 20개 이하면 pagination을 숨깁니다.
-		    if (_totalCount <= 20) return;
+		    // 현재 페이지 그룹에서의 마지막 페이지 계산
+		    let last = pageGroup * 10;
 		
-		    // 총 페이지 수
-		    var totalPage = Math.ceil(_totalCount / 10);
-		    // 화면에 보여질 페이지 그룹
-		    var pageGroup = Math.ceil(currentPage / 10);
+		    // 마지막 페이지가 총 페이지 수를 초과하지 않도록 조정
+		    if (last > totalPage) last = totalPage;
 		
-		    var last = pageGroup * 10;
-		    if (last > totalPage)
-		        last = totalPage;
-		    var first = last - (10 - 1) <= 0 ? 1 : last - (10 - 1);
-		    var next = last + 1;
-		    var prev = first - 1;
+		    // 현재 페이지 그룹에서의 첫 번째 페이지 계산
+		    const first = last - (10 - 1) <= 0 ? 1 : last - (10 - 1);
 		
-		    // 화면에 보여질 페이지 그룹
+		    // 다음 그룹의 첫 페이지 계산
+		    const next = last + 1;
+		
+		    // 이전 그룹의 마지막 페이지 계산
+		    const prev = first - 1;
+		
+		    // 페이지네이션 버튼을 담을 비어있는 DocumentFragment 객체 생성
 		    const fragmentPage = document.createDocumentFragment();
 		
-		    // 처음으로 이동하는 버튼 구현
+		    // 이전 그룹으로 이동하는 버튼 생성 (prev가 0보다 크다면 생성)
 		    if (prev > 0) {
-		        var preli = document.createElement('li');
+		        const preli = document.createElement('li');
 		        preli.id = 'prev-btn';
 		        preli.className = 'page-item';
-		        preli.insertAdjacentHTML("beforeend",
-		            `
-		            <a id="allprev" class="page-link" href="#js-bottom" aria-label="Previous"> 
-		                <span aria-hidden="true">&laquo;</span>
-		            </a>
-		            `);
+		        if(board_list != null){
+			         preli.insertAdjacentHTML("beforeend",
+			        	    "<a id='allprev' class='page-link' href='MAINPAGEACTION.do?page=" + prev + "&board_list="+board_list+"&board_keyword="+board_keyword+"' aria-label='Previous'>" + 
+			        	    "<span aria-hidden='true'>&laquo;</span>" + 
+			        	    "</a>"
+			        	);
+			        	
+			        }
+			        else{
+				        preli.insertAdjacentHTML("beforeend",
+						           "<a id='allprev' class='page-link' href='MAINPAGEACTION.do?page="+prev+"' aria-label='Previous'>" 
+						                +"<span aria-hidden='true'>&laquo;</span> </a>");
+			        }
 		        fragmentPage.appendChild(preli);
 		    }
 		
-		    // 가운데 숫자 나오는 버튼 구현
-		    for (var i = first; i <= last; i++) {
+		    // 현재 페이지 그룹의 페이지 번호 버튼 생성
+		    for (let i = first; i <= last; i++) {
 		        const li = document.createElement("li");
 		        li.className = 'page-item';
-		        li.insertAdjacentHTML("beforeend",
-		            `
-		            <a class='page-link' href='MAINPAGEACTION.do?page=${i}' id='page-${i}' data-num='${i}'>
-		                ${i}
-		            </a>
-		            `);
+		        if(board_list != null){
+			        li.insertAdjacentHTML("beforeend",
+			        	    "<a class='page-link m-2' href='MAINPAGEACTION.do?page=" + i + "&board_list="+board_list+"&board_keyword="+board_keyword+"' id='page-" + i + "' data-num='" + i + "'>" +
+			        	    i +
+			        	    "</a>"
+			        	);
+			        	
+			        }
+			        else{
+				        li.insertAdjacentHTML("beforeend",
+					              "<a class='page-link m-2' href='MAINPAGEACTION.do?page=" + i + "' id='page-" + i + "' data-num='" + i + "'>" +
+					                i +
+					            "</a>");
+			        }
+
+
 		        fragmentPage.appendChild(li);
 		    }
 		
-		    // 마지막으로 이동 버튼 구현
+		    // 다음 그룹으로 이동하는 버튼 생성 (last가 totalPage보다 작다면 생성)
 		    if (last < totalPage) {
-		        var endli = document.createElement('li');
+		        const endli = document.createElement('li');
 		        endli.id = 'next-btn';
 		        endli.className = 'page-item';
-		        endli.insertAdjacentHTML("beforeend",
-		            `
-		            <a class="page-link" href="#js-program-detail-bottom" id='allnext' aria-label="Next"> 
-		                <span aria-hidden="true">&raquo;</span>
-		            </a>
-		            `);
-		
-		        fragmentPage.appendChild(endli);
+		        if(board_list != null){
+			        endli.insertAdjacentHTML("beforeend",
+			        	    "<a class='page-link' href='MAINPAGEACTION.do?page=" + next + "&board_list="+board_list+"&board_keyword="+board_keyword+"' id='allnext' aria-label='Next'>" + 
+			        	    "<span aria-hidden='true'>&raquo;</span>" +
+			        	    "</a>"
+			        	);
+			        	
+			        }
+			        else{
+				        endli.insertAdjacentHTML("beforeend",
+						     "<a class='page-link' href='MAINPAGEACTION.do?page=" + next +"' id='allnext' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a>");
+				        
+			        }
+
+				fragmentPage.appendChild(endli);
 		    }
 		
-		    // 페이지 목록 생성
-		    document.getElementById('pagination').appendChild(fragmentPage);
+		    // 생성된 페이지네이션 버튼들을 화면에 추가 
+		   document.getElementById('pagination').appendChild(fragmentPage);
+		   
+		};
 		
-		    $(`#pagination a`).removeClass("active");
-		    $(`#pagination a#page-${currentPage}`).addClass("active");
-		    $("#pagination a").click(function (e) {
-		        e.preventDefault();
-		        var $item = $(this);
-		        var $id = $item.attr("id");
-		        var selectedPage = $item.text();
-		
-		        if ($id == "next")
-		            selectedPage = next;
-		        if ($id == "prev")
-		            selectedPage = prev;
-		        if ($id == "allprev")
-		            selectedPage = 1;
-		        if ($id == "allnext")
-		            selectedPage = totalPage;
-		
-		        // 페이지네이션 그리는 함수
-		        list.renderPagination(selectedPage);
-		        // 페이지 그리는 함수
-		        list.search(selectedPage);
-		    });
-		}
-		
-		
+	    // 페이지 버튼 클릭 이벤트 처리
+	    $("#pagination a").click(function (e) {
+	        // 기본 동작(페이지 이동) 방지
+	        e.preventDefault();
+	        // 클릭된 페이지 링크 요소를 jQuery 객체로 저장
+	        const $item = $(this);
+	        // 클릭된 페이지 링크의 텍스트(페이지 번호)를 가져와 selectedPage 변수에 저장
+	        let selectedPage = $item.text();
+	
+	        // 각 버튼의 ID에 따라 선택된 페이지 설정
+	        if ($item.attr("id") === "next")
+	            selectedPage = next;
+	        if ($item.attr("id") === "prev")
+	            selectedPage = prev;
+	        if ($item.attr("id") === "allprev")
+	            selectedPage = 1;
+	        if ($item.attr("id") === "allnext")
+	            selectedPage = totalPage;
+	
+	        // 페이지네이션 재생성 및 해당 페이지 데이터 로드
+	        renderpagination(selectedPage, _totalCount);
+	        list.search(selectedPage); // 이 함수가 제대로 정의되어 있는지 확인
+	    });
+	    
+		// DOM이 완전히 로드된 후 페이지네이션을 생성
 		document.addEventListener("DOMContentLoaded", function() {
-		    renderPagination(1);  // 페이지네이션 초기화 호출
+		    const _totalCount = ${totalCount};  // 서버에서 전달된 전체 게시물 개수
+		    const  currentPage = ${currentPage}; // 서버에서 전달된 현재 페이지 번호
+		    
+		    let query = window.location.search;
+		    let param = new URLSearchParams(query);
+		    
+		    renderpagination(currentPage,_totalCount,param);      // 페이지네이션 생성 함수 호출
+		    
+		    // 현재 페이지를 표시하기 위해 active 클래스 추가
+		    $("#pagination a").removeClass("active text-white");
+		    $("#pagination a#page-" + currentPage).addClass("active text-white");
+		    console.log(currentPage);
 		});
-		
 		
 	</script>
 </body>

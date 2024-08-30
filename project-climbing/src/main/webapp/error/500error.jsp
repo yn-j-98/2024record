@@ -1,13 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>서버 내부 오류</title>
-<link rel="stylesheet" href="../assets/css/error.css">
+<title>500 error</title>
+<link rel="stylesheet" href="../project-climbing/css/error.css">s">
 </head>
 <body>
   <div class="error-image-container">
-    <img src="../images/500error.jpg" alt="500 Error" class="error-image">
+    <img src="/project-climbing/images/500error.jpg" alt="500 Error" class="error-image">
   </div>
-</body>
+</body> 
 </html>

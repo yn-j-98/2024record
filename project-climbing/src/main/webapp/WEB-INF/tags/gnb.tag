@@ -81,7 +81,7 @@
 							<a class="nav-link" href="MYPAGEPAGEACTION.do"> 마이페이지 </a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="LOGOUTPAGEACTION.do"> logout </a>
+							<a class="nav-link" href="LOGINPAGEACTION.do"> logout </a>
 						</li>
 					</c:if>
 

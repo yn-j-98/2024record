@@ -41,7 +41,7 @@
 	<div class="container pt-3">
 		<div class="page-inner">
 			<div class="card card-stats card-round p-3">
-				<form id="signup-form" action="SIGNUPACTION.do" method="post">
+				<form id="join-form" action="JOINACTION.do" method="post">
 					<div class="card-header">
 						<h3 class="text-center">회원가입</h3>
 					</div>

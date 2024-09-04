@@ -85,7 +85,7 @@
                   <div class="row">
                      <div class="col-12">
                         <button type="button" class="btn btn-secondary w-100"
-                           id="signupBtn">회원가입</button>
+                           id="joinBtn">회원가입</button>
                      </div>
                   </div>
                   <div class="row pt-3">
@@ -227,11 +227,12 @@
                console.log('서버 응답: ', response);
                if(response == "true"){                  
                // 로그인 후 이동하게 될 URL
+               alert('로그인 성공!');
                window.location.href = 'MAINPAGEACTION.do';
                }
                else{
                   // 응답이 없다면 회원가입 페이지로 이동
-                  window.location.href = 'SIGNUPPAGEACTION.do?member_id='+response;   
+                  window.location.href = 'JOINPAGEACTION.do?member_id='+response;   
                }
                
             },
@@ -245,9 +246,10 @@
       }
 
       // 회원가입 버튼 onclick 이벤트
-      document.getElementById('signupBtn').onclick = function() {
+      document.getElementById('joinBtn').onclick = function() {
          // 클릭시에 회원가입 페이지 action 서버로 이동
-         window.location.href = 'SIGNUPACTION.do';
+         alert('회원가입 페이지로 이동합니다.');
+         window.location.href = 'JOINACTION.do';
       };
    </script>
 

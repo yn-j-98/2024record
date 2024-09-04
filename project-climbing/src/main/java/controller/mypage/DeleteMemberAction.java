@@ -30,7 +30,7 @@ public class DeleteMemberAction implements Action{
 			MemberDAO memberDAO = new MemberDAO();
 			//사용자 아이디를 DTO에 등록
 			data.setMember_id(login);
-			System.out.println("DeletememberAction.java 로그 : "+login);
+			System.out.println("DeleteMemberAction.java 로그 : "+login);
 			//delete 를 성공하지 못했다면 Mypage로 보냅니다.
 			boolean flag = memberDAO.delete(data);
 			if(flag) {//멤버 삭제에 성공했다면 logout 페이지로 넘어갑니다.

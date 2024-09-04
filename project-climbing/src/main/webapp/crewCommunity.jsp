@@ -31,8 +31,9 @@
 				<b>크루</b>
 			</h1>
 			<h2 align="center">
-				<a>내 크루</a> &nbsp;&nbsp;|&nbsp;&nbsp; <b>커뮤니티</b> &nbsp;&nbsp;|&nbsp;&nbsp;
-				크루전 개최 &nbsp;&nbsp;|&nbsp;&nbsp; 크루 가입
+				<a href="">내 크루</a> &nbsp;&nbsp;/&nbsp;&nbsp; <a href=""><b>커뮤니티</b></a>
+				&nbsp;&nbsp;/&nbsp;&nbsp; <a href="">크루전 개최</a>
+				&nbsp;&nbsp;/&nbsp;&nbsp; <a href="">크루 가입</a>
 			</h2>
 			<br> <br>
 			<h4 align="center">내가 가입한 크루명</h4>
@@ -44,9 +45,8 @@
 						<form action="#" method="POST">
 							<div class="row">
 								<div class="col-md-3 text-center">
-									<img src="${MEMBERDATA.member_profile}"
-										class="avatar-img rounded-circle form-group" alt="작성자 사진">
-									&nbsp;작성자
+									<img src="#" class="avatar-img rounded-circle form-group"
+										alt="작성자 사진"> &nbsp;작성자
 								</div>
 
 
@@ -223,8 +223,18 @@
 				</div>
 			</div>
 		</div>
-		<h4>페이지네이션은 기능때 할 예정</h4>
-
+		<!-- 페이지네이션 예시 -->
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item disabled"><a class="page-link" href="#"
+					tabindex="-1" aria-disabled="true">Previous</a></li>
+				<li class="page-item"><a class="page-link" href="#">1</a></li>
+				<li class="page-item"><a class="page-link" href="#">2</a></li>
+				<li class="page-item"><a class="page-link" href="#">3</a></li>
+				<li class="page-item"><a class="page-link" href="#">Next</a></li>
+			</ul>
+		</nav>
+		<!-- 페이지네이션 예시 종료 -->
 		<!-- container end -->
 	</div>
 	<!--   Core JS Files   -->

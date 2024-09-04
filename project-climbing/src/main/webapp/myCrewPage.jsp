@@ -31,8 +31,13 @@
 				<b>크루</b>
 			</h1>
 			<h2 align="center">
-				<b>내 크루</b>&nbsp;&nbsp;/&nbsp;&nbsp;커뮤니티&nbsp;&nbsp;/&nbsp;&nbsp;크루전
-				개최&nbsp;&nbsp;/&nbsp;&nbsp;크루 가입
+				<a href=""><b>내 크루</b></a>
+				&nbsp;&nbsp;/&nbsp;&nbsp;
+				<a href="">커뮤니티</a>
+				&nbsp;&nbsp;/&nbsp;&nbsp;
+				<a href="">크루전	개최</a>
+				&nbsp;&nbsp;/&nbsp;&nbsp;
+				<a href="">크루 가입</a>
 			</h2>
 			<br> <br>
 			<h4 align="center">내가 가입한 크루명</h4>
@@ -43,7 +48,7 @@
 							<div class="col-12 d-flex justify-content-center">
 								<div class="avatar avatar-xxl" align="center">
 									<!-- 크루 사진 이미지 -->
-									<img src="${MEMBERDATA.member_profile}"
+									<img src="#"
 										class="avatar-img rounded-rectangle" alt="내가 가입한 크루 사진" />
 								</div>
 							</div>
@@ -108,7 +113,7 @@
 								<div class="row">
 									<div class="col-md-3 text-center"><h5>작은 티모 크루</h5></div>
 									<div class="col-md-3 text-center"><h5>서울시 강남구 역삼동</h5></div>
-									<div class="col-md-3 text-center"><h5>크루전 MVP : 이준열</h5></div>
+									<div class="col-md-3 text-center"><h5>크루전 MVP : 김선호</h5></div>
 									<div class="col-md-3 text-center"><h5>2024.06.01</h5></div>
 								</div>
 

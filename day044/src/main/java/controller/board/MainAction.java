@@ -13,8 +13,6 @@ public class MainAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		request.getSession().getAttribute("loginInfo","test");
-		
 		BoardDAO boardDAO=new BoardDAO();
 		BoardDTO boardDTO=new BoardDTO();
 		ArrayList<BoardDTO> datas=boardDAO.selectAll(boardDTO);

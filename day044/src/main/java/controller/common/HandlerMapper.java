@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import controller.board.BoardAction;
-import controller.board.InsertBoardAction;
 import controller.board.MainAction;
 import controller.member.JoinAction;
 import controller.member.LoginAction;
@@ -25,8 +24,6 @@ public class HandlerMapper {
 		this.mapper.put("/joinPage.do", new JoinPageAction());
 		this.mapper.put("/mypagePage.do", new MypagePageAction());
 		this.mapper.put("/join.do", new JoinAction());
-		this.mapper.put("/InsertBoard.do", new InsertBoardAction());
-		this.mapper.put("/join.do", new InsertBoardAction());
 	}
 
 	public Action getAction(String command) {

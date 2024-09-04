@@ -1,4 +1,4 @@
-package controller.board;
+package controller.page;
 
 import java.util.ArrayList;
 
@@ -7,23 +7,34 @@ import controller.common.ActionForward;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.dao.BoardDAO;
+import model.dao.ReplyDAO;
 import model.dto.BoardDTO;
+import model.dto.ReplyDTO;
 
-public class MainAction implements Action {
+public class BoardPageAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		request.getSession().getAttribute("loginInfo","test");
-		
 		BoardDAO boardDAO=new BoardDAO();
 		BoardDTO boardDTO=new BoardDTO();
+		ReplyDAO replyDAO = new ReplyDAO();
+		ReplyDTO replyDTO = new ReplyDTO();
+		
 		ArrayList<BoardDTO> datas=boardDAO.selectAll(boardDTO);
 		request.setAttribute("datas", datas);
 		
+		BoardDTO data = boardDAO.selectOne(boardDTO);
+		request.setAttribute("data", data);
+		
+		ArrayList<ReplyDTO> contents = replyDAO.selectAll(replyDTO);
+		request.setAttribute("contents", contents);
+		
+		
+		
 		ActionForward forward=new ActionForward();
-		forward.setRedirect(false); // 포워드 방식
-		forward.setPath("main.jsp");
+		forward.setPath("board.jsp");
+		forward.setRedirect(false);
 		return forward;
 	}
-	
+
 }

@@ -11,10 +11,10 @@ import model.member.MemberDTO;
 import java.io.IOException;
 
 @WebServlet("/passwordcheck")
-public class PasswoardCheckAction extends HttpServlet {
+public class PasswordCheckAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public PasswoardCheckAction() {
+    public PasswordCheckAction() {
         super();
     }
 

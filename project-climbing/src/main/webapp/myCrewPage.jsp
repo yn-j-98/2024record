@@ -43,19 +43,25 @@
 			<div class="row pt-2 pb-5">
 				<div class="col-12">
 					<div class="d-flex justify-content-center align-items-center">
-						<a href="#" class="text-dark text-decoration-underline link-primary">
-							<h3 class="m-0"><b>내크루</b></h3>
+						<a href="CREWPAGEACTION.do"
+							class="text-dark text-decoration-underline link-primary">
+							<h3 class="m-0">
+								<b>내크루</b>
+							</h3>
 						</a>
 						<h3 class="px-5 m-0">/</h3>
-						<a href="#" class="text-dark text-decoration-none link-primary">
+						<a href="CREWCOMMUNITYPAGEACTION.do"
+							class="text-dark text-decoration-none link-primary">
 							<p class="fs-4 m-0">커뮤니티</p>
 						</a>
 						<h3 class="px-5 m-0">/</h3>
-						<a href="#" class="text-dark text-decoration-none link-primary">
+						<a href="CREWBATTLEPAGEACTION.do"
+							class="text-dark text-decoration-none link-primary">
 							<p class="fs-4 m-0">크루전 개최</p>
 						</a>
 						<h3 class="px-5 m-0">/</h3>
-						<a href="#" class="text-dark text-decoration-none link-primary">
+						<a href="CREWJOINACTION.do"
+							class="text-dark text-decoration-none link-primary">
 							<p class="fs-4 m-0">크루 가입</p>
 						</a>
 					</div>
@@ -63,11 +69,12 @@
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-md-10">
-					<h4>내가 가입한 크루명</h4>
+					<!-- 내가 가입한 크루의 크루명 DB에서 가져오기 -->
+					<h4>${model_crew_name}</h4>
 					<div class="card card-stats card-round pt-3 px-5 pb-5">
-									<!-- 크루 사진 이미지 -->
-						<img src="images/crewImageEx.jpg"
-										class="crew-image " alt="내가 가입한 크루 사진" />
+						<!-- 크루 사진 이미지 -->
+						<img src="images/crewImageEx.jpg" class="crew-image "
+							alt="내가 가입한 크루 사진" />
 					</div>
 				</div>
 			</div>
@@ -82,8 +89,8 @@
 										<h5>크루설명</h5>
 									</div>
 									<div class="col-md-7">
-										<h5>크루 설명입니다.크루 설명입니다.크루 설명입니다.크루 설명입니다.크루 설명입니다.크루
-											설명입니다.</h5>
+										<!-- DB에 저장된 (내)크루에 대한 설명 가져오기 -->
+										<h5>${model_crew_description}</h5>
 									</div>
 								</div>
 								<br>
@@ -92,7 +99,8 @@
 										<h5>크루장명</h5>
 									</div>
 									<div class="col-md-7">
-										<h5>주예나</h5>
+										<!-- DB에 저장된 (내)크루의 크루장 명 -->
+										<h5>${model_crew_leader}</h5>
 									</div>
 								</div>
 								<br>
@@ -101,10 +109,10 @@
 										<h5>크루원명</h5>
 									</div>
 									<div class="col-md-7">
-										<h5>남상도</h5>
-										<h5>박선아</h5>
-										<h5>이준열</h5>
-										<h5>등등...</h5>
+										<!-- DB에 저장된 (내)크루의 크루원 목록 -->
+										<c:forEach var="crew" items="${model_member_crew_datas}">
+											<h5>${model_crew}</h5>
+										</c:forEach>
 									</div>
 								</div>
 							</div>
@@ -117,22 +125,36 @@
 							<div class="tab-pane fade show active" id="line-post"
 								role="tabpanel" aria-labelledby="line-post-tab">
 								<h4 align="center">크루전 승리목록</h4>
-								<br>
-								<br>
+								<br> <br>
 								<div class="row">
-									<div class="col-md-3 text-center"><h5>코리아 에듀 크루</h5></div>
-									<div class="col-md-3 text-center"><h5>서울시 강남구 역삼동</h5></div>
-									<div class="col-md-3 text-center"><h5>크루전 MVP : 이준열</h5></div>
-									<div class="col-md-3 text-center"><h5>2024.08.01</h5></div>
+									<!-- 크루전 승리목록 가져오기 -->
+									<c:forEach var="record_data"
+										items="${model_battle_record_datas}">
+										<c:choose>
+											<c:when test="${record_data.model_crew_num > 0}">
+												<!-- 크루전 했던 암벽장 이름 -->
+												<div class="col-md-3 text-center">
+													<h5>${model_battle_gym_name}</h5>
+												</div>
+												<!-- 암벽장 장소 -->
+												<div class="col-md-3 text-center">
+													<h5>장소 : ${model_battle_gym_location}</h5>
+												</div>
+												<!-- 크루전 MVP -->
+												<div class="col-md-3 text-center">
+													<h5>크루전 MVP : ${model_battle_record_mvp}</h5>
+												</div>
+												<!-- 시행일자 -->
+												<div class="col-md-3 text-center">
+													<h5>시행일자 : ${model_battle_game_date}</h5>
+												</div>
+											</c:when>
+											<c:otherwise>
+												<h3>크루전 승리목록이 없습니다..</h3>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
 								</div>
-								<div class="row">
-									<div class="col-md-3 text-center"><h5>작은 티모 크루</h5></div>
-									<div class="col-md-3 text-center"><h5>서울시 강남구 역삼동</h5></div>
-									<div class="col-md-3 text-center"><h5>크루전 MVP : 김선호</h5></div>
-									<div class="col-md-3 text-center"><h5>2024.06.01</h5></div>
-								</div>
-
-
 							</div>
 						</div>
 					</div>

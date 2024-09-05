@@ -32,14 +32,14 @@
         
 
          <!-- 게시글 번호가 없거나 빈 경우 메시지 표시 -->
-         <c:if test="${empty BOARD_NUM}">
+         <c:if test="${empty model_board_num}">
             <div class="alert alert-danger" role="alert">게시글 번호가 누락되었습니다.
             </div>
          </c:if>
 
          <!-- 게시글 번호가 있는 경우 -->
-         <c:if test="${not empty BOARD_NUM}">
-            <form action="BOARDUPDATEACTION.do?board_num=${BOARD_NUM}" method="POST"
+         <c:if test="${not empty model_board_num}">
+            <form action="BOARDUPDATEACTION.do?board_num=${model_board_num}" method="POST"
                name="VIEW_UPDATE_EDITING" onsubmit="return validateForm()">
                <div class="row">
                   <div
@@ -50,7 +50,7 @@
                      <div class="form-group">
                         <!-- C에서 DATA 가져오기 -->
                         <input type="text" class="form-control" id="title" name="VIEW_TITLE"
-                           value="${BOARD_TITLE}" required
+                           value="${model_board_title}" required
                            placeholder="글의 제목을 입력해주세요 ( 제한 : 100자 )" maxlength="100" />
                         <div id="titleError" class="byte-error">제목은 100자를 넘을 수
                            없습니다.</div>
@@ -68,7 +68,7 @@
                            <!-- C에서 DATA 가져오기 -->
                            <textarea id="content" class="form-control" name="VIEW_CONTENT"
                               style="height: 500px !important;" required maxlength="1000"
-                              placeholder="글의 내용을 입력해주세요 ( 제한 : 1000자 )">${BOARD_CONTENT}</textarea>
+                              placeholder="글의 내용을 입력해주세요 ( 제한 : 1000자 )">${model_board_content}</textarea>
                         </div>
                      </div>
                      <!-- 바이트 제한을 넘어서면 작게 안내문구 보이도록 설정 -->

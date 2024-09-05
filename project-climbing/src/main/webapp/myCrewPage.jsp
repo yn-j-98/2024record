@@ -17,6 +17,14 @@
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 <link rel="stylesheet" href="assets/css/plugins.min.css" />
 <link rel="stylesheet" href="assets/css/kaiadmin.css" />
+<style>
+.crew-image {
+	width: 100%;
+	height: auto;
+	max-height: 400px; /* 원하는 최대 높이 설정 */
+	object-fit: cover; /* 이미지 비율 유지하며 잘림 방지 */
+}
+</style>
 
 </head>
 
@@ -27,32 +35,39 @@
 	<!-- container start -->
 	<div class="container">
 		<div class="page-inner">
-			<h1 align="center">
-				<b>크루</b>
-			</h1>
-			<h2 align="center">
-				<a href=""><b>내 크루</b></a>
-				&nbsp;&nbsp;/&nbsp;&nbsp;
-				<a href="">커뮤니티</a>
-				&nbsp;&nbsp;/&nbsp;&nbsp;
-				<a href="">크루전	개최</a>
-				&nbsp;&nbsp;/&nbsp;&nbsp;
-				<a href="">크루 가입</a>
-			</h2>
-			<br> <br>
-			<h4 align="center">내가 가입한 크루명</h4>
+			<div class="row pt-5 pb-2">
+				<div class="col-12">
+					<h1 class="text-center">크루</h1>
+				</div>
+			</div>
+			<div class="row pt-2 pb-5">
+				<div class="col-12">
+					<div class="d-flex justify-content-center align-items-center">
+						<a href="#" class="text-dark text-decoration-underline link-primary">
+							<h3 class="m-0"><b>내크루</b></h3>
+						</a>
+						<h3 class="px-5 m-0">/</h3>
+						<a href="#" class="text-dark text-decoration-none link-primary">
+							<p class="fs-4 m-0">커뮤니티</p>
+						</a>
+						<h3 class="px-5 m-0">/</h3>
+						<a href="#" class="text-dark text-decoration-none link-primary">
+							<p class="fs-4 m-0">크루전 개최</p>
+						</a>
+						<h3 class="px-5 m-0">/</h3>
+						<a href="#" class="text-dark text-decoration-none link-primary">
+							<p class="fs-4 m-0">크루 가입</p>
+						</a>
+					</div>
+				</div>
+			</div>
 			<div class="row justify-content-center">
 				<div class="col-md-10">
+					<h4>내가 가입한 크루명</h4>
 					<div class="card card-stats card-round pt-3 px-5 pb-5">
-						<div class="row">
-							<div class="col-12 d-flex justify-content-center">
-								<div class="avatar avatar-xxl" align="center">
 									<!-- 크루 사진 이미지 -->
-									<img src="#"
-										class="avatar-img rounded-rectangle" alt="내가 가입한 크루 사진" />
-								</div>
-							</div>
-						</div>
+						<img src="images/crewImageEx.jpg"
+										class="crew-image " alt="내가 가입한 크루 사진" />
 					</div>
 				</div>
 			</div>

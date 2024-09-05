@@ -40,7 +40,7 @@
          <!-- 게시글 번호가 있는 경우 -->
          <c:if test="${not empty BOARD_NUM}">
             <form action="BOARDUPDATEACTION.do?board_num=${BOARD_NUM}" method="POST"
-               name="updateediting" onsubmit="return validateForm()">
+               name="VIEW_UPDATE_EDITING" onsubmit="return validateForm()">
                <div class="row">
                   <div
                      class="col-md-1 d-flex align-items-center justify-content-center justify-content-md-end">
@@ -49,7 +49,7 @@
                   <div class="col-md-11">
                      <div class="form-group">
                         <!-- C에서 DATA 가져오기 -->
-                        <input type="text" class="form-control" id="title" name="title"
+                        <input type="text" class="form-control" id="title" name="VIEW_TITLE"
                            value="${BOARD_TITLE}" required
                            placeholder="글의 제목을 입력해주세요 ( 제한 : 100자 )" maxlength="100" />
                         <div id="titleError" class="byte-error">제목은 100자를 넘을 수
@@ -66,7 +66,7 @@
                      <div class="form-group">
                         <div class="input-group">
                            <!-- C에서 DATA 가져오기 -->
-                           <textarea id="content" class="form-control" name="content"
+                           <textarea id="content" class="form-control" name="VIEW_CONTENT"
                               style="height: 500px !important;" required maxlength="1000"
                               placeholder="글의 내용을 입력해주세요 ( 제한 : 1000자 )">${BOARD_CONTENT}</textarea>
                         </div>

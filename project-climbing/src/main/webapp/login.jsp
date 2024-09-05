@@ -33,8 +33,9 @@
 	<mytag:gnb member_id="${MEMBER_ID}" ></mytag:gnb>
    <!-- container start -->
    <div class="container">
-      <div
-         class="page-inner w-100 vh-100 d-flex justify-content-center align-items-center">
+   <!-- page-inner start -->
+      <div class="page-inner w-100 vh-100 d-flex justify-content-center align-items-center">
+         <!-- login card start -->
          <div class="card card-stats card-round p-3">
             <div class="card-body p-5">
                <h3 class="text-center">로그인</h3>
@@ -46,7 +47,7 @@
                      <div class="col-md-9 p-0">
                         <div class="form-group">
                            <input type="email" class="form-control" id="email"
-                              name="email" required placeholder="아이디를 입력해주세요" />
+                              name="VIEW_EMAIL" required placeholder="아이디를 입력해주세요" />
                         </div>
                      </div>
                   </div>
@@ -57,12 +58,12 @@
                      <div class="col-md-9 p-0">
                         <div class="form-group">
                            <input type="password" class="form-control" id="password"
-                              name="password" required placeholder="비밀번호를 입력해주세요" />
+                              name="VIEW_PASSWORD" required placeholder="비밀번호를 입력해주세요" />
                         </div>
                      </div>
                   </div>
                   <!-- 자동로그인 input -->
-                  자동로그인 &nbsp;<input type="checkbox" name="AUTO_LOGIN"
+                  자동로그인 <input type="checkbox" class="ms-2" name="VIEW_AUTO_LOGIN"
                      value="checkLogin">
                   <!-- 네이버 로그인 버튼 -->
                   <div class="row py-4">
@@ -95,8 +96,11 @@
                   </div>
                </form>
             </div>
+            <!-- login card end -->
          </div>
-      </div>
+         <!-- page-inner end -->
+      </div> 
+      <!-- container end -->
    </div>
 
    <script type="text/javascript">

@@ -234,7 +234,6 @@
 				<li class="page-item"><a class="page-link" href="#">Next</a></li>
 			</ul>
 		</nav>
-		<!-- 페이지네이션 예시 종료 -->
 		<!-- container end -->
 	</div>
 	<!--   Core JS Files   -->

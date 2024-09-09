@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>500 error</title>
-<link rel="stylesheet" href="../project-climbing/css/error.css">s">
+<link rel="stylesheet" href="../project-climbing/css/error.css">
 </head>
 <body>
   <div class="error-image-container">

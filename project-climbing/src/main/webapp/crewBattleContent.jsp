@@ -29,34 +29,40 @@
 		<div class="page-inner">
 			<div class="col-12 d-flex justify-content-center pb-3">
 				<h2>
-					<b>코리아 에듀 크루</b>
+					<b>${model_battle_gym_name}</b>
 				</h2>
 			</div>
 			<div class="col-12 d-flex justify-content-center">
 
-				<p>크루전 개최 날짜 : 2024.11.01</p>
+				<p>크루전 개최 날짜: ${model_battle_game_date}</p>
 			</div>
 			<div class="row border-top border-dark pb-3"></div>
 			<div class="row">
 				<div class="col-md-7 d-flex align-items-center">
-					<p class="mb-0">크루 장소 : 서울시 강남구 역삼동</p>
+					<p class="mb-0">위치 : ${model_battle_gym_location}</p>
 				</div>
 				<div class="col-md-5 d-flex align-items-center justify-content-end">
-					<p class="mb-0">참여 크루 수 : 3크루</p>
+					<p class="mb-0">참여 크루 수 : ${model_battle_crew_total}</p>
 				</div>
 			</div>
 			<div class="row border-bottom border-dark pb-3"></div>
 			<div class="row py-5">
 				<div class="col-12 d-flex justify-content-center">
-					<p class="text-start">개최되는 크루전 내용 입니다. 개최되는 크루전 내용 입니다. 개최되는
-						크루전 내용 입니다. 개최되는 크루전 내용 입니다. 개최되는 크루전 내용 입니다. 개최되는 크루전 내용 입니다.
-						개최되는 크루전 내용 입니다. 개최되는 크루전 내용 입니다. 개최되는 크루전 내용 입니다. 개최되는 크루전 내용
-						입니다. 개최되는 크루전 내용 입니다. 개최되는 크루전 내용 입니다. 개최되는 크루전 내용 입니다. 개최되는 크루전
-						내용 입니다. 개최되는 크루전 내용 입니다. 개최되는 크루전 내용 입니다. 개최되는 크루전 내용 입니다. 개최되는
-						크루전 내용 입니다. 개최되는 크루전 내용 입니다. 개최되는 크루전 내용 입니다. 개최되는 크루전 내용 입니다.
-						개최되는 크루전 내용 입니다. 개최되는 크루전 내용 입니다. 개최되는 크루전 내용 입니다. 개최되는 크루전 내용
-						입니다. 개최되는 크루전 내용 입니다. 개최되는 크루전 내용 입니다. 개최되는 크루전 내용 입니다. 개최되는 크루전
-						내용 입니다. 개최되는 크루전 내용 입니다.</p>
+					<c:forEach var="model_battle_data" items="${model_battle_datas}">
+						<c:choose>
+							<c:when test="${model_battle_data != null}">
+								<div class="battle-info">
+									<p>크루전 승리 크루: ${model_battle_data.model_battle_winner}</p>
+									<p>크루전 MVP: ${model_battle_data.model_battle_mvp}</p>
+									<p>크루명: ${model_battle_data.model_battle_crew_name}</p>
+									<p>해당 크루의 크루장: ${model_battle_data.model_battle_crew_leader}</p>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<p>데이터가 없습니다...</p>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
 				</div>
 			</div>
 			<div class="row border-bottom border-dark pb-3"></div>

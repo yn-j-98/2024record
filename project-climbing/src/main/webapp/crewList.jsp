@@ -37,73 +37,68 @@
 					<div class="d-flex justify-content-center align-items-center">
 						<a href="CREWPAGEACTION.do"
 							class="text-dark text-decoration-none link-primary">
-							<p class="fs-4 m-0">내크루</p>
+							<p class="fs-4 m-0">내 크루</p>
 						</a>
 						<h3 class="px-5 m-0">/</h3>
 						<a href="CREWCOMMUNITYPAGEACTION.do"
-							class="text-dark text-decoration-none link-primary">
+							class="text-dark text-decoration-none  link-primary">
 							<p class="fs-4 m-0">커뮤니티</p>
 						</a>
 						<h3 class="px-5 m-0">/</h3>
 						<a href="CREWBATTLEPAGEACTION.do"
-							class="text-dark text-decoration-underline link-primary">
-							<h3 class="m-0">
-								<b>크루전 개최</b>
-							</h3>
+							class="text-dark text-decoration-none link-primary">
+							<p class="fs-4 m-0">크루전 개최</p>
 						</a>
 						<h3 class="px-5 m-0">/</h3>
 						<a href="CREWLISTPAGEACTION.do"
-							class="text-dark text-decoration-none link-primary">
-							<p class="fs-4 m-0">크루 가입</p>
+							class="text-dark text-decoration-underline link-primary">
+							<h3 class="m-0">
+								<b>크루 가입</b>
+							</h3>
 						</a>
 					</div>
 				</div>
 			</div>
-			<h4 align="center">우리 크루가 참여하고 있는 크루전</h4>
-			<br>
-			<!-- 우리가 참여하고 있는 크루전 -->
+			<div class="row justify-content-center">
+				<div class="col-md-10 pt-4 px-4 pb-4">
+					<div class="row justify-content-center">
+						<div class="col-md-5">크루명</div>
+						<div class="col-md-4">크루장명</div>
+						<div class="col-md-1">인원수</div>
+					</div>
+				</div>
+			</div>
 			<div class="row justify-content-center">
 				<div class="col-md-10">
-					<div class="card card-stats card-round pt-3 px-5 pb-5">
-						<!-- 크루전 번호가 없거나 빈 경우 메시지 표시 -->
-						<c:if test="${empty model_battle_num}">
-							<div class="alert alert-danger" role="alert">크루전 번호가
-								누락되었습니다.</div>
-						</c:if>
-						<div class="row">
-							<!-- 크루전 번호가 있는 경우 -->
-							<c:if test="${not empty model_battle_num}">
-								<c:forEach var="model_battle_data" items="model_battle_datas">
+					<div class="card card-stats card-round pt-4 px-4 pb-4">
+						<div class="row justify-content-center">
+							<c:if test="${empty model_crew_num}">
+								<div class="alert alert-danger" role="alert">크루 번호가
+									누락되었습니다.</div>
+							</c:if>
+							<c:if test="${not empty model_crew_num}">
+								<c:forEach var="model_crew_data" items="${model_crew_datas}">
 									<c:choose>
-										<c:when test="${model_battle_data != null}">
-											<div class="col-md-6">
-												<!-- 크루전 개최한 장소명 -->
-												<h2>암벽장 이름 : ${model_battle_data.model_battle_gym_name}</h2>
+										<c:when test="${model_crew_data != null}">
+											<div class="col-md-5">
+												<!-- 아래 링크를 클릭하면 선택한 크루의 설명창이 뜨게 됨 -->
+												<a href="CREWEXPLAINPAGEACTION.do"><b>${model_crew_data.model_crew_name}</b></a>
 											</div>
-											<div class="col-md-6">
-												<h4 align="right">위치 :
-													${model_battle_data.model_battle_gym_location}</h4>
-											</div>
-											<div class="col-md-6">
-												<br>
-												<h5>크루전 개최 날짜:
-													${model_battle_data.model_battle_game_date}</h5>
-											</div>
+											<div class="col-md-4">${model_crew_data.model_crew_leader}</div>
+											<div class="col-md-1">최대 크루원 수:
+												${model_crew_data.model_crew_max_member_size}</div>
 										</c:when>
 										<c:otherwise>
-											<p>크루전 개최 목록 데이터가 없습니다 ...</p>
+											<p>크루 목록 데이터가 없습니다 ...</p>
 										</c:otherwise>
 									</c:choose>
 								</c:forEach>
 							</c:if>
+
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- 우리가 참여하고 있는 크루전 end -->
-			<div class="row border-top border-dark pt-3 px-3 pb-3"></div>
-
-
 			<div class="row pt-5">
 				<div class="col-md-10 d-flex justify-content-center">
 					<nav aria-label="Page navigation">
@@ -114,12 +109,14 @@
 				</div>
 			</div>
 
+
+
 		</div>
 		<!-- container end -->
 	</div>
 
-
 	<script type="text/javascript">
+
 		// 페이지네이션 생성
 
 		// 4가지 값
@@ -167,7 +164,7 @@
 				preli
 						.insertAdjacentHTML(
 								"beforeend",
-								"<a id='allprev' class='page-link' href='CREWBATTLEPAGEACTION.do?page="
+								"<a id='allprev' class='page-link' href='CREWLISTPAGEACTION.do?page="
 										+ prev
 										+ "' aria-label='Previous'>"
 										+ "<span aria-hidden='true'>&laquo;</span> </a>");
@@ -181,7 +178,7 @@
 				li.className = 'page-item';
 
 				li.insertAdjacentHTML("beforeend",
-						"<a class='page-link m-2' href='CREWBATTLEPAGEACTION.do?page="
+						"<a class='page-link m-2' href='CREWLISTPAGEACTION.do?page="
 								+ i + "' id='page-" + i + "' data-num='" + i
 								+ "'>" + i + "</a>");
 
@@ -197,7 +194,7 @@
 				endli
 						.insertAdjacentHTML(
 								"beforeend",
-								"<a class='page-link' href='CREWBATTLEPAGEACTION.do?page="
+								"<a class='page-link' href='CREWLISTPAGEACTION.do?page="
 										+ next
 										+ "' id='allnext' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a>");
 
@@ -254,6 +251,8 @@
 			console.log(currentPage);
 		});
 	</script>
+
+
 	<!--   Core JS Files   -->
 	<script src="assets/js/core/jquery-3.7.1.min.js"></script>
 	<script src="assets/js/core/popper.min.js"></script>

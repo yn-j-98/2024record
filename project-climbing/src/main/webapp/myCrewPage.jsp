@@ -46,7 +46,7 @@
 						<a href="CREWPAGEACTION.do"
 							class="text-dark text-decoration-underline link-primary">
 							<h3 class="m-0">
-								<b>내크루</b>
+								<b>내 크루</b>
 							</h3>
 						</a>
 						<h3 class="px-5 m-0">/</h3>
@@ -60,7 +60,7 @@
 							<p class="fs-4 m-0">크루전 개최</p>
 						</a>
 						<h3 class="px-5 m-0">/</h3>
-						<a href="CREWJOINACTION.do"
+						<a href="CREWLISTPAGEACTION.do"
 							class="text-dark text-decoration-none link-primary">
 							<p class="fs-4 m-0">크루 가입</p>
 						</a>
@@ -128,10 +128,10 @@
 								<br> <br>
 								<div class="row">
 									<!-- 크루전 승리목록 가져오기 -->
-									<c:forEach var="record_data"
+									<c:forEach var="model_record_data"
 										items="${model_battle_record_datas}">
 										<c:choose>
-											<c:when test="${record_data.model_crew_num > 0}">
+											<c:when test="${model_record_data.model_crew_num > 0}">
 												<!-- 크루전 했던 암벽장 이름 -->
 												<div class="col-md-3 text-center">
 													<h5>${model_battle_gym_name}</h5>

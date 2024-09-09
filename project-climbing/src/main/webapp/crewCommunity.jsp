@@ -66,20 +66,22 @@
 					<div class="card card-stats card-round pt-3 px-5 pb-5">
 						<!-- 글 작성 form -->
 
-						<form id ="postForm" action="CREWCOMMUNITYPAGEACTION.do" method="POST">
+						<form id="postForm" action="CREWCOMMUNITYPAGEACTION.do"
+							method="POST">
 							<div class="row">
 								<div
 									class="col-md-1 d-flex align-items-center justify-content-center justify-content-md-end">
 									<h6>글 제목</h6>
 								</div>
 								<div class="col-md-5 text-left">
-									<input type="text" class="form-control" id="title" name="title"
+									<input type="text" class="form-control" id="title" name="view_title"
 										required placeholder="글의 제목을 입력해주세요 ( 제한 : 100자 )"
 										maxlength="100">
 								</div>
 								<div class="col-md-2">
 									<!-- 크루 커뮤니티 글 작성 submit -->
-									<button class="btn btn-primary me-3" type="submit">글 작성</button>
+									<button class="btn btn-primary me-3" type="submit">글
+										작성</button>
 								</div>
 							</div>
 							<br> <br>
@@ -93,7 +95,7 @@
 									<div class="form-group">
 										<div class="input-group">
 											<!-- 내용 바이트 제한 : 1000자 -->
-											<textarea id="content" class="form-control" name="content"
+											<textarea id="content" class="form-control" name="view_content"
 												required style="height: 200px !important;" maxlength="1000"
 												placeholder="글의 내용을 입력해주세요 ( 제한 : 1000자 )"></textarea>
 										</div>
@@ -123,96 +125,70 @@
 		</div>
 		<script type="text/javascript">
 	
-		$(document).ready(function() {
-		    // 글 작성 폼 제출 처리
-		    $('#postForm').on('submit', function(event) {
-		        event.preventDefault(); // 기본 폼 제출 동작 방지
+		$('#postForm').on('submit', function(event) {
+		    event.preventDefault(); // 기본 폼 제출 동작 방지
 
-		        $.ajax({
-		            url: 'CREWCOMMUNITYPAGEACTION.do', // 서버의 URL을 입력하세요
-		            type: 'POST',
-		            data: $(this).serialize(), // 폼 데이터를 직렬화하여 전송
-		            success: function(response) {
-		                // 서버에서 성공적으로 처리한 경우
-		                // 서버에서 반환된 데이터가 포함된 응답 처리
-		                var newPost = `<div class="col-md-10">
-		                    <div class="card card-stats card-round pt-3 px-5 pb-5">
-		                        <div class="row">
-		                            <div class="col-md-3 text-center">
-		                                <img src="${response.profile}" class="avatar-img rounded-circle form-group" alt="작성자 사진"> ${response.writer}
-		                            </div>
-		                            <div class="col-md-1 d-flex align-items-center justify-content-center justify-content-md-end">
-		                                <h6>글 제목</h6>
-		                            </div>
-		                            <div class="col-md-7 d-flex align-items-center justify-content-left">
-		                                <b>${response.title}</b>
-		                            </div>
-		                        </div>
-		                        <br> <br>
-		                        <div class="row">
-		                            <div class="col-md-3"></div>
-		                            <div class="col-md-1 d-flex justify-content-center justify-content-md-end">
-		                                <h6>글 내용</h6>
-		                            </div>
-		                            <div class="col-md-7">${response.content}</div>
-		                        </div>
-		                    </div>
-		                </div>`;
-		                $('#postList').prepend(newPost); // 새 글을 페이지 상단에 추가
-		                $('#postForm')[0].reset(); // 폼 초기화
-		            },
-		            error: function(xhr, status, error) {
-		                // 에러 처리
-		                alert('글 작성 중 오류가 발생하였습니다.');
-		                console.error('Error:', error);
+		    $.ajax({
+		        url: 'crewBoardInsert', // 서버의 URL
+		        type: 'POST',
+		        data: $(this).serialize(), // 폼 데이터를 직렬화하여 전송
+		        success: function(response) {
+		            if (response.status === 'success') {
+		                alert(response.message);
+		                // 새 게시글을 페이지에 추가하는 로직 추가
+		            } else {
+		                alert(response.message);
 		            }
-		        });
+		        },
+		        error: function(xhr, status, error) {
+		            alert('Error: ' + error);
+		        }
 		    });
+		});
 
 		    // 페이지 로드 시 서버에서 글 목록을 가져오는 코드 (선택 사항)
-		    function loadPosts() {
-		        $.ajax({
-		            url: 'CREWCOMMUNITYACTION.do', // 서버에서 글 목록을 가져오는 URL
-		            type: 'GET',
-		            success: function(response) {
-		                var postsHtml = '';
-		                $.each(response.posts, function(index, post) {
-		                    postsHtml += `<div class="col-md-10">
-		                        <div class="card card-stats card-round pt-3 px-5 pb-5">
-		                            <div class="row">
-		                                <div class="col-md-3 text-center">
-		                                    <img src="${post.profile}" class="avatar-img rounded-circle form-group" alt="작성자 사진"> ${post.writer}
-		                                </div>
-		                                <div class="col-md-1 d-flex align-items-center justify-content-center justify-content-md-end">
-		                                    <h6>글 제목</h6>
-		                                </div>
-		                                <div class="col-md-7 d-flex align-items-center justify-content-left">
-		                                    <b>${post.title}</b>
-		                                </div>
-		                            </div>
-		                            <br> <br>
-		                            <div class="row">
-		                                <div class="col-md-3"></div>
-		                                <div class="col-md-1 d-flex justify-content-center justify-content-md-end">
-		                                    <h6>글 내용</h6>
-		                                </div>
-		                                <div class="col-md-7">${post.content}</div>
-		                            </div>
-		                        </div>
-		                    </div>`;
-		                });
-		                $('#postList').html(postsHtml);
-		            },
-		            error: function(xhr, status, error) {
-		                // 에러 처리
-		                console.error('Error:', error);
-		            }
-		        });
-		    }
-
-		    // 페이지 로드 시 글 목록을 가져오는 함수 호출
-		    loadPosts();
-		});
+		   function loadPosts(page = 1) {
+			    $.ajax({
+			        url: 'CREWCOMMUNITYACTION.do', // 서버에서 글 목록을 가져오는 URL
+			        type: 'GET',
+			        data: { page: page }, // 현재 페이지를 서버로 전송
+			        success: function(response) {
+			            var postsHtml = '';
+			            $.each(response.posts, function(index, post) {
+			                postsHtml += `<div class="col-md-10">
+			                    <div class="card card-stats card-round pt-3 px-5 pb-5">
+			                        <div class="row">
+			                            <div class="col-md-3 text-center">
+			                                <img src="${post.profile}" class="avatar-img rounded-circle form-group" alt="작성자 사진"> ${post.writer}
+			                            </div>
+			                            <div class="col-md-1 d-flex align-items-center justify-content-center justify-content-md-end">
+			                                <h6>글 제목</h6>
+			                            </div>
+			                            <div class="col-md-7 d-flex align-items-center justify-content-left">
+			                                <b>${post.title}</b>
+			                            </div>
+			                        </div>
+			                        <br> <br>
+			                        <div class="row">
+			                            <div class="col-md-3"></div>
+			                            <div class="col-md-1 d-flex justify-content-center justify-content-md-end">
+			                                <h6>글 내용</h6>
+			                            </div>
+			                            <div class="col-md-7">${post.content}</div>
+			                        </div>
+			                    </div>
+			                </div>`;
+			            });
+			            $('#postList').html(postsHtml);
+			
+			            // 페이지네이션 업데이트
+			            renderpagination(response.currentPage, response.totalCount);
+			        },
+			        error: function(xhr, status, error) {
+			            console.error('Error:', error);
+			        }
+			    });
+			}
 	
 	
 

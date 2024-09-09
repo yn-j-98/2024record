@@ -55,7 +55,8 @@
 									<p>크루전 승리 크루: ${model_battle_data.model_battle_winner}</p>
 									<p>크루전 MVP: ${model_battle_data.model_battle_mvp}</p>
 									<p>크루명: ${model_battle_data.model_battle_crew_name}</p>
-									<p>해당 크루의 크루장: ${model_battle_data.model_battle_crew_leader}</p>
+									<p>해당 크루의 크루장:
+										${model_battle_data.model_battle_crew_leader}</p>
 								</div>
 							</c:when>
 							<c:otherwise>

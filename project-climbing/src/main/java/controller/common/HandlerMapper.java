@@ -6,7 +6,6 @@ import java.util.Map;
 import controller.community.BoardDone;
 import controller.community.BoardInsertAction;
 import controller.community.BoardOnePageAction;
-import controller.community.BoardUpdateAction;
 import controller.community.InsertBoardPageAction;
 import controller.community.ReplyAction;
 import controller.community.ReplyDeleteAction;
@@ -18,7 +17,7 @@ import controller.member.LoginPageAction;
 import controller.member.LogoutAtion;
 import controller.member.SignUpAction;
 import controller.member.SignUpPageAction;
-import controller.mypage.BoardDeleteAtion;
+import controller.mypage.BoardDeleteAction;
 import controller.mypage.BoardUpdatePageAction;
 import controller.mypage.ChangeMemberPageAction;
 import controller.mypage.DeleteMemberAction;
@@ -60,7 +59,7 @@ public class HandlerMapper {
 		
 		//기능 Action
 		this.mapper.put("/DELETEMEMBERACTION.do", new DeleteMemberAction()); //회원 탈퇴 기능
-		this.mapper.put("/BOARDDELETEACTION.do", new BoardDeleteAtion()); //작성글 삭제 기능
+		this.mapper.put("/BOARDDELETEACTION.do", new BoardDeleteAction()); //작성글 삭제 기능
 		
 		//-------------------------------------------------------------------------------------------------
 		//BoardPage Action
@@ -71,7 +70,6 @@ public class HandlerMapper {
 		
 		//기능 Action
 		this.mapper.put("/BOARDINSERTACTION.do", new BoardInsertAction()); // 글 수정 기능
-		this.mapper.put("/BOARDUPDATEACTION.do", new BoardUpdateAction()); // 글 수정 기능
 		this.mapper.put("/REPLYACTION.do", new ReplyAction()); // 댓글 작성 기능
 		this.mapper.put("/REPLYDELETEACTION.do", new ReplyDeleteAction()); // 댓글 삭제 기능
 		this.mapper.put("/REPLYUPDATEACTION.do", new ReplyUpdateAction()); // 댓글 수정 기능

@@ -1,6 +1,5 @@
 package controller.mypage;
 
-import java.util.ArrayList;
 
 import controller.common.Action;
 import controller.common.ActionForward;
@@ -9,8 +8,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.board.BoardDAO;
 import model.board.BoardDTO;
-import model.member.MemberDAO;
-import model.member.MemberDTO;
 
 public class BoardUpdatePageAction implements Action {
 

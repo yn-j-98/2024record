@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.board.BoardDAO;
 import model.board.BoardDTO;
 
-public class BoardDeleteAtion implements Action {
+public class BoardDeleteAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {

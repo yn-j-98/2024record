@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="mytag"%>
 <!DOCTYPE html>
@@ -11,86 +11,96 @@
 <!-- Fonts and icons -->
 <script src="assets/js/plugin/webfont/webfont.min.js"></script>
 <script src="https://kit.fontawesome.com/7f7b0ec58f.js"
-   crossorigin="anonymous"></script>
+	crossorigin="anonymous"></script>
 <!-- CSS Files -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 <link rel="stylesheet" href="assets/css/plugins.min.css" />
 <link rel="stylesheet" href="assets/css/kaiadmin.css" />
 
+<style>
+    /* 수정된 부분: 오류 메시지 스타일 추가 */
+    .byte-error {
+        display: none; /* 기본적으로 오류 메시지 숨기기 */
+        color: red;
+        font-size: 0.875rem;
+    }
+</style>
+
 </head>
 <body>
- 	<!-- GNB 커스텀태그 -->
+	<!-- GNB 커스텀태그 -->
 	<mytag:gnb member_id="${MEMBER_ID}"></mytag:gnb>
-   <!-- container start -->
-   <div class="container">
-      <div class="page-inner">
-         <div class="row py-3">
-            <div class="col-12">
-               <h1 class="text-center">글수정</h1>
-            </div>
-         </div>
-        
+	<!-- container start -->
+	<div class="container">
+		<div class="page-inner">
+			<div class="row py-3">
+				<div class="col-12">
+					<h1 class="text-center">글수정</h1>
+				</div>
+			</div>
 
-         <!-- 게시글 번호가 없거나 빈 경우 메시지 표시 -->
-         <c:if test="${empty model_board_num}">
-            <div class="alert alert-danger" role="alert">게시글 번호가 누락되었습니다.
-            </div>
-         </c:if>
 
-         <!-- 게시글 번호가 있는 경우 -->
-         <c:if test="${not empty model_board_num}">
-            <form action="BOARDUPDATEACTION.do?board_num=${model_board_num}" method="POST"
-               name="VIEW_UPDATE_EDITING" onsubmit="return validateForm()">
-               <div class="row">
-                  <div
-                     class="col-md-1 d-flex align-items-center justify-content-center justify-content-md-end">
-                     <h3>제목</h3>
-                  </div>
-                  <div class="col-md-11">
-                     <div class="form-group">
-                        <!-- C에서 DATA 가져오기 -->
-                        <input type="text" class="form-control" id="title" name="VIEW_TITLE"
-                           value="${model_board_title}" required
-                           placeholder="글의 제목을 입력해주세요 ( 제한 : 100자 )" maxlength="100" />
-                        <div id="titleError" class="byte-error">제목은 100자를 넘을 수
-                           없습니다.</div>
-                     </div>
-                  </div>
-               </div>
-               <div class="row">
-                  <div
-                     class="col-md-1 d-flex justify-content-center justify-content-md-end">
-                     <h3>내용</h3>
-                  </div>
-                  <div class="col-md-11">
-                     <div class="form-group">
-                        <div class="input-group">
-                           <!-- C에서 DATA 가져오기 -->
-                           <textarea id="content" class="form-control" name="VIEW_CONTENT"
-                              style="height: 500px !important;" required maxlength="1000"
-                              placeholder="글의 내용을 입력해주세요 ( 제한 : 1000자 )">${model_board_content}</textarea>
-                        </div>
-                     </div>
-                     <!-- 바이트 제한을 넘어서면 작게 안내문구 보이도록 설정 -->
-                     <div id="contentError" class="byte-error">내용은 1000자를 넘을 수
-                        없습니다.</div>
-                  </div>
-               </div>
-               <div class="row pt-5">
-                  <div class="col-12 d-flex justify-content-center">
-                     <!-- 취소 클릭시 cancelEditing 함수 호출 -->
-                     <button type="button" class="btn btn-black me-4"
-                        onclick="cancelEditing()">취소</button>
-                     <!-- 버튼 클릭시 폼을 제출 (C로 보냄) -->
-                     <button type="submit" class="btn btn-primary">수정</button>
-                  </div>
-               </div>
-            </form>
-         </c:if>
-      </div>
-   </div>
+			<!-- 게시글 번호가 없거나 빈 경우 메시지 표시 -->
+			<c:if test="${empty model_board_num}">
+				<div class="alert alert-danger" role="alert">게시글 번호가 누락되었습니다.
+				</div>
+			</c:if>
 
-   <script type="text/javascript">
+			<!-- 게시글 번호가 있는 경우 -->
+			<c:if test="${not empty model_board_num}">
+				<form action="BOARDUPDATEACTION.do?board_num=${model_board_num}"
+					method="POST" name="VIEW_UPDATE_EDITING"
+					onsubmit="return validateForm()">
+					<div class="row">
+						<div
+							class="col-md-1 d-flex align-items-center justify-content-center justify-content-md-end">
+							<h3>제목</h3>
+						</div>
+						<div class="col-md-11">
+							<div class="form-group">
+								<!-- C에서 DATA 가져오기 -->
+								<input type="text" class="form-control" id="title"
+									name="VIEW_TITLE" value="${model_board_title}" required
+									placeholder="글의 제목을 입력해주세요 ( 제한 : 100자 )" maxlength="100" />
+								<div id="titleError" class="byte-error">제목은 100자를 넘을 수
+									없습니다.</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div
+							class="col-md-1 d-flex justify-content-center justify-content-md-end">
+							<h3>내용</h3>
+						</div>
+						<div class="col-md-11">
+							<div class="form-group">
+								<div class="input-group">
+									<!-- C에서 DATA 가져오기 -->
+									<textarea id="content" class="form-control" name="VIEW_CONTENT"
+										style="height: 500px !important;" required maxlength="1000"
+										placeholder="글의 내용을 입력해주세요 ( 제한 : 1000자 )">${model_board_content}</textarea>
+								</div>
+							</div>
+							<!-- 바이트 제한을 넘어서면 작게 안내문구 보이도록 설정 -->
+							<div id="contentError" class="byte-error">내용은 1000자를 넘을 수
+								없습니다.</div>
+						</div>
+					</div>
+					<div class="row pt-5">
+						<div class="col-12 d-flex justify-content-center">
+							<!-- 취소 클릭시 cancelEditing 함수 호출 -->
+							<button type="button" class="btn btn-black me-4"
+								onclick="cancelEditing()">취소</button>
+							<!-- 버튼 클릭시 폼을 제출 (C로 보냄) -->
+							<button type="submit" class="btn btn-primary">수정</button>
+						</div>
+					</div>
+				</form>
+			</c:if>
+		</div>
+	</div>
+
+	<script type="text/javascript">
     // 바이트 계산 함수
     function getByteLength(str) {
         // TextEncoder를 사용하여 문자열의 바이트 길이 계산
@@ -134,10 +144,7 @@
         }
     }
 
-    // 제목 입력 필드와 내용 입력 필드에 대한 'input' 이벤트 리스너
-    // 실시간 바이트 체크
-    document.getElementById('title').addEventListener('input', updateByteCount);
-    document.getElementById('content').addEventListener('input', updateByteCount);
+
 
     // 폼 검증 함수
     function validateForm() {
@@ -161,12 +168,15 @@
 
     // 페이지 로드 시 초기 바이트 수 업데이트
     window.onload = updateByteCount;
+    // 제목과 내용 입력 필드에 대한 'input' 이벤트 리스너
+    document.getElementById('title').addEventListener('input', updateByteCount);
+    document.getElementById('content').addEventListener('input', updateByteCount);
     </script>
 
-   <!-- Core JS Files -->
-   <script src="assets/js/core/jquery-3.7.1.min.js"></script>
-   <script src="assets/js/core/popper.min.js"></script>
-   <script src="assets/js/core/bootstrap.min.js"></script>
+	<!-- Core JS Files -->
+	<script src="assets/js/core/jquery-3.7.1.min.js"></script>
+	<script src="assets/js/core/popper.min.js"></script>
+	<script src="assets/js/core/bootstrap.min.js"></script>
 
 </body>
 </html>

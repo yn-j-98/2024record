@@ -105,7 +105,7 @@
 
    <script type="text/javascript">
       // 네이버 로그인
-      //  https://developers.naver.com/docs/login/devguide/devguide.md
+      // https://developers.naver.com/docs/login/web/web.md
       // 에서 데이터를 가져왔다고 보면 됨
       var naver_id_login = new naver_id_login( // 네이버 로그인을 위한 객체 생성
       "kQSIom2rw1yt29HcbNc8", // 내 client ID: 네이버 개발자 센터에서 발급받은 클라이언트 ID
@@ -127,7 +127,6 @@
             .setDomain("http://localhost:8088/project-climbing/login.jsp");
 
       // 로그인 요청에 사용할 상태 값을 설정
-      // 이 값은 CSRF 공격( 사이트 간 요청 위조 공격 )을 방지하기 위해 사용됨 
       naver_id_login.setState(state);
 
       // 로그인 팝업을 사용할 수 있도록 설정

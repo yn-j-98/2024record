@@ -90,9 +90,6 @@
 													${model_battle_data.model_battle_game_date}</h5>
 											</div>
 										</c:when>
-										<c:otherwise>
-											<p>크루전 개최 목록 데이터가 없습니다 ...</p>
-										</c:otherwise>
 									</c:choose>
 								</c:forEach>
 							</c:if>
@@ -102,13 +99,10 @@
 			</div>
 			<!-- 우리가 참여하고 있는 크루전 end -->
 			<div class="row border-top border-dark pt-3 px-3 pb-3"></div>
-
-
 			<div class="row pt-5">
 				<div class="col-md-10 d-flex justify-content-center">
 					<nav aria-label="Page navigation">
-						<ul id="pagination" class="pagination justify-content-center">
-
+						<ul id="pagination" class="pagination justify-content-center">	
 						</ul>
 					</nav>
 				</div>

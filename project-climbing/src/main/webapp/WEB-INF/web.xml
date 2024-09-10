@@ -12,14 +12,5 @@
     <error-code>500</error-code>
     <location>/error/500error.jsp</location>
   </error-page>
-  <servlet>
-    <description></description>
-    <display-name>crewBoardInsert</display-name>
-    <servlet-name>crewBoardInsert</servlet-name>
-    <servlet-class>controller.asycnServlet.crewBoardInsert</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>crewBoardInsert</servlet-name>
-    <url-pattern>/crewBoardInsert</url-pattern>
-  </servlet-mapping>
+  
 </web-app>

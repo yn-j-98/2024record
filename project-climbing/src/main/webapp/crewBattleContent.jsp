@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="mytag"%>
 <!DOCTYPE html>
@@ -10,14 +9,20 @@
 
 <!-- Fonts and icons -->
 <script src="assets/js/plugin/webfont/webfont.min.js"></script>
-<script src="https://kit.fontawesome.com/7f7b0ec58f.js"
-	crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/7f7b0ec58f.js" crossorigin="anonymous"></script>
 
 <!-- CSS Files -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
 <link rel="stylesheet" href="assets/css/plugins.min.css" />
 <link rel="stylesheet" href="assets/css/kaiadmin.css" />
-
+<style>
+.battle-info {
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+}
+</style>
 </head>
 <body>
 	<!-- GNB 커스텀 태그 -->
@@ -25,16 +30,16 @@
 
 	<!-- container start -->
 	<div class="container">
-
 		<div class="page-inner">
-			<div class="col-12 d-flex justify-content-center pb-3">
-				<h2>
-					<b>${model_battle_gym_name}</b>
-				</h2>
+			<div class="row pb-3">
+				<div class="col-12 d-flex justify-content-center">
+					<h2><b>${model_battle_gym_name}</b></h2>
+				</div>
 			</div>
-			<div class="col-12 d-flex justify-content-center">
-
-				<p>크루전 개최 날짜: ${model_battle_game_date}</p>
+			<div class="row pb-3">
+				<div class="col-12 d-flex justify-content-center">
+					<p>크루전 개최 날짜: ${model_battle_game_date}</p>
+				</div>
 			</div>
 			<div class="row border-top border-dark pb-3"></div>
 			<div class="row">
@@ -55,8 +60,7 @@
 									<p>크루전 승리 크루: ${model_battle_data.model_battle_winner}</p>
 									<p>크루전 MVP: ${model_battle_data.model_battle_mvp}</p>
 									<p>크루명: ${model_battle_data.model_battle_crew_name}</p>
-									<p>해당 크루의 크루장:
-										${model_battle_data.model_battle_crew_leader}</p>
+									<p>해당 크루의 크루장: ${model_battle_data.model_battle_crew_leader}</p>
 								</div>
 							</c:when>
 							<c:otherwise>
@@ -66,14 +70,11 @@
 					</c:forEach>
 				</div>
 			</div>
-			<div class="row border-bottom border-dark pb-3"></div>
 		</div>
 	</div>
-	<!--   Core JS Files   -->
+	<!-- Core JS Files -->
 	<script src="assets/js/core/jquery-3.7.1.min.js"></script>
 	<script src="assets/js/core/popper.min.js"></script>
 	<script src="assets/js/core/bootstrap.min.js"></script>
-
-
 </body>
 </html>

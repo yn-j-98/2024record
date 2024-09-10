@@ -110,7 +110,7 @@
 									</div>
 									<div class="col-md-7">
 										<!-- DB에 저장된 (내)크루의 크루원 목록 -->
-										<c:forEach var="crew" items="${model_member_crew_datas}">
+										<c:forEach var="model_crew" items="${model_member_crew_datas}">
 											<h5>${model_crew}</h5>
 										</c:forEach>
 									</div>
@@ -134,19 +134,19 @@
 											<c:when test="${model_record_data.model_crew_num > 0}">
 												<!-- 크루전 했던 암벽장 이름 -->
 												<div class="col-md-3 text-center">
-													<h5>${model_battle_gym_name}</h5>
+													<h5>${model_record_data.model_battle_gym_name}</h5>
 												</div>
 												<!-- 암벽장 장소 -->
 												<div class="col-md-3 text-center">
-													<h5>장소 : ${model_battle_gym_location}</h5>
+													<h5>장소 : ${model_record_data.model_battle_gym_location}</h5>
 												</div>
 												<!-- 크루전 MVP -->
 												<div class="col-md-3 text-center">
-													<h5>크루전 MVP : ${model_battle_record_mvp}</h5>
+													<h5>크루전 MVP : ${model_record_data.model_battle_record_mvp}</h5>
 												</div>
 												<!-- 시행일자 -->
 												<div class="col-md-3 text-center">
-													<h5>시행일자 : ${model_battle_game_date}</h5>
+													<h5>시행일자 : ${model_record_data.model_battle_game_date}</h5>
 												</div>
 											</c:when>
 											<c:otherwise>

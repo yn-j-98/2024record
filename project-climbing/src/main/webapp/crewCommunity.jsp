@@ -74,7 +74,7 @@
 									<h6>글 제목</h6>
 								</div>
 								<div class="col-md-5 text-left">
-									<input type="text" class="form-control" id="title" name="view_title"
+									<input type="text" class="form-control" id="title" name="VIEW_TITLE"
 										required placeholder="글의 제목을 입력해주세요 ( 제한 : 100자 )"
 										maxlength="100">
 								</div>
@@ -95,7 +95,7 @@
 									<div class="form-group">
 										<div class="input-group">
 											<!-- 내용 바이트 제한 : 1000자 -->
-											<textarea id="content" class="form-control" name="view_content"
+											<textarea id="content" class="form-control" name="VIEW_CONTENT"
 												required style="height: 200px !important;" maxlength="1000"
 												placeholder="글의 내용을 입력해주세요 ( 제한 : 1000자 )"></textarea>
 										</div>

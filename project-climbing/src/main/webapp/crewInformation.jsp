@@ -33,7 +33,9 @@
 	<div class="row pt-5">
 		<div
 			class="col-md-12 d-flex align-items-center justify-content-center">
-			<img src="images/crewImageEx.jpg" class="crew-image" alt="크루 이미지">
+			<!-- 크루 이미지 경로 확인하기 -->
+			<!-- 샘플 : "images/crewImageEx.jpg" -->
+			<img src=${CREWDATA.model_crew_profile} class="crew-image" alt="크루 이미지">
 		</div>
 	</div>
 	<!-- container start -->

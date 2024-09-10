@@ -41,20 +41,20 @@ public class crewBoardInsertAction extends HttpServlet {
         
         
 		// V에서 title, content값을 받아오기
-		String crewBoardTitle = request.getParameter("view_title");
-		String crewBoardContent = request.getParameter("view_content");
+		String crew_board_title = request.getParameter("VIEW_TITLE");
+		String crew_board_content = request.getParameter("VIEW_CONTENT");
 		
 		
 
 		// db에 저장하기위해 객체 생성
-		CrewBoardDAO crewBoardDAO = new CrewBoardDAO();
-		CrewBoardDTO crewBoardDTO = new CrewBoardDTO();
+		Crew_boardDAO crew_boardDAO = new Crew_boardDAO();
+		Crew_boardDTO crew_boardDTO = new Crew_boardDTO();
 			
 		
 		// db에 저장하기 위해 만든 객체에 받아온 데이터를 삽입\
-		crewBoardDTO.setModel_crew_board_title(crewBoardTitle);
-		crewBoardDTO.setModel_crew_board_content(crewBoardContent);
-		crewBoardDTO.setModel_crew_board_writer(crewBoardMemberId);
+		crew_boardDTO.setModel_crew_board_title(crew_board_title);
+		crew_boardDTO.setModel_crew_board_content(crew_board_content);
+		crew_boardDTO.setModel_crew_board_writer(crewBoardMemberId);
 		
 		// 글 삽입
 		boolean flag = crewBoardDAO.insert(crewBoardDTO);

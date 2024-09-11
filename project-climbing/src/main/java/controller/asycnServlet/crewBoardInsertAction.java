@@ -1,14 +1,15 @@
 package controller.asycnServlet;
 
+import java.io.IOException;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
-import java.io.IOException;
-import java.io.PrintWriter;
+import model.crew_board.Crew_boardDAO;
+import model.crew_board.Crew_boardDTO;
 
 
 @WebServlet("/crewBoardInsert")
@@ -54,10 +55,10 @@ public class crewBoardInsertAction extends HttpServlet {
 		// db에 저장하기 위해 만든 객체에 받아온 데이터를 삽입\
 		crew_boardDTO.setModel_crew_board_title(crew_board_title);
 		crew_boardDTO.setModel_crew_board_content(crew_board_content);
-		crew_boardDTO.setModel_crew_board_writer(crewBoardMemberId);
+		crew_boardDTO.setModel_crew_board_writer_id(crewBoardMemberId);
 		
 		// 글 삽입
-		boolean flag = crewBoardDAO.insert(crewBoardDTO);
+		boolean flag = crew_boardDAO.insert(crew_boardDTO);
 	
 		// v에게 값 전달
 		response.getWriter().print(flag);

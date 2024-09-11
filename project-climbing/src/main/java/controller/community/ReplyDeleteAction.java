@@ -2,7 +2,7 @@ package controller.community;
 
 import controller.common.Action;
 import controller.common.ActionForward;
-import controller.funtion.LoginCheck;
+import controller.function.LoginCheck;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.reply.ReplyDAO;
@@ -19,7 +19,7 @@ public class ReplyDeleteAction implements Action {
         boolean flagRedirect = true; // 리다이렉트 방식 사용
 
         // 로그인 정보가 있는지 확인
-        String login = LoginCheck.Success(request, response);
+        String login[] = LoginCheck.Success(request, response);
         System.out.println("로그인 확인: " + login);
 
         // 만약 로그인 정보가 없다면
@@ -30,7 +30,7 @@ public class ReplyDeleteAction implements Action {
         } else {
             // 댓글 삭제
             int reply_num = Integer.parseInt(request.getParameter("replyId")); // 댓글 PK
-            String reply_id = login; // 세션에 있는 사용자의 아이디
+            String reply_id = login[0]; // 세션에 있는 사용자의 아이디
 
             System.out.println("댓글 번호: " + reply_num);
             System.out.println("사용자 ID: " + reply_id);

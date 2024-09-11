@@ -2,13 +2,13 @@ package controller.member;
 
 import controller.common.Action;
 import controller.common.ActionForward;
-import controller.funtion.LoginCheck;
+import controller.function.LoginCheck;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.member.MemberDAO;
 import model.member.MemberDTO;
 
-public class SignUpAction implements Action {
+public class JoinAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
@@ -18,10 +18,12 @@ public class SignUpAction implements Action {
 		boolean flagRedirect = true;
 
 		//로그인 정보가 있는지 확인해주고
-		String login = LoginCheck.Success(request, response);
+		String login[] = LoginCheck.Success(request, response);
+		//사용자 아이디
+		String member_id = login[0];
 		
 		//만약 로그인 정보가 있다면
-		if(login != null) {
+		if(member_id != null) {
 			//main 페이지로 전달해줍니다.
 			path = "MAINPAGEACTION.do";
 			//포워드 방식으로 보내줍니다.
@@ -31,11 +33,11 @@ public class SignUpAction implements Action {
 			MemberDAO dao = new MemberDAO();
 			MemberDTO data = new MemberDTO();
 			
-			data.setMember_id(request.getParameter("member_id"));//사용자 아이디
-			data.setMember_password(request.getParameter("member_password"));// 비밀번호
-			data.setMember_name(request.getParameter("member_name"));//이름
-			data.setMember_phone(request.getParameter("member_phoneNumber"));//전환번호
-			data.setMember_location(request.getParameter("member_location"));//지역
+			data.setModel_member_id(request.getParameter("member_id"));//사용자 아이디
+			data.setModel_member_password(request.getParameter("member_password"));// 비밀번호
+			data.setModel_member_name(request.getParameter("member_name"));//이름
+			data.setModel_member_phone(request.getParameter("member_phoneNumber"));//전환번호
+			data.setModel_member_location(request.getParameter("member_location"));//지역
 			
 			//model 에 등록을 요청하고
 			boolean flag = dao.insert(data);

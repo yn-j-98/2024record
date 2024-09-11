@@ -1,15 +1,11 @@
-package controller.funtion;
+package controller.function;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.URL;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Random;
@@ -267,7 +263,8 @@ public class SMSPush {
 			InetAddress addr = InetAddress.getByName(host);
 			Socket socket = new Socket(host, port);
 			// server 에서 전달 받은 Socket 에 값을 작성하고
-			// 문자를 방송함
+			// 문자를 발송함
+			
 			BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), charsetType));
 			wr.write("POST "+path+" HTTP/1.0\r\n");
 			wr.write("Content-Length: "+data.length()+"\r\n");

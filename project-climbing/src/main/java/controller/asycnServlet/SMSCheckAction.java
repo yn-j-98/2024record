@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.Random;
 
-import controller.funtion.SMSPush;
+import controller.function.SMSPush;
 
 @WebServlet("/smscheck")
 public class SMSCheckAction extends HttpServlet {

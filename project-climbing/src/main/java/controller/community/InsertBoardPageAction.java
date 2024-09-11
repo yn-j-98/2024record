@@ -2,7 +2,7 @@ package controller.community;
 
 import controller.common.Action;
 import controller.common.ActionForward;
-import controller.funtion.LoginCheck;
+import controller.function.LoginCheck;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -16,7 +16,7 @@ public class InsertBoardPageAction implements Action{
 		boolean flagRedirect = false;//네비게이션 바 때문에 로그인정보 필요 
 
 		//로그인 정보가 있는지 확인해주고
-		String login = LoginCheck.Success(request, response);
+		String login[] = LoginCheck.Success(request, response);
 
 		//만약 로그인 정보가 없다면
 		if(login == null) {

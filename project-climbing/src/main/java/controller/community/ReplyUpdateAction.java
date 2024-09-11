@@ -2,7 +2,7 @@ package controller.community;
 
 import controller.common.Action;
 import controller.common.ActionForward;
-import controller.funtion.LoginCheck;
+import controller.function.LoginCheck;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.reply.ReplyDAO;
@@ -19,7 +19,7 @@ public class ReplyUpdateAction implements Action {
         boolean flagRedirect = true; // 리다이렉트 방식 사용
 
         // 로그인 정보가 있는지 확인
-        String login = LoginCheck.Success(request, response);
+        String login[] = LoginCheck.Success(request, response);
         System.out.println("로그인 확인: " + login);
 
         // 만약 로그인 정보가 없다면
@@ -29,7 +29,7 @@ public class ReplyUpdateAction implements Action {
             
         } else {
             // 댓글 업데이트 가능
-            String reply_writer_id = login; // 세션에 있는 사용자의 아이디
+            String reply_writer_id = login[0]; // 세션에 있는 사용자의 아이디
             String reply_content = request.getParameter("reply_content"); // 댓글 내용
             int reply_num = Integer.parseInt(request.getParameter("reply_id")); // 댓글 번호
 
@@ -39,8 +39,8 @@ public class ReplyUpdateAction implements Action {
 
             ReplyDTO replyDTO = new ReplyDTO();
             ReplyDAO replyDAO = new ReplyDAO();
-            replyDTO.setReply_num(reply_num); // 댓글 번호
-            replyDTO.setReply_content(reply_content); // 댓글 내용
+            replyDTO.setModel_reply_num(reply_num); // 댓글 번호
+            replyDTO.setModel_reply_content(reply_content); // 댓글 내용
 
             boolean updateResult = replyDAO.update(replyDTO); // 업데이트
             

@@ -2,11 +2,11 @@ package controller.member;
 
 import controller.common.Action;
 import controller.common.ActionForward;
-import controller.funtion.LoginCheck;
+import controller.function.LoginCheck;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class SignUpPageAction implements Action {
+public class JoinPageAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
@@ -16,10 +16,12 @@ public class SignUpPageAction implements Action {
 		boolean flagRedirect = false;
 		
 		//로그인 정보가 있는지 확인해주고
-		String login = LoginCheck.Success(request, response);
+		String login[] = LoginCheck.Success(request, response);
+		//사용자 아이디
+		String member_id = login[0];
 		
 		//만약 로그인 정보가 있다면
-		if(login != null) {
+		if(member_id != null) {
 			//main 페이지로 전달해줍니다.
 			path = "MAINPAGEACTION.do";
 		}

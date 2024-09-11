@@ -2,7 +2,7 @@ package controller.community;
 
 import controller.common.Action;
 import controller.common.ActionForward;
-import controller.funtion.LoginCheck;
+import controller.function.LoginCheck;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.reply.ReplyDAO;
@@ -22,7 +22,7 @@ public class ReplyAction implements Action {
         boolean flagRedirect = true; // 리다이렉트 방식 사용
 
         // 로그인 정보가 있는지 확인
-        String login = LoginCheck.Success(request, response);
+        String login[] = LoginCheck.Success(request, response);
         System.out.println("로그인 확인: " + login);
 
         // 만약 로그인 정보가 없다면
@@ -33,7 +33,7 @@ public class ReplyAction implements Action {
         } else {
             // 댓글 작성
             String reply_content = request.getParameter("reply_content");
-            String reply_writer_id = login; // 세션에 있는 사용자의 아이디
+            String reply_writer_id = login[0]; // 세션에 있는 사용자의 아이디
 
             System.out.println("댓글 작성자 ID: " + reply_writer_id);
             System.out.println("댓글 내용: " + reply_content);
@@ -41,9 +41,9 @@ public class ReplyAction implements Action {
 
             ReplyDTO replyDTO = new ReplyDTO();
             ReplyDAO replyDAO = new ReplyDAO();
-            replyDTO.setReply_board_num(reply_board_num); // 해당 댓글의 글 번호
-            replyDTO.setReply_content(reply_content); // 댓글 내용
-            replyDTO.setReply_writer_id(reply_writer_id); // 댓글 작성자
+            replyDTO.setModel_reply_board_num(reply_board_num); // 해당 댓글의 글 번호
+            replyDTO.setModel_reply_content(reply_content); // 댓글 내용
+            replyDTO.setModel_reply_writer_id(reply_writer_id); // 댓글 작성자
 
             boolean insertResult = replyDAO.insert(replyDTO); // 댓글 삽입
             

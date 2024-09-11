@@ -1,5 +1,7 @@
-package controller.funtion;
+package controller.function;
 
+
+import java.io.File;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,10 +26,9 @@ public class ProfileUpload {
 				//substring 과 lastIndexOf 를 사용했습니다.
 				String fileform = filename.substring(filename.lastIndexOf("."));
 
-				ServletContext context = request.getServletContext();
 				// 업로드 경로 설정(webapp파일에 위치 찾기)
 				//String uploadPath = ""; // 기본 서버에 저장 @MultipartConfig으로 \tmp0\work\Catalina\localhost\내프로젝트(COMA_PROJECT_CONTROLLER)\profile_img 에 저장했음
-				String uploadPath = context.getRealPath("/profile_img/"); // 내프로젝트(COMA_PROJECT_CONTROLLER)\profile_img\ 에 저장했음
+				String uploadPath = request.getServletContext().getRealPath("/profile_img/"); // 내프로젝트(COMA_PROJECT_CONTROLLER)\profile_img\ 에 저장했음
 
 				HttpSession session = request.getSession();
 				//사용자 아이디 + 사용자가 올린 파일 형식

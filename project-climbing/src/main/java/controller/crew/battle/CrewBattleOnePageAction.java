@@ -45,7 +45,7 @@ public class CrewBattleOnePageAction implements Action {
 		Battle_recordDAO battle_recordDAO = new Battle_recordDAO();
 
 		battle_recordDTO.setModel_battle_record_battle_num(view_battle_num);
-		battle_recordDTO.setBattle_record_condition("BATTLE_RECORD_ONE_BATTLE");//크루전 내용 컨디션
+		battle_recordDTO.setModel_battle_record_condition("BATTLE_RECORD_ONE_BATTLE");//크루전 내용 컨디션
 		battle_recordDTO = battle_recordDAO.selectOne(battle_recordDTO);
 		
 		
@@ -53,11 +53,11 @@ public class CrewBattleOnePageAction implements Action {
 		Battle_recordDTO datas = new Battle_recordDTO();
 		
 		datas.setModel_battle_record_battle_num(view_battle_num);
-		datas.setBattle_record_condition("BATTLE_RECORD_ALL_PARTICIPANT_CREW");
+		datas.setModel_battle_record_condition("BATTLE_RECORD_ALL_PARTICIPANT_CREW");
 		ArrayList<Battle_recordDTO> model_battle_record_datas = battle_recordDAO.selectAll(datas);
 		
 		request.setAttribute("model_battle_record_datas", model_battle_record_datas);
-		request.setAttribute("battle_recod", battle_recordDTO);
+		request.setAttribute("model_battle_record", battle_recordDTO);
 		
 		
 		forward.setPath(path);

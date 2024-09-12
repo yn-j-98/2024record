@@ -75,25 +75,25 @@ public class CrewBattlePageAction implements Action{
 		MemberDTO memberDTO = new MemberDTO();
 		MemberDAO memberDAO = new MemberDAO();
 		memberDTO.setModel_member_id(member_id);
-		memberDTO.setMember_condition("MEMBER_SEARCH_MY_CREW");
+		memberDTO.setModel_member_condition("MEMBER_SEARCH_MY_CREW");
 		memberDTO = memberDAO.selectOne(memberDTO);
 		
 		
 		BattleDTO battleDTO = new BattleDTO();
 		BattleDAO battleDAO = new BattleDAO();
 		battleDTO.setModel_battle_crew_num(crew_num);
-		battleDTO.setBattle_condition("BATTLE_SEARCH_MEMBER_BATTLE");
+		battleDTO.setModel_battle_condition("BATTLE_SEARCH_MEMBER_BATTLE");
 		battleDTO = battleDAO.selectOne(battleDTO);
 		
 		BattleDTO battle_data = new BattleDTO();
 		battle_data.setModel_battle_min_num(minBoard);
 		battle_data.setModel_battle_max_num(maxBoard);
-		battle_data.setBattle_condition("BATTLE_ALL_ACTIVE");
+		battle_data.setModel_battle_condition("BATTLE_ALL_ACTIVE");
 		ArrayList<BattleDTO> model_battle_datas = battleDAO.selectAll(battle_data);
 		
 		
 		BattleDTO battle_count = new BattleDTO();
-		battle_count.setBattle_condition("BATTLE_ONE_COUNT_ACTIVE");
+		battle_count.setModel_battle_condition("BATTLE_ONE_COUNT_ACTIVE");
 		battleDTO = battleDAO.selectOne(battle_count);
 		listNum = battle_count.getModel_battle_total();
 		

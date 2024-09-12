@@ -9,6 +9,7 @@
 <body>
 
 <script>
+	console.log('${msg}'+'${path}');
 	alert('${msg}');
 	location.href='${path}';
 </script>

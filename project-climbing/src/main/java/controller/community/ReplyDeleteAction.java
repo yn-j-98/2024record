@@ -37,8 +37,8 @@ public class ReplyDeleteAction implements Action {
 
             ReplyDTO replyDTO = new ReplyDTO();
             ReplyDAO replyDAO = new ReplyDAO();
-            replyDTO.setReply_writer_id(reply_id); // 사용자 아이디
-            replyDTO.setReply_num(reply_num); // 댓글 번호
+            replyDTO.setModel_reply_writer_id(reply_id); // 사용자 아이디
+            replyDTO.setModel_reply_num(reply_num); // 댓글 번호
 
             boolean deleteResult = replyDAO.delete(replyDTO); // 댓글 삭제
             

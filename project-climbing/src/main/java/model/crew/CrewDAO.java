@@ -127,18 +127,18 @@ public class CrewDAO {
 		PreparedStatement pstmt=null;
 		try {
 			//크루 PK로 크루 검색 CREW_NUM
-			if(crewDTO.getModel_crew_conditon().equals("CREW_ONE")) {
+			if(crewDTO.getModel_crew_condition().equals("CREW_ONE")) {
 				pstmt=conn.prepareStatement(ONE);
 				pstmt.setInt(1, crewDTO.getModel_crew_num());
 				sqlq = "one";
 			}
 			//크루 총 개수
-			else if(crewDTO.getModel_crew_conditon().equals("CREW_ONE_COUNT")) {
+			else if(crewDTO.getModel_crew_condition().equals("CREW_ONE_COUNT")) {
 				pstmt=conn.prepareStatement(ONE_COUNT);
 				sqlq = "count";
-			}
+			} 
 			//해당 크루 현재 인원수 CREW_NUM
-			else if(crewDTO.getModel_crew_conditon().equals("CREW_ONE_COUNT_CURRENT_MEMBER_SIZE")) {
+			else if(crewDTO.getModel_crew_condition().equals("CREW_ONE_COUNT_CURRENT_MEMBER_SIZE")) {
 				pstmt=conn.prepareStatement(ONE_COUNT_CURRENT_MEMBER_SIZE);
 				pstmt.setInt(1, crewDTO.getModel_crew_num());
 				sqlq = "count";
@@ -183,7 +183,7 @@ public class CrewDAO {
 		PreparedStatement pstmt = null;
 		try {
 			//(페이지네이션) 크루 전체 목록 model_crew_min_num, model_crew_max_num
-			if(crewDTO.getModel_crew_conditon().equals("CREW_ALL")) {
+			if(crewDTO.getModel_crew_condition().equals("CREW_ALL")) {
 				pstmt=conn.prepareStatement(ALL);
 				pstmt.setInt(1, crewDTO.getModel_crew_min_num());
 				pstmt.setInt(1, crewDTO.getModel_crew_max_num());

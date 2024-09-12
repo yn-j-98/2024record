@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.board.BoardDAO;
 import model.board.BoardDTO;
 
-public class LocationPageAction implements Action {
+public class LocationPageAction implements Action { 
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
@@ -62,18 +62,19 @@ public class LocationPageAction implements Action {
         boardDTO.setModel_board_max_num(maxBoard);
         boardDTO.setModel_board_searchKeyword(keyword);
         
-        boardDTO.setBoard_condition("BOARD_ALL_SEARCH_LOCATION_TITLE");
+        boardDTO.setModel_board_condition("BOARD_ALL_SEARCH_LOCATION_TITLE");
         ArrayList<BoardDTO> datas = boardDAO.selectAll(boardDTO);
         
         BoardDTO boardCount = new BoardDTO();
-        boardCount.setBoard_condition("BOARD_ONE_SEARCH_LOCATION_COUNT");
+        boardCount.setModel_board_condition("BOARD_ONE_SEARCH_LOCATION_COUNT");
         boardCount = boardDAO.selectOne(boardCount);
-        listNum = boardCount.getModel_board_page_total();
+        listNum = boardCount.getModel_board_total();
         
         
         request.setAttribute("currentPage", pageNum);
         request.setAttribute("model_board_page_total", listNum);
         request.setAttribute("datas",datas);
+        return forward;
 	}
      /* 뷰에서 전달받은 지역 값을 실제 지역명으로 변환하는 함수
      */
@@ -90,6 +91,5 @@ public class LocationPageAction implements Action {
         //만약 그 키가 존재하지 않으면 기본값을 반환하는 역할을 합니다.
     }
 
-	return forward;
 
 }

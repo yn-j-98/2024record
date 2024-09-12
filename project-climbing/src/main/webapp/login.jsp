@@ -97,17 +97,18 @@
 								</a>
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-12">
+								<button type="button" class="btn btn-secondary w-100"
+									id="joinBtn">회원가입</button>
+							</div>
+						</div>
+						<div class="row pt-3">
+							<div class="col-12">
+								<button type="submit" class="btn btn-primary w-100">로그인</button>
+							</div>
+						</div>
 					</form>
-				</div>
-				<div class="row">
-					<div class="col-12">
-						<button type="button" class="btn btn-secondary w-100" id="joinBtn">회원가입</button>
-					</div>
-				</div>
-				<div class="row pt-3">
-					<div class="col-12">
-						<button type="submit" class="btn btn-primary w-100">로그인</button>
-					</div>
 				</div>
 			</div>
 			<!-- login card end -->
@@ -126,12 +127,11 @@
 		// 네이버 로그인
 		// https://developers.naver.com/docs/login/web/web.md
 		// 에서 데이터를 가져왔다고 보면 됨
-		
+
 		var naver_id_login = new naver_id_login( // 네이버 로그인을 위한 객체 생성
 		"kQSIom2rw1yt29HcbNc8", // 내 client ID: 네이버 개발자 센터에서 발급받은 클라이언트 ID
 		"http://localhost:8088/project-climbing/login.jsp" // 내 callback url: 로그인 후 보여질 URL
 		);
-	
 
 		// 네이버 로그인 객체를 생성하고, 고유한 상태 값을 생성
 		// 이 값은 로그인 요청과 응답을 연결하기 위해 사용됨
@@ -235,49 +235,43 @@
 			});
 		};// 카카오 로그인 end
 
-		
-		
-		
 		//구글
 		function handleCredentialResponse(response) {
-            const id_token = response.credential;
-            console.log("ID Token: " + id_token);    
-            const responsePayload = decodeJwtResponse(id_token);
-            console.log('Email: ' + responsePayload.email);
-       
-         // 화면에 정보 표시
-            document.getElementById('user-email').textContent = "Email: " + responsePayload.email;
-         
-            sendToController({
+			const id_token = response.credential;
+			console.log("ID Token: " + id_token);
+			const responsePayload = decodeJwtResponse(id_token);
+			console.log('Email: ' + responsePayload.email);
+
+			// 화면에 정보 표시
+			document.getElementById('user-email').textContent = "Email: "
+					+ responsePayload.email;
+
+			sendToController({
 				email : responsePayload.email
 			});
-         
-            
-        }
+
+		}
 		//디코딩 함수
-        function decodeJwtResponse(id_token) {
-        	console.log('decodeJwtResponse 호출');
-        	//받아온 토큰 값을 디코딩하여 정보를 가져옵니다.
-        	//id_token을 '.'으로 나누어 중간에 있는 payload 부분(base64Url)을 추출합니다.
-        	const base64Url = id_token.split('.')[1];
-        	//URL-safe Base64 형식에서 표준 Base64 형식으로 변환합니다. ('-' -> '+', '_' -> '/')
-        	const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-        	//Base64로 인코딩된 문자열을 디코딩하고 각 문자의 유니코드 값을 %인코딩된 형식으로 변환한 후, 이를 다시 문자열로 조합하여 JSON 형식의 payload를 만듭니다.
-        	const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-        		//각 문자의 유니코드 값을 %XX 형식으로 변환합니다.
-        		return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        	}).join('')); //변환된 값을 하나의 문자열로 조합합니다.
-        	//최종적으로 JSON 타입으로 변환해 반환합니다.
-        	return JSON.parse(jsonPayload);
-        }
+		function decodeJwtResponse(id_token) {
+			console.log('decodeJwtResponse 호출');
+			//받아온 토큰 값을 디코딩하여 정보를 가져옵니다.
+			//id_token을 '.'으로 나누어 중간에 있는 payload 부분(base64Url)을 추출합니다.
+			const base64Url = id_token.split('.')[1];
+			//URL-safe Base64 형식에서 표준 Base64 형식으로 변환합니다. ('-' -> '+', '_' -> '/')
+			const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+			//Base64로 인코딩된 문자열을 디코딩하고 각 문자의 유니코드 값을 %인코딩된 형식으로 변환한 후, 이를 다시 문자열로 조합하여 JSON 형식의 payload를 만듭니다.
+			const jsonPayload = decodeURIComponent(atob(base64).split('').map(
+					function(c) {
+						//각 문자의 유니코드 값을 %XX 형식으로 변환합니다.
+						return '%'
+								+ ('00' + c.charCodeAt(0).toString(16))
+										.slice(-2);
+					}).join('')); //변환된 값을 하나의 문자열로 조합합니다.
+			//최종적으로 JSON 타입으로 변환해 반환합니다.
+			return JSON.parse(jsonPayload);
+		}
 
-
-		
-		   
-		     
-		    
 		//구글end
-
 
 		// C에게 사용자 정보 (이메일)전송하는 함수 (네이버, 카카오)
 		function sendToController(userInfo) {
@@ -298,7 +292,7 @@
 						window.location.href = 'MAINPAGEACTION.do';
 					} else {
 						// 응답이 없다면 회원가입 페이지로 이동
-						window.location.href = 'SIGNUPPAGEACTION.do?member_id='
+						window.location.href = 'JOINPAGEACTION.do?member_id='
 								+ response;
 					}
 
@@ -316,7 +310,7 @@
 		document.getElementById('joinBtn').onclick = function() {
 			// 클릭시에 회원가입 페이지 action 서버로 이동
 			alert('회원가입 페이지로 이동합니다.');
-			window.location.href = 'SIGNUPPAGEACTION.do';
+			window.location.href = 'JOINPAGEACTION.do';
 		};
 	</script>
 

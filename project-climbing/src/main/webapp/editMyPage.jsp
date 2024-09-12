@@ -27,6 +27,7 @@
 	border-color: #dc3545;
 	background-color: #fbe9e9;
 }
+
 </style>
 
 </head>
@@ -75,7 +76,7 @@
 						<div class="row my-3">
 							<div class="col-12 d-flex justify-content-center">
 								<div class="avatar avatar-xxl">
-									<img src="${data.member_profile}" alt="profile"
+									<img src="${data.model_member_profile}" alt="profile"
 										class="avatar-img rounded-circle">
 								</div>
 							</div>
@@ -90,13 +91,11 @@
 						<div class="row">
 							<div class="col-md-2 d-flex align-items-center">
 								<p class="mb-0">이름</p>
-								<input type="hidden" name="member_id"
-									value="${data.member_name}" />
 							</div>
 							<div class="col-md-10">
 								<div class="form-group">
 									<input type="text" class="form-control" id="member_name"
-										name="member_name" value="${data.member_name}" readonly />
+										name="VIEW_NAME" value="${data.model_member_name}" readonly />
 								</div>
 							</div>
 						</div>
@@ -107,7 +106,7 @@
 							<div class="col-md-10">
 								<div class="form-group">
 									<input type="text" class="form-control" id="phone"
-										name="member-phone" value="${data.member_phone}"
+										name="VIEW_PHONE" value="${data.model_member_phone}"
 										placeholder="전화번호를 입력해주세요" />
 								</div>
 							</div>
@@ -118,8 +117,7 @@
 							</div>
 							<div class="col-md-10">
 								<div class="form-group">
-									<select id="member_location" name="member_location">
-										<option>무건국</option>
+									<select id="member_location" name="VIEW_LOCATION">
 										<option>서울특별시</option>
 										<option>세종특별자치도</option>
 										<option>부산광역시</option>
@@ -136,12 +134,6 @@
 										<option>경상남도</option>
 										<option>경상북도</option>
 										<option>강원도</option>
-										<option>제주도</option>
-										<option>함경북도</option>
-										<option>함경남도</option>
-										<option>평안남도</option>
-										<option>평안북도</option>
-										<option>평양</option>
 
 									</select>
 								</div>
@@ -154,7 +146,7 @@
 							<div class="col-md-10">
 								<div class="form-group">
 									<input type="password" class="form-control"
-										id="update_password" name="update_password"
+										id="update_password" name="VIEW_UPDATE_PASSWORD"
 										placeholder="변경할 비밀번호를 입력해주세요" />
 								</div>
 							</div>
@@ -166,7 +158,7 @@
 							<div class="col-md-10">
 								<div id="password-check-container" class="form-group">
 									<input type="password" class="form-control" id="password_check"
-										name="password_check" placeholder="변경할 비밀번호를 확인해주세요" /> <small
+										name="VIEW_PASSWORD_CHECK" placeholder="변경할 비밀번호를 확인해주세요" /> <small
 										id="errorPassword" class="form-text text-muted"
 										style="display: none;"></small>
 								</div>

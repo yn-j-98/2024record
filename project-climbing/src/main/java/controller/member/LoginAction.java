@@ -30,9 +30,9 @@ public class LoginAction implements Action {
 			MemberDAO dao = new MemberDAO();
 			MemberDTO data = new MemberDTO();
 			//사용자의 아이디와 비밀번호를 model 로 전달하여 확인하고
-			System.out.println(request.getParameter("email") + " " + request.getParameter("password"));
-			data.setModel_member_id(request.getParameter("email"));
-			data.setModel_member_password(request.getParameter("password"));
+			System.out.println(request.getParameter("VIEW_EMAIL") + " " + request.getParameter("VIEW_PASSWORD"));
+			data.setModel_member_id(request.getParameter("VIEW_EMAIL"));
+			data.setModel_member_password(request.getParameter("VIEW_PASSWORD"));
 			data.setModel_member_condition("MEMBER_SEARCH_ID_PASSWORD");
 			data = dao.selectOne(data);
 

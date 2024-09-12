@@ -60,13 +60,13 @@ public class CrewListPageAction implements Action{
 		crewDTO.setModel_crew_min_num(minBoard);
 		crewDTO.setModel_crew_max_num(maxBoard);
 		
-		crewDTO.setCrew_condition("CREW_ALL");//크루 전체 목록 컨디션
+		crewDTO.setModel_crew_condition("CREW_ALL");//크루 전체 목록 컨디션
 		ArrayList<CrewDTO> model_crew_datas = crewDAO.selectAll(crewDTO);
 		
 		CrewDTO crewCount = new CrewDTO();
-		crewCount.setCrew_condition("CREW_ONE_COUNT");//크루 총개수 컨디션
+		crewCount.setModel_crew_condition("CREW_ONE_COUNT");//크루 총개수 컨디션
 		crewCount = crewDAO.selectOne(crewCount);
-		listNum = crewCount.getModel_crew_page_total();
+		listNum = crewCount.getModel_crew_total();
 
 
 		request.setAttribute("model_crew_datas", model_crew_datas);

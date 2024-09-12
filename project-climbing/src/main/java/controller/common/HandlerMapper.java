@@ -30,7 +30,7 @@ import controller.member.JoinAction;
 import controller.member.JoinPageAction;
 import controller.member.LoginAction;
 import controller.member.LoginPageAction;
-import controller.member.LogoutAtion;
+import controller.member.LogoutAction;
 import controller.mypage.BoardDeleteAction;
 import controller.mypage.BoardUpdatePageAction;
 import controller.mypage.ChangeMemberPageAction;
@@ -65,7 +65,7 @@ public class HandlerMapper {
 		this.mapper.put("/LOGINACTION.do", new LoginAction()); //로그인 기능
 		this.mapper.put("/JOINACTION.do", new JoinAction()); //회원가입 기능
 		this.mapper.put("/CHANGEMEMBERACTION.do", new ChangeMemberAction()); //회원정보 수정
-		this.mapper.put("/LOGOUTPAGEACTION.do", new LogoutAtion());//로그아웃 페이지
+		this.mapper.put("/LOGOUTPAGEACTION.do", new LogoutAction());//로그아웃 페이지
 		
 		//-------------------------------------------------------------------------------------------------
 		//MyPage Action

@@ -177,13 +177,13 @@ public class Battle_recordDAO {
 		PreparedStatement pstmt=null;
 		try {
 			//해당 크루전 내용 BATTLE_RECORD_BATTLE_NUM
-			if(battle_recordDTO.getModel_battle_record_conditon().equals("BATTLE_RECORD_ONE_BATTLE")) {
+			if(battle_recordDTO.getModel_battle_record_condition().equals("BATTLE_RECORD_ONE_BATTLE")) {
 				pstmt=conn.prepareStatement(ONE_BATTLE);
 				pstmt.setInt(1, battle_recordDTO.getModel_battle_record_battle_num());
 				sqlq = "one";
 			}
 			//해당 크루전 참가한 크루 개수 BATTLE_RECORD_BATTLE_NUM
-			else if(battle_recordDTO.getModel_battle_record_conditon().equals("BATTLE_RECORD_ONE_COUNT_CREW")) {
+			else if(battle_recordDTO.getModel_battle_record_condition().equals("BATTLE_RECORD_ONE_COUNT_CREW")) {
 				pstmt=conn.prepareStatement(ONE_COUNT_CREW);
 				pstmt.setInt(1, battle_recordDTO.getModel_battle_record_battle_num());
 				sqlq = "count";
@@ -229,12 +229,12 @@ public class Battle_recordDAO {
 		PreparedStatement pstmt = null;
 		try {
 			//내 크루 승리목록 전부 출력 CREW_NUM
-			if(battle_recordDTO.getModel_battle_record_conditon().equals("BATTLE_RECORD_ALL_WINNER")) {
+			if(battle_recordDTO.getModel_battle_record_condition().equals("BATTLE_RECORD_ALL_WINNER")) {
 				pstmt=conn.prepareStatement(ALL_WINNER);
 				pstmt.setInt(1,battle_recordDTO.getModel_battle_record_crew_num());
 			}
 			//해당 크루전 참가한 크루 전부 출력 BATTLE_RECORD_BATTLE_NUM
-			else if(battle_recordDTO.getModel_battle_record_conditon().equals("BATTLE_RECORD_ALL_PARTICIPANT_CREW")) {
+			else if(battle_recordDTO.getModel_battle_record_condition().equals("BATTLE_RECORD_ALL_PARTICIPANT_CREW")) {
 				pstmt=conn.prepareStatement(ALL_PARTICIPANT_CREW);
 				pstmt.setInt(1, battle_recordDTO.getModel_battle_record_battle_num());
 			}

@@ -39,7 +39,7 @@ public class CrewInformationPageAction implements Action{
         CrewDTO crewDTO = new CrewDTO();
         CrewDAO crewDAO = new CrewDAO();
         crewDTO.setModel_crew_num(view_crew_num);
-        crewDTO.setCrew_condition("CREW_ONE");//크루 정보 셀렉원 컨디션
+        crewDTO.setModel_crew_condition("CREW_ONE");//크루 정보 셀렉원 컨디션
         crewDTO = crewDAO.selectOne(crewDTO);
         
         String filename = "";
@@ -60,14 +60,14 @@ public class CrewInformationPageAction implements Action{
         CrewDTO data = new CrewDTO();
         
         data.setModel_crew_num(view_crew_num);
-        data.setMember_condition("CREW_ONE_COUNT_CURRENT_MEMBER_SIZE");//선택 크루 인원 컨디션
+        data.setModel_crew_condition("CREW_ONE_COUNT_CURRENT_MEMBER_SIZE");//선택 크루 인원 컨디션
         data= crewDAO.selectOne(data);
         
         
         Battle_recordDTO battle_recordDTO = new Battle_recordDTO();
         Battle_recordDAO battle_recordDAO = new Battle_recordDAO();
         battle_recordDTO.setModel_battle_record_crew_num(view_crew_num);
-        battle_recordDTO.setBattle_condition("BATTKE_RECORD_ALL_WINNER");//승리목록 컨디션
+        battle_recordDTO.setModel_battle_record_condition("BATTLE_RECORD_ALL_WINNER");//승리목록 컨디션
         ArrayList<Battle_recordDTO> model_battle_record_datas = battle_recordDAO.selectAll(battle_recordDTO);
         
         

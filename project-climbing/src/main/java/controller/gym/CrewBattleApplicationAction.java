@@ -53,7 +53,7 @@ public class CrewBattleApplicationAction implements Action {
 			//암벽장에 크루전을 신청하는 사용자가 크루장인지 확인 로직 시작
 			//(사용자 아이디 / 크루 번호) 를 Crew DTO에 추가합니다.
 			crewDTO.setModel_crew_num(crew_check);
-			crewDTO.setModel_crew_conditon("CREW_ONE");
+			crewDTO.setModel_crew_condition("CREW_ONE");
 			//Crew selectOne으로 해당 사용자가 크루장인지 확인합니다.
 			CrewDTO crew_leader = crewDAO.selectOne(crewDTO);
 			boolean flag_crew_leader = false;

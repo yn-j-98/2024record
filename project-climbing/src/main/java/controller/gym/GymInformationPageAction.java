@@ -76,7 +76,7 @@ public class GymInformationPageAction implements Action {
 		//---------------------------------------------------------------------------
 		//해당 암벽장에서 승리한 크루 목록 로직 시작
 		//View에서 전달해준 암벽장 번호를 battle_record DTO에 저장하고
-		battle_recordDTO.setModel_battle_record_conditon("");//TODO 컨디션 추가해야함 selectAll 필요함
+		battle_recordDTO.setModel_battle_record_condition("");//TODO 컨디션 추가해야함 selectAll 필요함
 		battle_recordDTO.setModel_battle_record_num(gym_num);
 		//battle_record selectAll으로 Model에 해당 암벽장에서 승리한 크루 목록을 요청하고
 		//데이터 : 승리크루 이름 / 승리크루 사진 / 승리크루 경기날짜 / MVP 이름

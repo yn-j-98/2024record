@@ -19,7 +19,7 @@ public class MainPageAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = new ActionForward();
-		String path = "MainPage.jsp"; // 메인 페이지로 이동
+		String path = "main.jsp"; // 메인 페이지로 이동
         boolean flagRedirect = true; // 포워드 방식 사용 여부 설정 (false = forward 방식)
 
         // 로그인 정보 보내주기 네비게이션 바 때문에

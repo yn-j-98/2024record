@@ -13,7 +13,7 @@ public class Battle_recordDTO {
 	private String model_battle_record_crew_name;	//해당 크루의 이름
 	private String model_battle_record_crew_profile; //해당 크루의 사진
 	private String model_battle_record_searchKeyword; // 사용자 텍스트 기반검색
-	private String model_battle_record_conditon;      // 개발자 데이터 검색
+	private String model_battle_record_condition;      // 개발자 데이터 검색
 	public int getModel_battle_record_num() {
 		return model_battle_record_num;
 	}
@@ -62,11 +62,11 @@ public class Battle_recordDTO {
 	public void setModel_battle_record_searchKeyword(String model_battle_record_searchKeyword) {
 		this.model_battle_record_searchKeyword = model_battle_record_searchKeyword;
 	}
-	public String getModel_battle_record_conditon() {
-		return model_battle_record_conditon;
+	public String getModel_battle_record_condition() {
+		return model_battle_record_condition;
 	}
-	public void setModel_battle_record_conditon(String model_battle_record_conditon) {
-		this.model_battle_record_conditon = model_battle_record_conditon;
+	public void setModel_battle_record_condition(String model_battle_record_condition) {
+		this.model_battle_record_condition = model_battle_record_condition;
 	}
 	public String getModel_battle_record_crew_leader() {
 		return model_battle_record_crew_leader;
@@ -90,6 +90,6 @@ public class Battle_recordDTO {
 				+ model_battle_record_crew_leader + ", model_battle_record_crew_name=" + model_battle_record_crew_name
 				+ ", model_battle_record_crew_profile=" + model_battle_record_crew_profile
 				+ ", model_battle_record_searchKeyword=" + model_battle_record_searchKeyword
-				+ ", model_battle_record_conditon=" + model_battle_record_conditon + "]";
+				+ ", model_battle_record_condition=" + model_battle_record_condition + "]";
 	}
 }

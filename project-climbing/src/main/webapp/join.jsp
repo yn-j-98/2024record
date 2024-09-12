@@ -41,7 +41,7 @@
 	<div class="container pt-3">
 		<div class="page-inner">
 			<div class="card card-stats card-round p-3">
-				<form id="signup-form" action="SIGNUPACTION.do" method="post">
+				<form id="signup-form" action="JOINACTION.do" method="post">
 					<div class="card-header">
 						<h3 class="text-center">회원가입</h3>
 					</div>
@@ -452,6 +452,7 @@
 		            alert("인증번호를 다시 확인해주세요."); // alert 창 띄워줘
 		            return false;
 		        }
+			
 		    });
 		});
 	</script>

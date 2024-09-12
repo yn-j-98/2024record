@@ -19,7 +19,7 @@ public class CrewPageAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = new ActionForward();
-		String path = "CrewMyPage.jsp";//크루가 있다는 것을 가정
+		String path = "myCrewPage.jsp";//크루가 있다는 것을 가정
 		boolean flagRedirect = false;
 
 		//로그인 정보 확인하고
@@ -46,7 +46,7 @@ public class CrewPageAction implements Action{
 		CrewDAO crewDAO = new CrewDAO();
 		crewDTO.setModel_crew_num(crew_num);//세션에 저장되어있는 로그인된 사용자의 크루pk
 
-		crewDTO.setModel_crew_conditon("CREW_ONE");//내 크루정보 셀렉원 컨디션
+		crewDTO.setModel_crew_condition("CREW_ONE");//내 크루정보 셀렉원 컨디션
 		crewDTO = crewDAO.selectOne(crewDTO);
 		String filename = "";
 		if (crewDTO == null) {//혹시모를 에러잡기 위해
@@ -67,7 +67,7 @@ public class CrewPageAction implements Action{
 
 		Battle_recordDTO battle_recordDTO = new Battle_recordDTO();
 		Battle_recordDAO battle_recordDAO = new Battle_recordDAO();
-		battle_recordDTO.setModel_battle_record_conditon("BATTLE_RECORD_ALL_WINNER");//내 크루 승리목록 컨디션
+		battle_recordDTO.setModel_battle_record_condition("BATTLE_RECORD_ALL_WINNER");//내 크루 승리목록 컨디션
 
 		ArrayList<Battle_recordDTO> model_battle_record_datas = battle_recordDAO.selectAll(battle_recordDTO);
 

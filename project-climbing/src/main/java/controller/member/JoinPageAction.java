@@ -24,10 +24,11 @@ public class JoinPageAction implements Action {
 		if(member_id != null) {
 			//main 페이지로 전달해줍니다.
 			path = "MAINPAGEACTION.do";
+			flagRedirect = true;
 		}
 		//회원가입 페이지 path 로그
 		//System.out.println("SignUppageAction path 로그 : "+path + request.getParameter("MEMBER_ID"));
-		request.setAttribute("member_id", request.getParameter("member_id"));
+//		request.setAttribute("member_id", request.getParameter("member_id"));
 		forward.setPath(path);
 		forward.setRedirect(flagRedirect);
 		return forward;

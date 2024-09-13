@@ -14,8 +14,11 @@ public class DeleteMemberAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		//기본으로 넘어가야하는 페이지 와 redirect 여부를 설정
 		ActionForward forward = new ActionForward();
-		String path = "MYPAGEPAGEACTION.do";
-		boolean flagRedirect = true;
+		
+		String path = "info.jsp";
+		boolean flagRedirect = false;
+//		String path = "MYPAGEPAGEACTION.do";
+//		boolean flagRedirect = true;
 
 	      //로그인 정보가 있는지 확인해주고
 	      String login[] = LoginCheck.Success(request, response);
@@ -37,7 +40,15 @@ public class DeleteMemberAction implements Action{
 			boolean flag = memberDAO.delete(data);
 			if(flag) {//멤버 삭제에 성공했다면 logout 페이지로 넘어갑니다.
 				data.setModel_member_profile(request.getServletContext().getContextPath()+ "/profile_img/" + member_id);
-				path = "LOGOUTPAGEACTION.do";
+				System.err.println("회원탈퇴 성공 로그");
+				request.setAttribute("msg", "회원 탈퇴 성공!");
+				request.setAttribute("path", "MAINPAGEACTION.do");
+				//path = "LOGOUTPAGEACTION.do";
+			}
+			else {
+				System.err.println("회원탈퇴 실패 로그");
+				request.setAttribute("msg", "회원 탈퇴 실패...");
+				request.setAttribute("path", "MYPAGEPAGEACTION.do");
 			}
 		}
 		forward.setPath(path);

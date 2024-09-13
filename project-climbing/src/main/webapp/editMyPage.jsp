@@ -43,6 +43,7 @@
 		<form action="CHANGEMEMBERACTION.do" method="post"
 			enctype="multipart/form-data">
 			<div class="page-inner">
+			<!-- 비밀번호 확인 창 -->
 				<div class="card card-stats card-round p-3" id="passwordCheckPage">
 					<div class="card-header">
 						<h3 class="text-center">비밀번호 확인</h3>
@@ -65,14 +66,14 @@
 						</div>
 					</div>
 				</div>
-
+				<!-- 회원정보 수정 (초기에는 숨김) -->
 				<div class="card card-stats card-round p-3 d-none" id="editmyPage">
-
 					<div class="card-header">
 						<h3 class="text-center">회원 정보 수정</h3>
 					</div>
 
 					<div class="card-body">
+					<!-- 프로필 사진 -->
 						<div class="row my-3">
 							<div class="col-12 d-flex justify-content-center">
 								<div class="avatar avatar-xxl">
@@ -87,7 +88,8 @@
 								</div>
 							</div>
 						</div>
-
+						
+						<!-- 회원 정보 수정 폼 -->
 						<div class="row">
 							<div class="col-md-2 d-flex align-items-center">
 								<p class="mb-0">이름</p>
@@ -175,7 +177,7 @@
 
 			</div>
 
-			<!-- modal -->
+			<!-- 프로필 사진 변경 modal -->
 			<div class="modal fade" id="photoModal" tabindex="-1" role="dialog"
 				aria-labelledby="photoModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
@@ -195,7 +197,7 @@
 							</div>
 							<div class="form-group">
 								<button type="button" class="btn btn-primary" id="upload">업로드</button>
-								<small class="error" id="fileError"></small>
+								<small class="error" id="fileError"></small> <!-- 파일 업로드 오류 추가 -->
 							</div>
 
 						</div>
@@ -217,9 +219,12 @@
 	<script>
 	// 모달창 버튼 클릭 함수
         $(document).ready(function() {
+        	// 사진 변경 버튼 클릭시 모달창 표시
             $('#changePhotoBtn').click(function() {
                 $('#photoModal').modal('show');
             });
+            
+            // 모달 닫기 버튼 클릭시 파일 입력 초기화
             $('#photoModal .close').click(function() {
             	var fileInput = document.getElementById('photoUpload'); // 파일 선택 버튼
             	fileInput.value = ''; // 파일 비워줘
@@ -231,9 +236,7 @@
                 $('#photoModal').modal('hide');
             });
         });
-    </script>
-
-	<script>
+    
    // 비밀번호 유효성 검사 = 회원의 비밀번호와 맞는지 확인해서 회원정보 수정 창 나오게 한다
    
       $(document).ready(function() {

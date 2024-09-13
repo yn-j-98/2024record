@@ -13,11 +13,11 @@ import model.crew_board.Crew_boardDTO;
 
 
 @WebServlet("/crewBoardInsert")
-public class crewBoardInsertAction extends HttpServlet {
+public class CrewBoardInsertAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
-	public crewBoardInsertAction() {
+	public CrewBoardInsertAction() {
 		super();
 	}
 

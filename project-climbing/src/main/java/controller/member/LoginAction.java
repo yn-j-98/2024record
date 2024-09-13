@@ -71,8 +71,10 @@ public class LoginAction implements Action {
 					// 쿠키 유효 시간 설정 (7일)
 					member_id_cookie.setMaxAge(60 * 60 * 24 * 7); // 7일 동안 유지
 					member_crew_cookie.setMaxAge(60 * 60 * 24 * 7);
+					
 					//쿠키를 추가헤줍니다.
 					response.addCookie(member_id_cookie);
+					response.addCookie(member_crew_cookie);
 					System.out.println("(LoginAction.java) 사용자 아이디 쿠키 값 저장 로그 : " + member_id_cookie.getValue());
 					System.out.println("(LoginAction.java) 사용자 아이디 쿠키 명 저장 로그 : " + member_id_cookie.getName());
 				}

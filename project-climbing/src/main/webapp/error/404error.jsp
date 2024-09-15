@@ -11,6 +11,6 @@
   <div class="error-image-container">
     <img src="/project-climbing/images/404error.jpg" alt="404 Error" class="error-image">
   </div>
-  <a href="main.do">메인으로 이동</a>
+  <a href="MAINPAGEACTION.do">메인으로 이동</a>
 </body>
 </html>

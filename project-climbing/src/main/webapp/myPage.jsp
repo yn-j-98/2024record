@@ -55,7 +55,7 @@
 							</div>
 							<div class="col-md-6 text-center">
 								<a href="DELETEMEMBERACTION.do">
-									<button class="btn btn-danger">회원 탈퇴</button>
+									<button class="btn btn-danger" onclick="confirmDeleteMember()">회원 탈퇴</button>
 								</a>
 							</div>
 						</div>
@@ -126,6 +126,12 @@
 	<script src="assets/js/core/bootstrap.min.js"></script>
 	
 	<script type="text/javascript">
+		function confirmDeleteMember() {
+	        if (confirm('정말 회원 탈퇴를 하시겠습니까?')) {
+	            location.href = 'DELETEMEMBERACTION.do';
+	        }
+	    }
+	
 		function deleteBoard(boardNum){
 			if(confirm('정말 삭제하시겠습니까?')){
 				location.href='BOARDDELETEACTION.do?board_num='+boardNum;

@@ -66,7 +66,7 @@
 						<li class="nav-item"><a class="nav-link gnb-btn" href="StorePage.do">상점</a></li>
 						<li class="nav-item"><a class="nav-link gnb-btn" href="GymMainPage.do">암벽장</a></li>
 						<li class="nav-item"><a class="nav-link gnb-btn" href="CrewPage.do">크루</a></li>
-						<li class="nav-item"><a class="nav-link gnb-btn" href="CrewRankingPage">랭킹</a></li>
+						<li class="nav-item"><a class="nav-link gnb-btn" href="CrewRankingPage.do">랭킹</a></li>
 						<li class="nav-item"><a class="nav-link gnb-btn" href="MainCommunityPage.do">커뮤니티</a></li>
 					</ul>
 				</nav>

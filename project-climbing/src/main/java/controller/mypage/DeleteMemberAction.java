@@ -48,7 +48,7 @@ public class DeleteMemberAction implements Action{
 			else {
 				System.err.println("회원탈퇴 실패 로그");
 				request.setAttribute("msg", "회원 탈퇴 실패...");
-				request.setAttribute("path", "MYPAGEPAGEACTION.do");
+				request.setAttribute("path", "LOGOUTPAGEACTION.do");
 			}
 		}
 		forward.setPath(path);

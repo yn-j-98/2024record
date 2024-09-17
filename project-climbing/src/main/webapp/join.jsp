@@ -316,7 +316,7 @@
 	    
 	 	// 카카오톡, 네이버 API를 통해 회원가입으로 넘어온다면 아이디 자동으로 넘어와서 입력되고 수정불가능하게 한다
 	    var idField = $('#member_id'); // 아이디 input
-		var idMember = '${member_id}' // C에서 가져온값
+		var idMember = '${model_member_id}' // C에서 가져온값
 		if(idMember!="") { // C에서 받아온 아이디가 있다면
 			idField.prop('readonly', true); // input창 비활성화
 			idField.val(idMember); // 받아온값으로 value값 넣기

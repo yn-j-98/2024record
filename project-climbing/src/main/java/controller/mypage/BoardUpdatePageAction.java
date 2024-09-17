@@ -45,9 +45,9 @@ public class BoardUpdatePageAction implements Action {
 			}
 			else {
 				//해당 글 내용을 view 로 전달해줍니다.
-				request.setAttribute("BOARD_NUM", data.getModel_board_num());
-				request.setAttribute("BOARD_TITLE", data.getModel_board_title());
-				request.setAttribute("BOARD_CONTENT", data.getModel_board_content());
+				request.setAttribute("VIEW_BOARD_NUM", data.getModel_board_num());
+				request.setAttribute("VIEW_BOARD_TITLE", data.getModel_board_title());
+				request.setAttribute("VIEW_BOARD_CONTENT", data.getModel_board_content());
 				request.setAttribute("boardDelete", true);
 			}
 

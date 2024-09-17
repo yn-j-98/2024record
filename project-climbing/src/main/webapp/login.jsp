@@ -131,6 +131,7 @@
 		var naver_id_login = new naver_id_login( // 네이버 로그인을 위한 객체 생성
 		"kQSIom2rw1yt29HcbNc8", // 내 client ID: 네이버 개발자 센터에서 발급받은 클라이언트 ID
 		"http://localhost:8088/project-climbing/login.jsp" // 내 callback url: 로그인 후 보여질 URL
+		//"http://localhost:8088/COMA_PROJECT_CONTROLLER/login.jsp"
 		);
 
 		// 네이버 로그인 객체를 생성하고, 고유한 상태 값을 생성
@@ -282,17 +283,17 @@
 				method : 'POST',
 				// C에게 전송할 데이터
 				data : userInfo,
-				// C 응답 성공 시
-				// 서버 응답이 있는 경우
+				// DB에 해당 이메일이 존재한다면
 				success : function(response) {
 					console.log('서버 응답: ', response);
 					if (response == "true") {
-						// 로그인 후 이동하게 될 URL
 						alert('로그인 성공!');
+						// 로그인 후 이동하게 될 URL
 						window.location.href = 'MAINPAGEACTION.do';
 					} else {
-						// 응답이 없다면 회원가입 페이지로 이동
-						window.location.href = 'JOINPAGEACTION.do?member_id='
+						// DB에 해당 이메일이 존재하지 않는다면 회원가입 페이지로 이동
+						alert('회원가입 페이지로 이동합니다.')
+						window.location.href = 'JOINPAGEACTION.do?model_member_id='
 								+ response;
 					}
 

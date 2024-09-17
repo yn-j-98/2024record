@@ -20,10 +20,10 @@ public class BoardDeleteAction implements Action {
 	      //로그인 정보가 있는지 확인해주고
 	      String login[] = LoginCheck.Success(request, response);
 	      //사용자 아이디
-	      String member_id = login[0];
+	      String model_member_id = login[0];
 		
 		//만약 로그인 정보가 없다면
-		if(member_id == null) {
+		if(model_member_id == null) {
 			//LoginPageAction 페이지로 전달해줍니다.
 			path = "LOGINPAGEACTION.do";
 			//리다이렉트 방식으로 보내줍니다.
@@ -34,7 +34,7 @@ public class BoardDeleteAction implements Action {
 			BoardDTO data = new BoardDTO();
 			//사용자가 선택한 글번호를 받아서
 			data.setModel_board_num(Integer.parseInt(request.getParameter("board_num")));
-			data.setModel_board_writer_id(member_id);
+			data.setModel_board_writer_id(model_member_id);
 			//model 에 전달해 글을 삭제하고
 			boolean flag = boardDAO.delete(data);
 			

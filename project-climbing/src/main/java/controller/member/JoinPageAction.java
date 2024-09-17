@@ -27,8 +27,8 @@ public class JoinPageAction implements Action {
 			flagRedirect = true;
 		}
 		//회원가입 페이지 path 로그
-		//System.out.println("SignUppageAction path 로그 : "+path + request.getParameter("MEMBER_ID"));
-//		request.setAttribute("member_id", request.getParameter("member_id"));
+		System.out.println("JoinpageAction path 로그 : "+path + request.getParameter("model_member_id"));
+		request.setAttribute("model_member_id", request.getParameter("model_member_id"));
 		forward.setPath(path);
 		forward.setRedirect(flagRedirect);
 		return forward;

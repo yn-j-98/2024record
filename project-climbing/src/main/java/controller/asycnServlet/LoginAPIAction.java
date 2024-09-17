@@ -60,7 +60,7 @@ public class LoginAPIAction extends HttpServlet {
 		}
 		//만약 없으면 회원가입 페이지로 넘겨서 회원가입할 수 있도록 한다.
 		else {
-			System.out.println("LoginAPIATION memberDTO NULL 로그 VIEW 에서 넘겨준 회원 아이디 : "+api_id);
+			System.out.println("LoginAPIACTION memberDTO NULL 로그 VIEW 에서 넘겨준 회원 아이디 : "+api_id);
 			out.print(api_id);
 		}
 	}

@@ -38,4 +38,13 @@
     <servlet-name>CrewBoardInsert</servlet-name>
     <url-pattern>/CrewBoardInsert</url-pattern>
   </servlet-mapping>
+  <filter>
+    <display-name>ValidFilter</display-name>
+    <filter-name>ValidFilter</filter-name>
+    <filter-class>controller.common.ValidFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ValidFilter</filter-name>
+    <url-pattern>/ValidFilter</url-pattern>
+  </filter-mapping>
 </web-app>

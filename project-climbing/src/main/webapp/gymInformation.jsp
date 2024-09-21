@@ -59,12 +59,18 @@
 						<div class="row">
 							<div class="col-12 position-relative overflow-hidden"
 								style="height: 400px;">
-								<c:if test="${data == delete}">
+								<input type="hidden" id="gymNum" name="VIEW_GYM_NUM" value="${model_gym_num}">
+								<c:if test="${model_favorite == 'delete'}">
 								<button
 									class="btn btn-info img-btn position-absolute z-3 rounded-3"
 									id="favorite">🤍</button>
 								</c:if>
-								<c:if test="${data == insert}">
+								<c:if test="${empty model_favorite}">
+								<button
+									class="btn btn-info img-btn position-absolute z-3 rounded-3"
+									id="favorite">🤍</button>
+								</c:if>
+								<c:if test="${model_favorite == 'insert'}">
 								<button
 									class="btn btn-info img-btn position-absolute z-3 rounded-3"
 									id="favorite">❤️</button>
@@ -169,20 +175,26 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="reservation.jsp">
+					<form action="GymReservationInformationPage.do">
 						<div class="form-group">
-						<input type="hidden" id="gymNum" name="VIEW_GYM_NUM" value="${model_gym_num}">
+						<input type="hidden" id="gymNum" name="VIEW_RESERVATION_GYM_NUM" value="${model_gym_num}">
+						<input type="hidden" name="VIEW_RESERVATION_PRICE" value="${model_gym_price}">
 							가격 : ${model_gym_price} 원
 							<div class="d-flex align-items-center">
 								
-								날짜 : <input type="text" id="datepicker" name="VIEW_RESERVATION_DATE" required>
+								날짜 : <input type="text" id="reservationDatepicker" name="VIEW_RESERVATION_DATE" required>
 								
 							</div>
 							<input type="radio" id="pointUse"> <label>포인트
 								사용하기</label>
 							<div class="form-group d-none" id="point">
 								<p>보유포인트 : ${model_gym_member_current_point} pt</p>
-								사용포인트 :<input type="number" name="VIEW_USE_POINT" max="5000" step="1"> pt
+								사용포인트 :<c:if test="${model_gym_member_current_point < 5000}">
+									<input type="number" name="VIEW_USE_POINT" max="${model_gym_member_current_point}" step="1" value="0"> pt
+								</c:if>
+								<c:if test="${model_gym_member_current_point >= 5000}">
+									<input type="number" name="VIEW_USE_POINT" max="5000" step="1" value="0"> pt
+								</c:if>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-primary"
@@ -201,7 +213,7 @@
 	</div>
 
 	<!-- 크루전 신청 modal -->
-	<c:if test="${empty model_battle_game_date}">
+	<c:if test="${empty model_gym_battle_game_date}">
 	<div class="modal fade" id="crewMatchModal" tabindex="-1" role="dialog"
 		aria-labelledby="crewMatchModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -214,11 +226,11 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="gym.jsp">
+					<form action="CrewBattleApplication.do">
 						<div class="form-group">
-							<p>
-								신청 날짜 : <input type="text" id="datepicker" name="VIEW_CREW_MATCH_DATE">
-							</p>
+							<input type="hidden" name="VIEW_CREW_MATCH_GYM_NUM" value="${model_gym_num}">
+								신청 날짜 : <input type="text" id="crewMatchDatepicker" name="VIEW_CREW_MATCH_DATE" required>
+							
 							
 							<div class="form-group">
 								<button type="submit" class="btn btn-primary" id="crewMatch-btn">개최 신청</button>
@@ -236,7 +248,7 @@
 	</div>
 	</c:if>
 	
-	<c:if test="${not empty model_battle_game_date}">
+	<c:if test="${not empty model_gym_battle_game_date}">
 	<div class="modal fade" id="crewMatchModal" tabindex="-1" role="dialog"
 		aria-labelledby="crewMatchModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
@@ -250,8 +262,8 @@
 				</div>
 				<div class="modal-body">
 					<form action="gym.jsp">
-						<div class="form-group">
-							<p>개최일 ${model_battle_game_date}</p>
+						<div class="CrewBattleApplication.do">
+							개최일 : <input type="text" value="${model_gym_battle_game_date}" readonly>
 							<!-- 추후에 상금은 관리자 페이지에서 설정 가능하게 구현 -->
 							<p>상금 10,000pt</p>
 							<div class="form-group">
@@ -278,6 +290,7 @@
 
 	<script>
 		$(document).ready(function() {
+			
 
 			// >> more 버튼 클릭함수
 			$("#crewMore").click(function() {
@@ -312,26 +325,34 @@
 			});
 			// 데이트 피커 함수
 			$(function() {
-				$("#datepicker").datepicker();
+				$("#reservationDatepicker").datepicker({
+			        dateFormat: "yy-mm-dd", // 날짜 형식을 원하는 형식으로 설정
+			        changeMonth: true,
+			        changeYear: true
+			    });
+				$("#crewMatchDatepicker").datepicker({
+			        dateFormat: "yy-mm-dd", // 날짜 형식을 원하는 형식으로 설정
+			        changeMonth: true,
+			        changeYear: true
+			    });
 			});
 			// 포인트 사용하기 radio 체크 시 함수
 			$('.img-btn').click(function() {
-				var favorite = favoriteField.value;
 				var favoriteField = document.getElementById('favorite');
-				var gymNum = gymNumField.value;
 				var gymNumField = document.getElementById('gymNum');
+				var gymNum = gymNumField.value;
 				$.ajax({
 	                  type: "POST",
-	                  url: "GymFavorite", // 서버에서 비밀번호 맞는지 검사를 처리하는 URL
+	                  url: "GymFavorite", // 서버에서 좋아요 눌렀는지 확인
 	                  data: { // POST로 보낼때에는 data로 보낸다~!
-	                      gymNum: gymNum
+	                	  view_favorite_gym_num: gymNum
 	                  },
 	                  success: function(data) {
 	                      if (data =='delete') { // C한테 받아온 값이 delete라면
-	                    	  $(favorite).text('🤍'); // 색 없음
+	                    	  $(favoriteField).text('🤍'); // 색 없음
 	                      }
 	                      else if(data == 'insert'){
-	                    	  $(favorite).text('❤️'); // 빨간색
+	                    	  $(favoriteField).text('❤️'); // 빨간색
 	                      }
 	                      else { // 받아온 값이 없다면
 	                    	  alert("찜목록을 불러오지 못했습니다. 다시 시도해주세요");

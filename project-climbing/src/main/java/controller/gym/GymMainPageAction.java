@@ -19,7 +19,7 @@ public class GymMainPageAction implements Action {
 		//---------------------------------------------------------------------------
 		//해당 페이지에서 공통으로 사용할 변수 and 객체
 		//View에서 전달해주는 (페이지 번호)변수
-		String view_gym_page_num = request.getParameter("view_gym_page_num");
+		String view_gym_page_num = request.getParameter("page");
 
 		GymDAO gymDAO = new GymDAO();
 		GymDTO gymDTO_conut = new GymDTO();

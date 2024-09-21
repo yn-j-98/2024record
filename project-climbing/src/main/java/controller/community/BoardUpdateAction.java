@@ -1,5 +1,8 @@
 package controller.community;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import controller.common.Action;
 import controller.common.ActionForward;
 import controller.function.LoginCheck;
@@ -19,23 +22,25 @@ public class BoardUpdateAction implements Action {
 
         // 로그인 정보가 있는지 확인
         String login[] = LoginCheck.Success(request, response);
-        System.out.println("로그인 확인: " + login);
-
+        String member_id = login[0]; // 세션에 있는 사용자의 아이디
+        System.out.println("로그인 확인: " + member_id);
+        
         // 만약 로그인 정보가 없다면
-        if (login == null) {
+        if (member_id == null) {
             // 로그인 페이지로 전달
             path = "LOGINPAGEACTION.do";
             
         } else {
             // 로그인이 되어있다면
             // 업데이트 가능
-            String board_title = request.getParameter("title"); // 제목 받기
-            String board_writer_id = login[0]; // 세션에 있는 사용자의 아이디
-            String board_content = request.getParameter("content"); // 내용 받기
-            int board_num = Integer.parseInt(request.getParameter("board_num")); // 번호 받기
+            String board_title = request.getParameter("VIEW_TITLE"); // 제목 받기
+            String board_location = request.getParameter("VIEW_BOARD_LOCATION"); // 제목 받기
+            String board_content = request.getParameter("VIEW_CONTENT"); // 내용 받기
+            int board_num = Integer.parseInt(request.getParameter("VIEW_BOARD_NUM")); // 번호 받기
 
             System.out.println("게시글 제목: " + board_title);
-            System.out.println("게시글 작성자 ID: " + board_writer_id);
+            System.out.println("게시글 지역: " + board_location);
+            System.out.println("게시글 작성자 ID: " + member_id);
             System.out.println("게시글 내용: " + board_content);
             System.out.println("게시글 번호: " + board_num);
 
@@ -44,6 +49,7 @@ public class BoardUpdateAction implements Action {
 
             boardDTO.setModel_board_num(board_num);
             boardDTO.setModel_board_content(board_content);
+            boardDTO.setModel_board_location(Location(board_location));
             boardDTO.setModel_board_title(board_title);
 
             boardDTO.setModel_board_condition("BOARD_UPDATE_CONTENT_TITLE"); // 글 수정 컨디션
@@ -57,4 +63,32 @@ public class BoardUpdateAction implements Action {
         forward.setRedirect(flagRedirect);
         return forward;
     }
+    /* 뷰에서 전달받은 지역 값을 실제 지역명으로 변환하는 함수
+    */
+    public String Location(String view_Location) {
+       Map<String, String> locationMap = new HashMap<String, String>();
+
+       locationMap.put("SEOUL", "서울특별시");
+       locationMap.put("GYEONGGI", "경기도");
+       locationMap.put("INCHEON", "인천광역시");       
+       locationMap.put("SEJONG", "세종특별자치도");
+       locationMap.put("BUSAN", "부산광역시");
+       locationMap.put("DAEGU", "대구광역시");
+       locationMap.put("DAEJEON", "대전광역시");
+       locationMap.put("GWANGJU", "광주광역시");
+       locationMap.put("ULSAN", "울산광역시");
+       locationMap.put("CHUNGCHEONGNAMDO", "충청남도");
+       locationMap.put("CHUNGCHEONGBUKDO", "충청북도");
+       locationMap.put("JEONLANAMDO", "전라남도");
+       locationMap.put("JEONLABUKDO", "전라북도");
+       locationMap.put("GYEONGSANGNAMDO", "경상남도");
+       locationMap.put("GYEONGSANGBUKDO", "경상북도");
+       locationMap.put("GANGWONDO", "강원도");
+       locationMap.put("CHUNGNAM", "충청남도");
+
+       return locationMap.getOrDefault(view_Location, "서울특별시"); // 기본값은 서울특별시
+       //getOrDefault  Map 인터페이스에서 제공하는 메서드로, 
+       //특정 키에 해당하는 값을 반환하되,
+       //만약 그 키가 존재하지 않으면 기본값을 반환하는 역할을 합니다.
+   }
 }

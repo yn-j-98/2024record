@@ -16,7 +16,7 @@ public class CrewBattleApplicationAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		String path = "info.jsp"; // view에서 알려줄 예정 alert 창 띄우기 위한 JavaScript 페이지
+		String path = "Info.jsp"; // view에서 알려줄 예정 alert 창 띄우기 위한 JavaScript 페이지
 		boolean flag_Redirect = false; // 값을 전달해야하게 때문에 forward 방식으로 전달해야한다.
 		ActionForward forward = new ActionForward();
 
@@ -30,11 +30,14 @@ public class CrewBattleApplicationAction implements Action {
 		//------------------------------------------------------------
 		//해당 페이지에서 공통으로 사용할 변수 and 객체
 		//View에서 전달해주는 (크루전 번호 / 크루전 게임일 / 암벽장 번호)변수
-		int view_battle_num = Integer.parseInt(request.getParameter("view_battle_num"));
-		String view_battle_game_date = request.getParameter("view_battle_game_date");
-		int view_gym_num = Integer.parseInt(request.getParameter("view_reservation_gym_num"));
+		int view_battle_num=0;
+		if(request.getParameter("VIEW_CREW_MATCH_NUM")!=null) {
+			view_battle_num=Integer.parseInt(request.getParameter("VIEW_CREW_MATCH_NUM"));
+		}
+		String view_battle_game_date = request.getParameter("VIEW_CREW_MATCH_DATE");
+		int view_gym_num = Integer.parseInt(request.getParameter("VIEW_CREW_MATCH_GYM_NUM"));
 		String error_message = "잘못된 요청";
-		String error_page = "GymInformationPage.do?view_gym_num=" + view_gym_num;
+		String error_page = "GymInformationPage.do?VIEW_GYM_NUM=" + view_gym_num;
 		//Crew DTO DAO 객체
 		CrewDTO crewDTO = new CrewDTO();
 		CrewDAO crewDAO = new CrewDAO();
@@ -57,9 +60,11 @@ public class CrewBattleApplicationAction implements Action {
 			//Crew selectOne으로 해당 사용자가 크루장인지 확인합니다.
 			CrewDTO crew_leader = crewDAO.selectOne(crewDTO);
 			boolean flag_crew_leader = false;
-			if(crew_leader.getModel_crew_leader().equals(crew_check)){
-					//해당 크루의 크루장이라면 true
-					flag_crew_leader = true;
+			if(crew_leader!=null) {
+				if(crew_leader.getModel_crew_leader().equals(crew_check)){
+						//해당 크루의 크루장이라면 true
+						flag_crew_leader = true;
+				}
 			}
 			
 			//false 가 나오면 오류를 반환해줍니다.

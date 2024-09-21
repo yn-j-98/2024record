@@ -61,13 +61,17 @@ public class LoginCheck {
          session.setAttribute("MEMBER_ID", login_information[0]);
          //cookieID를 반환해 줍니다.
          System.err.println("(LoginMemberID.java) Session ID 로그 : " + login_information[0]);
-
-         //sessionMemberCrew null이 이면
-         if(sessionMemberCrew.equals("0")) {
+         System.err.println("(LoginMemberID.java) if 외부 Session Crew 로그 : " + login_information[1]);
+         System.out.println("(LoginMemberID.java) if 외부 Session Crew 로그 : " + sessionMemberCrew );
+         //sessionMemberCrew 0이 이면
+         if(sessionMemberCrew.equals("0") || sessionMemberCrew.equals("null")) {
             //session 을 갱신하고
             session.setAttribute("CREW_CHECK", login_information[1]);
             //login_information[1]를 반환해 줍니다.
-            System.err.println("(LoginMemberID.java) Session Crew 로그 : " + login_information[1]);
+            System.err.println("(LoginMemberID.java) if 내부 Session Crew 로그 : " + login_information[1]);
+         }
+         else if(Integer.parseInt(sessionMemberCrew) >= 0) {
+        	 login_information[1] = sessionMemberCrew;
          }
       }
       //만약 sessionID 가 null 아니고 cookieID 가 null 이면
@@ -75,12 +79,17 @@ public class LoginCheck {
          login_information[0] = sessionMemberID;
          //cookieID를 반환해 줍니다.
          System.err.println("(LoginMemberID.java) Session ID 로그 : " + login_information[0]);
+         System.err.println("(LoginMemberID.java) if 외부 Session Crew 로그 : " + login_information[1]);
 
          //sessionMemberCrew 0 이 아니거나 sessionMemberCrew null이 아니면
          if(sessionMemberCrew.equals("0")) {
             login_information[1] = "0";
             //login_information[1]를 반환해 줍니다.
-            System.err.println("(LoginMemberID.java) Session Crew 로그 : " + login_information[1]);
+            System.err.println("(LoginMemberID.java) if 내부 Session Crew 로그 : " + login_information[1]);
+         }
+         
+         else if(Integer.parseInt(sessionMemberCrew) >= 0) {
+        	 login_information[1] = sessionMemberCrew;
          }
       }
 

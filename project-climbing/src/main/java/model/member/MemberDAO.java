@@ -168,7 +168,7 @@ public class MemberDAO {
 			}
 
 		} catch (SQLException e) {
-			System.err.println("member.MemberDAO.insert SQL문 실패");
+			System.out.println("member.MemberDAO.insert SQL문 실패");
 			return false;
 		}finally {
 			JDBCUtil.disconnect(pstmt,conn);

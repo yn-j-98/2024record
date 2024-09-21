@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>지역 커뮤니티</title>
 <!-- Fonts and icons -->
 <script src="assets/js/plugin/webfont/webfont.min.js"></script>
 <script src="https://kit.fontawesome.com/7f7b0ec58f.js"
@@ -33,8 +33,8 @@
 			<div class="row pt-2 pb-5">
 				<div class="col-12">
 					<div class="d-flex justify-content-center align-items-center">
-						<a href="communityPage.do" class="text-dark text-decoration-noen link-primary">
-							<p class="fs-4 m-0">전체</>
+						<a href="MainCommunityPage.do" class="text-dark text-decoration-none link-primary">
+							<p class="fs-4 m-0">전체</p>
 						</a>
 						<h3 class="px-5 m-0">/</h3>
 						<a href="LocationPage.do" class="text-dark text-decoration-underline link-primary">
@@ -45,7 +45,7 @@
 			</div>
 			<div class="row pt-3">
 				<div class="col-12 p-0">
-					<form action="MAINPAGEACTION.do" method="GET">
+					<form action="LocationPage.do" method="GET">
 						<div class="row">
 							<div class="col-md-3 col-lg-3">
 								<div class="form-group">
@@ -90,7 +90,7 @@
 								<div class="card card-stats card-round mb-0">
 									<div class="card-body p-5 d-flex justify-content-between">
 										<h3 class="card-title">
-											<a href="BOARDONEPAGEACTION.do?board_num=${board.model_board_num}"
+											<a href="BOARDONEPAGEACTION.do?model_board_num=${board.model_board_num}"
 												class="link-dark"> ${board.model_board_title}</a>
 										</h3>
 										<div class="info-user">
@@ -176,7 +176,7 @@
 		        preli.className = 'page-item';
 		        if(board_list != null){
 			         preli.insertAdjacentHTML("beforeend",
-			        	    "<a id='allprev' class='page-link' href='MAINPAGEACTION.do?page=" + prev + "&VIEW_BOARD_LIST="+VIEW_BOARD_LIST+"&VIEW_BOARD_KEYWORD="+VIEW_BOARD_KEYWORD+"' aria-label='Previous'>" + 
+			        	    "<a id='allprev' class='page-link' href='LocationPage.do?page=" + prev + "&VIEW_BOARD_LIST="+VIEW_BOARD_LIST+"&VIEW_BOARD_KEYWORD="+VIEW_BOARD_KEYWORD+"' aria-label='Previous'>" + 
 			        	    "<span aria-hidden='true'>&laquo;</span>" + 
 			        	    "</a>"
 			        	);
@@ -184,7 +184,7 @@
 			        }
 			        else{
 				        preli.insertAdjacentHTML("beforeend",
-						           "<a id='allprev' class='page-link' href='MAINPAGEACTION.do?page="+prev+"' aria-label='Previous'>" 
+						           "<a id='allprev' class='page-link' href='LocationPage.do?page="+prev+"' aria-label='Previous'>" 
 						                +"<span aria-hidden='true'>&laquo;</span> </a>");
 			        }
 		        fragmentPage.appendChild(preli);
@@ -196,7 +196,7 @@
 		        li.className = 'page-item';
 		        if(board_list != null){
 			        li.insertAdjacentHTML("beforeend",
-			        	    "<a class='page-link m-2' href='MAINPAGEACTION.do?page=" + i + "&VEIW_BOARD_LIST="+VIEW_BOARD_LIST+"&VIEW_BOARD_KEYWORD="+VIEW_BOARD_KEYWORD+"' id='page-" + i + "' data-num='" + i + "'>" +
+			        	    "<a class='page-link m-2' href='LocationPage.do?page=" + i + "&VEIW_BOARD_LIST="+VIEW_BOARD_LIST+"&VIEW_BOARD_KEYWORD="+VIEW_BOARD_KEYWORD+"' id='page-" + i + "' data-num='" + i + "'>" +
 			        	    i +
 			        	    "</a>"
 			        	);
@@ -204,7 +204,7 @@
 			        }
 			        else{
 				        li.insertAdjacentHTML("beforeend",
-					              "<a class='page-link m-2' href='MAINPAGEACTION.do?page=" + i + "' id='page-" + i + "' data-num='" + i + "'>" +
+					              "<a class='page-link m-2' href='LocationPage.do?page=" + i + "' id='page-" + i + "' data-num='" + i + "'>" +
 					                i +
 					            "</a>");
 			        }
@@ -220,7 +220,7 @@
 		        endli.className = 'page-item';
 		        if(board_list != null){
 			        endli.insertAdjacentHTML("beforeend",
-			        	    "<a class='page-link' href='MAINPAGEACTION.do?page=" + next + "&VIEW_BOARD_LIST="+VIEW_BOARD_LIST+"&VIEW_BOARD_KEYWORD="+VIEW_BOARD_KEYWORD+"' id='allnext' aria-label='Next'>" + 
+			        	    "<a class='page-link' href='LocationPage.do?page=" + next + "&VIEW_BOARD_LIST="+VIEW_BOARD_LIST+"&VIEW_BOARD_KEYWORD="+VIEW_BOARD_KEYWORD+"' id='allnext' aria-label='Next'>" + 
 			        	    "<span aria-hidden='true'>&raquo;</span>" +
 			        	    "</a>"
 			        	);
@@ -228,7 +228,7 @@
 			        }
 			        else{
 				        endli.insertAdjacentHTML("beforeend",
-						     "<a class='page-link' href='MAINPAGEACTION.do?page=" + next +"' id='allnext' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a>");
+						     "<a class='page-link' href='LocationPage.do?page=" + next +"' id='allnext' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a>");
 				        
 			        }
 

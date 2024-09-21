@@ -35,12 +35,12 @@
 			<div class="row pt-2 pb-5">
 				<div class="col-12">
 					<div class="d-flex justify-content-center align-items-center">
-						<a href="CrewRankingPage.do" class="text-dark text-decoration-none link-primary">
-							<p class="fs-4 m-0">크루 랭킹</h3>
+						<a href="CrewRankingPage.do" class="text-dark text-decoration-underline link-primary">
+							<h3 class="m-0"><b>크루 랭킹</b></h3>
 						</a>
 						<h3 class="px-5 m-0">/</h3>
-						<a href="RankingPage.do" class="text-dark text-decoration-underline link-primary">
-							<h3 class="m-0"><b>개인 랭킹</b></h3>
+						<a href="RankingPage.do" class="text-dark text-decoration-none link-primary">
+							<p class="fs-4 m-0">개인 랭킹</p>
 						</a>
 					</div>
 				</div>
@@ -59,18 +59,22 @@
 										<img class="w-25" src="${member.model_member_grade_profile}" alt="계급">
 										<p class="m-0">${member.model_member_grade_name}</p>
 									</div>
-									<div class="col-7 d-flex align-items-center">
-										<h4>${member.model_member_name}</h4>
+									<div class="col-5 d-flex align-items-center">
+										<h4>${member.model_member_crew_name}</h4>
+									</div>
+									<div class="col-2 d-flex align-items-center">
+										<h4>크루 점수: ${member.model_member_total_point}</h4>
 									</div>
 									<div class="col-3 pe-5 d-flex align-items-end justify-content-center flex-column">
-										<h4>개인 점수: ${member.model_member_total_point}</h4>
+										<p class="m-0">크루장: ${member.model_member_crew_leader}</p>
+										<p class="m-0">크루 인원: ${member.model_member_crew_current_size}</p>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-	 			</c:if>
-			</c:forEach>
+				</c:if>
+			</c:forEach>	
 		</div>
 	</div>	
 	

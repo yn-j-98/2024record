@@ -1,7 +1,6 @@
 package controller.common;
 
-import java.io.File;
-
+import controller.function.Mkdir_File;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
@@ -15,8 +14,8 @@ public class FileManager implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent sce) {
 		System.out.println("파일 생성 시작");
 		String[] folders = 
-				//등급 이미지 폴더 , 크루 이미지 폴더 , 사용자 프로필 폴더
-			{"grade_folder","crew_img_folder","profile_img"};
+				//등급 이미지 폴더 , 크루 이미지 폴더 , 사용자 프로필 폴더, 게시글 이미지 
+			{"grade_folder","crew_img_folder","profile_img","board_img"};
 
 		for (String data : folders) {
 			// 실제 경로 받아오기
@@ -24,26 +23,10 @@ public class FileManager implements ServletContextListener {
 
 			// 폴더 경로 로고
 			System.out.println("폴더 경로: " + folder_path);
-
-			// File 객체 생성
-			File folder = new File(folder_path);
-
-			// 폴더가 존재하는지 확인하고, 없으면 생성
-			if (!folder.exists()) {
-				boolean flag = folder.mkdirs();  // 폴더를 생성
-
-				if (flag) {
-					System.out.println("폴더 생성 완료 : " + folder_path);
-				} 
-				else {
-					System.out.println("폴더 생성 실패");
-				}
-			} 
-			else {
-				System.out.println("폴더가 존재 : " + folder_path);
-			}
+			
+			//만들어둔 폴더생성 함수 사용
+			Mkdir_File.create(folder_path);
 		}
-		System.out.println("파일 생성 종료");
 	}
 
 	public void contextDestroyed(ServletContextEvent sce)  { 

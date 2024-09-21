@@ -98,6 +98,25 @@ public class Battle_recordDAO {
 			+ "	BATTLE_RECORD_BATTLE_NUM = ? \r\n"
 			+ "	AND BATTLE_RECORD_CREW_NUM = ?";
 	
+	//해당 암벽장에서 실행된 크루전 전부 출력 BATTLE_GYM_NUM
+	private final String ALL_PARTICIPANT_BATTLE = "SELECT\r\n"
+			+ "	BATTLE_RECORD_NUM,\r\n"
+			+ "	BATTLE_RECORD_BATTLE_NUM,\r\n"
+			+ "	BATTLE_RECORD_CREW_NUM,\r\n"
+			+ "	B.BATTLE_GAME_DATE,\r\n"
+			+ "	BATTLE_RECORD_MVP_ID\r\n"
+			+ "FROM\r\n"
+			+ "	BATTLE_RECORD BR\r\n"
+			+ "JOIN\r\n"
+			+ "	BATTLE B\r\n"
+			+ "ON\r\n"
+			+ "	BR.BATTLE_RECORD_BATTLE_NUM = B.BATTLE_NUM\r\n"
+			+ "JOIN\r\n"
+			+ "	GYM G\r\n"
+			+ "ON\r\n"
+			+ "	B.BATTLE_GYM_NUM = G.GYM_NUM\r\n"
+			+ "WHERE\r\n"
+			+ "	B.BATTLE_GYM_NUM = ?";
 	public boolean insert(Battle_recordDTO battle_recordDTO) {
 		System.out.println("battle_record.Battle_recordDAO.insert 시작");
 		Connection conn=JDBCUtil.connect();
@@ -237,6 +256,11 @@ public class Battle_recordDAO {
 			else if(battle_recordDTO.getModel_battle_record_condition().equals("BATTLE_RECORD_ALL_PARTICIPANT_CREW")) {
 				pstmt=conn.prepareStatement(ALL_PARTICIPANT_CREW);
 				pstmt.setInt(1, battle_recordDTO.getModel_battle_record_battle_num());
+			}
+			//해당 암벽장에서 실행된 크루전 전부 출력 BATTLE_GYM_NUM
+			else if(battle_recordDTO.getModel_battle_record_condition().equals("BATTLE_RECORD_ALL_PARTICIPANT_BATTLE")) {
+				pstmt=conn.prepareStatement(ALL_PARTICIPANT_BATTLE);
+				pstmt.setInt(1, battle_recordDTO.getModel_battle_record_num());
 			}
 			else {
 				System.err.println("condition 틀림");

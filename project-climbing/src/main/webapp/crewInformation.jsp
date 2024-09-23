@@ -33,7 +33,7 @@
 	<div class="row pt-5">
 		<div
 			class="col-md-12 d-flex align-items-center justify-content-center">
-			<img src="images/crewImageEx.jpg" class="crew-image" alt="크루 이미지">
+			<img src="${model_crew_profile}" class="crew-image" alt="크루 이미지">
 		</div>
 	</div>
 	<!-- container start -->
@@ -93,7 +93,7 @@
 						크루전 MVP : ${model_battle_record_data.model_battle_record_mvp_id}</div>
 					<div
 						class="col-md-3 d-flex align-items-center justify-content-center">
-						진행 날짜 : ${model_battle_record_data.model_battle_record_battle_game_date}</div>
+						진행 날짜 : ${model_battle_record_data.model_battle_record_game_date}</div>
 				</div>
 				</c:forEach>
 			</c:if>

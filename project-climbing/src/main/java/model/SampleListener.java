@@ -31,8 +31,9 @@ public class SampleListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent sce)  { 
 		// 웹 서버 구동(실행)시 한번 수행될 코드 부분
 		System.out.println("model.SampleListener 시작");
-		Crawling crawling = new Crawling(); //크롤링 객체 선언
-		ArrayList<ProductDTO> product_datas=crawling.makeSampleProduct();
+//		Crawling crawling = new Crawling(); //크롤링 객체 선언 FIXME 크롤링 2가지 버전이있습니다.
+		Crawling2 crawling = new Crawling2(); //크롤링 객체 선언 FIXME 크롤링 2가지 버전이있습니다.
+		ArrayList<ProductDTO> product_datas=crawling.makeSampleProduct();//FIXME
 		// 샘플 데이터 DB에 저장하는 코드
 		Connection conn = JDBCUtil.connect();
 		PreparedStatement pstmt = null;
@@ -45,8 +46,8 @@ public class SampleListener implements ServletContextListener {
 				if(rs.getInt("BOARD_TOTAL")<= 0){//글 개수가 0개 이하라면 실행
 					System.out.println("model.SampleListener.makeSampleBoard 크롤링 시작");
 					ArrayList<BoardDTO> crawling_board_datas=crawling.makeSampleBoard();
-
 					for(BoardDTO board_data : crawling_board_datas) {
+						System.out.println("for(BoardDTO board_data : crawling_board_datas) 로그 : "+board_data);
 						// 게시글 작성 BOARD_NUM,BOARD_TITLE,BOARD_CONTENT,BOARD_LOCATION,BOARD_WRITER_ID
 						try {
 							pstmt = conn.prepareStatement(INSERT);
@@ -76,7 +77,7 @@ public class SampleListener implements ServletContextListener {
 			// 상품 크롤링 부분
 			System.out.println("model.SampleListener.makeSampleProduct 크롤링 시작");
 			int PK=0;//자동부여하는 PK
-			for(ProductDTO product_data : product_datas) {
+			for(ProductDTO product_data : product_datas) {//FIXME
 				product_data.setModel_product_num(PK);
 				PK++;
 			}
@@ -90,7 +91,8 @@ public class SampleListener implements ServletContextListener {
 			System.out.println("pstmt.executeQuery() 실행 완료");
 			if(gym_rs.next()) {
 				System.out.println("if(gym_rs.next()) 진입");
-				if(gym_rs.getInt("GYM_TOTAL")<= 0){//암벽장 개수가 0개 이하라면 실행
+				System.out.println("암벽장 개수 : "+gym_rs.getInt("GYM_TOTAL"));
+				if(gym_rs.getInt("GYM_TOTAL") <= 0){//암벽장 개수가 0개 이하라면 실행
 					System.out.println("if(gym_rs.getInt(\"GYM_TOTAL\")<= 0) 진입");
 					System.out.println("model.SampleListener.makeSampleGym 크롤링 시작");
 					ArrayList<GymDTO> crawling_gym_datas = crawling.makeSampleGym();
@@ -121,7 +123,7 @@ public class SampleListener implements ServletContextListener {
 		}finally {
 			JDBCUtil.disconnect(pstmt, conn);
 			// 서버단위로 저장되는 application에 담아서 전송
-			sce.getServletContext().setAttribute("product_datas", product_datas);
+			sce.getServletContext().setAttribute("product_datas", product_datas);//FIXME
 			crawling.close_driver();
 		}
 		System.out.println("model.SampleListener 끝");

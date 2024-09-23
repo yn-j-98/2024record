@@ -5,12 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>500 error</title>
-<link rel="stylesheet" href="../project-climbing/css/error.css">
+<link rel="stylesheet" href="../COMA_PROJECT_CONTROLLER/css/error.css">
 </head>
 <body>
   <div class="error-image-container">
-    <img src="/project-climbing/images/500error.jpg" alt="500 Error" class="error-image">
+    <a href="../COMA_PROJECT_CONTROLLER/MAINPAGEACTION.do">
+    <img src="/COMA_PROJECT_CONTROLLER/images/500error.jpg" alt="500 Error" class="error-image">
+    </a>
   </div>
-  <a href="MAINPAGEACTION.do">메인으로 이동</a>
 </body> 
 </html>

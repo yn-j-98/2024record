@@ -39,27 +39,34 @@ public class RankingPageAction implements Action {
 		//model에 요청해서 등급 정보를 전부 불러오고 현재 등급 9개
 		ArrayList<GradeDTO> model_grade_datas = gradeDAO.selectAll(gradeDTO);
 
-		// 불러온 랭킹에 등급 사진을 추가하기 위해 for문을 사용
+		//불러온 랭킹에 등급 사진을 추가하기 위해 for문을 사용
 		for (MemberDTO data : model_member_datas) {
-		    int member_total_point = data.getModel_member_total_point();
+			int member_total_point = data.getModel_member_total_point();
 
-		    // member_total_point 가 0보다 크면 for문 실행
-		    if (0 <= member_total_point) {
-		        // 등급 개수만큼 for문을 돌려서 확인
-		        for (int i = 0; i < model_grade_datas.size(); i++) {
-		            int grade_min = model_grade_datas.get(i).getModel_grade_min_point();
-		            int grade_max = model_grade_datas.get(i).getModel_grade_max_point();
+			//member_total_point 가 0보다 크면 for문 실행
+			if(0 <= member_total_point) {
+				//해당 등급의 최소 점수와 최대 점수를 비교
+				//등급개수 만큼 for문을 돌려서 확인
+				for (int i = 0; i < model_grade_datas.size(); i++) {
+					int grade_min = model_grade_datas.get(i).getModel_grade_min_point();
+					int grade_max = model_grade_datas.get(i).getModel_grade_max_point();
 
-		            // 해당 등급 최소 점수보다 사용자의 점수가 크거나 같고, 최대 점수보다 작거나 같으면
-		            if (grade_min <= member_total_point && member_total_point <= grade_max) {
-		                String contextPath = request.getContextPath();
-		                data.setModel_member_grade_profile(contextPath + "/grade_folder/" + model_grade_datas.get(i).getModel_grade_profile());
-		                data.setModel_member_grade_name(model_grade_datas.get(i).getModel_grade_name());
-		                break;  // 등급을 찾았으면 더 이상 확인할 필요 없으므로 반복 종료
-		            }
-		        }
-		    }
-		}
+					//해당 등급 최소 점수보다 사용자의 점수가 크거나 같고 //사용자의 점수가 해당 등급의 최대 점수보다 작거나 같으면
+					if(grade_min <= member_total_point && member_total_point <= grade_max) {
+						data.setModel_member_grade_profile(request.getServletContext().getContextPath()+"/grade_folder/" + model_grade_datas.get(i).getModel_grade_profile());
+						data.setModel_member_grade_name(model_grade_datas.get(i).getModel_grade_name());
+					}
+					//만약 등급의 최대 점수보다 사용자 점수가 크다면
+					else if(grade_max < member_total_point) {
+						data.setModel_member_grade_profile(request.getServletContext().getContextPath()+"/grade_folder/" + model_grade_datas.get(i).getModel_grade_profile());
+						data.setModel_member_grade_name(model_grade_datas.get(i).getModel_grade_name());
+						break;
+					}
+					
+				}//	for (int i = 0; i < model_grade_datas.size(); i++) { 이미지 비교 for문 종료
+				
+			}// if(0 < member_total_point) { 종료
+		}//	for (MemberDTO data : model_member_datas) { 랭킹 등급이미지 등록 for문 종료
 		
 		//받아온 값을 model_member_datas 값에 저장하여 전달
 		request.setAttribute("model_member_datas", model_member_datas);

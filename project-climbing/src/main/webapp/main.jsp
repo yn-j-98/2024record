@@ -90,10 +90,8 @@
 				<div class="col-12">
 					<div class="swiper mySwiper banner">
 						<div class="swiper-wrapper">
-							<div class="swiper-slide"><img src="images/banner1.png" alt="banner1"></div>
 							<div class="swiper-slide"><img src="images/banner2.jpg" alt="banner2"></div>
-							<div class="swiper-slide">Slide 3</div>
-							<div class="swiper-slide">Slide 4</div>
+							<div class="swiper-slide"><img src="images/banner1.png" alt="banner1"></div>
 						</div>
 						<div class="swiper-button-next"></div>
 						<div class="swiper-button-prev"></div>
@@ -138,7 +136,7 @@
 					class="col-2 d-flex justify-content-center align-items-center flex-column">
 					<div
 						class="rounded-circle bg-white d-block d-flex justify-content-center align-items-center menu-box border border-light-subtle">
-						<a href="CrewJoin.do" class="d-block">
+						<a href="CrewListPage.do" class="d-block">
 							<button type="button" class="btn text-dark p-3 text-center">
 								<span class="display-6 text-primary"> <i
 									class="fa-solid fa-crown"></i>
@@ -146,7 +144,7 @@
 							</button>
 						</a>
 					</div>
-					<a href="CrewJoin.do" class="mt-2">
+					<a href="CrewListPage.do" class="mt-2">
 						<h4 class="text-center text-primary">크루 가입</h4>
 					</a>
 				</div>
@@ -154,7 +152,7 @@
 					class="col-2 d-flex justify-content-center align-items-center flex-column">
 					<div
 						class="rounded-circle bg-white d-block d-flex justify-content-center align-items-center menu-box border border-light-subtle">
-						<a href="#" class="d-block">
+						<a href="LocationPage.do" class="d-block">
 							<button type="button" class="btn text-dark p-3 text-center">
 								<span class="display-6 text-primary"> <i
 									class="fa-solid fa-comments"></i>
@@ -170,7 +168,7 @@
 					class="col-2 d-flex justify-content-center align-items-center flex-column">
 					<div
 						class="rounded-circle bg-white d-block d-flex justify-content-center align-items-center menu-box border border-light-subtle">
-						<a href="CrewMatchPage.do" class="d-block">
+						<a href="CrewBattlePage.do" class="d-block">
 							<button type="button" class="btn text-dark p-3 text-center">
 								<span class="display-6 text-primary"> <i
 									class="fa-solid fa-fire"></i>
@@ -178,7 +176,7 @@
 							</button>
 						</a>
 					</div>
-					<a href="CrewMatchPage.do" class="mt-2">
+					<a href="CrewBattlePage.do" class="mt-2">
 						<h4 class="text-center text-primary">크루전</h4>
 					</a>
 				</div>

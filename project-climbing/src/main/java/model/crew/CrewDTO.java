@@ -14,7 +14,7 @@ public class CrewDTO {
 	private int model_crew_min_num;	// 페이지네이션 데이터
 	private int model_crew_total;  //현재 크루 개수
 	private int model_crew_current_member_size; //크루의 현재 인원수
-	private String model_crew_condition;     // 개발자 데이터 검색
+	private String model_crew_condition;    // 개발자 데이터 검색
 	public int getModel_crew_num() {
 		return model_crew_num;
 	}
@@ -95,7 +95,7 @@ public class CrewDTO {
 				+ ", model_crew_battle_status=" + model_crew_battle_status + ", model_crew_profile="
 				+ model_crew_profile + ", model_crew_max_num=" + model_crew_max_num + ", model_crew_min_num="
 				+ model_crew_min_num + ", model_crew_total=" + model_crew_total + ", model_crew_current_member_size="
-				+ model_crew_current_member_size + ", model_crew_condition=" + model_crew_condition + "]";
+				+ model_crew_current_member_size + ", model_crew_conditon=" + model_crew_condition + "]";
 	}
 	
 }

@@ -12,12 +12,12 @@
 		</div>
 		<div class=" offcanvas-body py-3">
 			<nav class="navbar h-100 flex-column justify-content-between">
-				<ul class="navbar-nav text-center" >
-					<li class="nav-item p-3"><a class="nav-link gnb-btn" href="StorePage.do">상점</a></li>
-					<li class="nav-item p-3"><a class="nav-link gnb-btn" href="GymMainPage.do">암벽장</a></li>
-					<li class="nav-item p-3"><a class="nav-link gnb-btn" href="CrewPage.do">크루</a></li>
-					<li class="nav-item p-3"><a class="nav-link gnb-btn" href="CrewRankingPage">랭킹</a></li>
-					<li class="nav-item p-3"><a class="nav-link gnb-btn" href="MainCommunityPage.do">커뮤니티</a></li>
+				<ul class="navbar-nav text-center">
+					<li class="nav-item p-3"><a class="nav-link" href="StorePage.do">상점</a></li>
+					<li class="nav-item p-3"><a class="nav-link" href="GymMainPage.do">암벽장</a></li>
+					<li class="nav-item p-3"><a class="nav-link" href="CrewListPage.do">크루</a></li>
+					<li class="nav-item p-3"><a class="nav-link" href="CrewRankingPage.do">랭킹</a></li>
+					<li class="nav-item p-3"><a class="nav-link" href="MainCommunityPage.do">커뮤니티</a></li>
 				</ul>
 				<ul class="navbar-nav text-center">
 					<c:if test="${empty member_id}">
@@ -37,8 +37,8 @@
 			<!-- Logo Header -->
 			<div class="logo-header" data-background-color="dark">
 				<a href="MAINPAGEACTION.do" class="logo"> <img
-					src="assets/img/kaiadmin/logo.png" alt="navbar brand"
-					class="navbar-brand" height="70" />
+					src="images/logo.png" alt="navbar brand"
+					class="navbar-brand" height="50" />
 				</a>
 				<div class="nav-toggle" data-bs-toggle="offcanvas"
 					data-bs-target="#offcanvasResponsive"
@@ -60,14 +60,14 @@
 				<nav
 					class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
 					<a class="navbar-brand" href="MAINPAGEACTION.do"> 
-						<img src="images/coma.png" alt="navbar brand" class="navbar-brand" height="70" />
+						<img src="./images/logo.png" alt="navbar brand" class="navbar-brand" height="80" />
 					</a>
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link gnb-btn" href="StorePage.do">상점</a></li>
-						<li class="nav-item"><a class="nav-link gnb-btn" href="GymMainPage.do">암벽장</a></li>
-						<li class="nav-item"><a class="nav-link gnb-btn" href="CrewPage.do">크루</a></li>
-						<li class="nav-item"><a class="nav-link gnb-btn" href="CrewRankingPage.do">랭킹</a></li>
-						<li class="nav-item"><a class="nav-link gnb-btn" href="MainCommunityPage.do">커뮤니티</a></li>
+						<li class="nav-item"><a class="nav-link" href="StorePage.do">상점</a></li>
+						<li class="nav-item"><a class="nav-link" href="GymMainPage.do">암벽장</a></li>
+						<li class="nav-item"><a class="nav-link" href="CrewListPage.do">크루</a></li>
+						<li class="nav-item"><a class="nav-link" href="CrewRankingPage.do">랭킹</a></li>
+						<li class="nav-item"><a class="nav-link" href="MainCommunityPage.do">커뮤니티</a></li>
 					</ul>
 				</nav>
 				<ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
@@ -84,11 +84,9 @@
 							<a class="nav-link" href="LOGOUTPAGEACTION.do"> logout </a>
 						</li>
 					</c:if>
+
 				</ul>
 			</div>
 		</nav>
 		<!-- End Navbar -->
 	</div>
-	<script type="text/javascript">
-	
-	</script>

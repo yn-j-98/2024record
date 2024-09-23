@@ -1,5 +1,6 @@
 package model;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import model.board.BoardDTO;
 import model.gym.GymDTO;
@@ -21,12 +23,12 @@ public class Crawling {
 	public static WebDriver driver;
 	private String target_url;
 	private String default_url;
-
+	WebDriverWait wait = null;
 	public Crawling() {
 		// 크롬 옵션 설정
 		ChromeOptions options = new ChromeOptions();
 		// 헤드리스 모드 추가 (코드 실행시 크롬창이 뜨지않게 함)
-		//options.addArguments("--headless");
+		options.addArguments("--headless");
 		// 팝업창 제거 옵션 추가
 		options.addArguments("--disable-popup-blocking");
 		//GPU 가속 비활성화
@@ -36,6 +38,8 @@ public class Crawling {
 
 		// 옵션설정한 ChromeDriver 인스턴스 생성
 		driver = new ChromeDriver(options);
+		//
+		wait = new WebDriverWait(driver, Duration.ofSeconds(3));
 	}
 
 	public ArrayList<ProductDTO> makeSampleProduct() {
@@ -197,13 +201,13 @@ public class Crawling {
 				//System.out.println("board_div_detail_content = "+board_div_detail_content.getText());
 
 				//작성자
-				WebElement board_div_detail_writer = driver.findElement(By.cssSelector(board_writer));
+				String board_div_detail_writer = "coma@naver.com";
 				//System.out.println("board_div_detail_writer = "+board_div_detail_writer.getText());
 
 				BoardDTO boardDTO = new BoardDTO();
 				boardDTO.setModel_board_title(board_div_detail_title.getText());
 				boardDTO.setModel_board_content(board_div_detail_content.getText());
-				boardDTO.setModel_board_writer_id(board_div_detail_writer.getText());
+				boardDTO.setModel_board_writer_id(board_div_detail_writer);
 				datas.add(boardDTO);
 
 				// 들어갔던 링크에서 나가기

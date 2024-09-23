@@ -24,7 +24,7 @@ public class MainPageAction implements Action{
 
         // 로그인 정보 보내주기 네비게이션 바 때문에
         String login[] = LoginCheck.Success(request, response);
-        System.out.println("log : 로그인 성공 " + login );
+        System.out.println("log : 로그인 성공 " + login[0] );
         //크루전 정보 부분
         //배틀 DTO, DAO로 selectAll - 크루전 정보 보내주기 컨디션
         BattleDAO battleDAO = new BattleDAO();

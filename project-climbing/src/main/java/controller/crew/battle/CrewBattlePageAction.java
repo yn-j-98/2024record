@@ -80,13 +80,19 @@ public class CrewBattlePageAction implements Action{
       battleDTO.setModel_battle_crew_num(crew_num);//크루pk
       battleDTO.setModel_battle_condition("BATTLE_SEARCH_MEMBER_BATTLE");//내 크루전 컨디션
       battleDTO = battleDAO.selectOne(battleDTO);
+      battleDTO.setModel_battle_gym_profile("https://"+battleDTO.getModel_battle_gym_profile());
+      System.out.println("이미지 : "+battleDTO.getModel_battle_gym_profile());
 
       BattleDTO battle_data = new BattleDTO();
       battle_data.setModel_battle_min_num(minBoard);
       battle_data.setModel_battle_max_num(maxBoard);
       battle_data.setModel_battle_condition("BATTLE_ALL_ACTIVE");//전체 크루전 목록 컨디션
       ArrayList<BattleDTO> model_battle_datas = battleDAO.selectAll(battle_data);
-
+      
+      for(BattleDTO data : model_battle_datas) {
+    	  System.out.println("이미지 : "+data.getModel_battle_gym_profile());
+    	  data.setModel_battle_gym_profile("https://"+data.getModel_battle_gym_profile());
+      }
 
       BattleDTO battle_count = new BattleDTO();
       battle_count.setModel_battle_condition("BATTLE_ONE_COUNT_ACTIVE");//크루전 총 개수 컨디션(페이지네이션)

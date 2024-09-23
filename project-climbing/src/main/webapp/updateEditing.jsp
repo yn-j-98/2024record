@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="mytag"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +18,44 @@
 <link rel="stylesheet" href="assets/css/plugins.min.css" />
 <link rel="stylesheet" href="assets/css/kaiadmin.css" />
 
+<!-- CKEditor cdn -->
+<script src="https://cdn.ckeditor.com/ckeditor5/43.1.0/ckeditor5.js"></script>
+<!-- CKEditor css -->
+<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/43.1.0/ckeditor5.css">
+<!-- CKEditor Js Import -->
+<script type="importmap">
+{
+	"imports": {
+		"CKEditor": "https://cdn.ckeditor.com/ckeditor5/43.1.0/ckeditor5.js",
+		"CKEditor/": "https://cdn.ckeditor.com/ckeditor5/43.1.0/",
+		"editorConfig": "./js/CKEditorConfig.js"
+	}
+}
+
+</script>
+<script type="text/javascript">
+	//외부 js 파일에서 사용하기 위해 전역변수로 설정하여 데이터를 불러옵니다.
+	var contentData = '${BOARD_CONTENT}';
+</script>
+<script type="module" src="./js/CKEditor_read.js"></script>
+
+<style type="text/css">
+.ck.ck-editor{
+	width: 100%;
+	max-width: 1500px;
+}
+.ck-editor__editable {
+	min-height: 350px;
+}
+.ck-content{
+	height: 350px !important;
+}
+</style>
+
 </head>
 <body>
    <!-- GNB 커스텀 태그 -->
-	<mytag:gnb member_id="${member_id}" ></mytag:gnb>
+	<mytag:gnb member_id="${MEMBER_ID}" ></mytag:gnb>
 	
    <!-- container start -->
    <div class="container">
@@ -45,6 +80,8 @@
                      <input type="text" class="form-control" id="title" name="VIEW_TITLE" value="${BOARD_TITLE}" required
                         placeholder="글의 제목을 입력해주세요" />
                      <input type="hidden" class="" id="" name="VIEW_BOARD_NUM" value="${BOARD_NUM}"/>
+                     <!-- 바이트 제한을 넘어서면 작게 안내문구 보이도록 설정 -->
+                     <div id="titleError" class="byte-error">제목은 100자를 넘을 수 없습니다.</div>
                   </div>
                </div>
             </div>
@@ -83,11 +120,17 @@
                </div>
                <div class="col-md-11">
                   <div class="form-group">
-                     <div class="input-group">
+                     <div class="input-group" style="height: 400px !important;">
                      <!-- C에서 DATA 가져오기 -->
-                        <textarea class="form-control" name="VIEW_CONTENT"
-                           style="height: 500px !important;" required>${BOARD_CONTENT}</textarea>
+                        <textarea id="readEditor" class="form-control" name="VIEW_CONTENT">
+                        	<!-- 수정할 게시글을 불러올 영역 -->
+                        </textarea>
                      </div>
+                     <hr>
+                     <div class="text-group" style="text-align:right; height: 40px !important;">
+	                     현재 이미지 개수 : <span class="img-length">0장</span> <br>
+	                     현재 글자 수 : <span class="text-length">0자</span>
+                   	 </div>
                   </div>
                </div>
             </div>
@@ -122,7 +165,63 @@
     	select.value = "${BOARD_LOCATION}";  // Controller에서 보내주는 지역 옵션 선택
     });
    </script>
+   
+   <!-- 제목 수 확인용 Script -->
+    <script type="text/javascript">
 
+    // 바이트 계산 함수
+    function getByteLength(str) {
+       // TextEncoder를 사용하여 문자열의 바이트 길이 계산
+        return new TextEncoder().encode(str).length; // 바이트 길이 반환
+    }
+
+    // 제목과 내용의 입력 체크 함수
+    function updateByteCount() {
+       // 제목과 내용 입력 필드 값 가져오기
+        const title = document.getElementById('title').value;
+
+        // 가져온 입력 값들의 바이트 길이 계산
+        const titleByteCount = getByteLength(title);
+
+        // 오류 메시지를 표시할 요소를 가져옴
+        const titleError = document.getElementById('titleError');
+
+        // 제목 바이트가 100을 넘었다면
+        if (titleByteCount > 100) {
+           // 바이트 초과 오류 메시지 표시
+            titleError.style.display = 'block';
+           // 초과된 문자를 제거하여 제목의 길이를 100 이하로 강제로 설정
+            document.getElementById('title').value = title.slice(0, 100); 
+        } else {
+           // 기본값 : none, 오류메시지 숨김
+            titleError.style.display = 'none';
+        }
+    }
+
+ // 제목 입력 필드와 내용 입력 필드에 대한 'input' 이벤트 리스너
+    // 실시간 바이트 체크
+    document.getElementById('title').addEventListener('input', updateByteCount);
+
+    // 폼 검증 함수
+    function validateForm() {
+       // 폼 제출 전에 바이트 수를 업데이트하여 현재 상태를 반영
+        updateByteCount(); 
+     // 제목과 내용의 오류 메시지 표시 상태를 확인하여 폼 제출을 허용할지 결정
+        const titleError = document.getElementById('titleError').style.display === 'block';
+     
+        if(titleError){ // 제목과 길이 제한을 초과한 채로 제출한다면
+           alert('제목과 내용의 길이 제한을 다시 확인해주세요!'); // 경고창 띄우기
+        }
+        return !titleError; // 에러가 없으면 폼 제출
+    }
+
+    function cancelEditing() {
+        window.location.href = 'MainCommunityPage.do';
+    }
+
+    // 페이지 로드 시 초기 바이트 수 업데이트
+    window.onload = updateByteCount;
+    </script>
 
 </body>
 </html>

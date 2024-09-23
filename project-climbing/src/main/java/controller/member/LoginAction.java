@@ -57,7 +57,7 @@ public class LoginAction implements Action {
 				session.setAttribute("CREW_CHECK", data.getModel_member_crew_num());				
 
 				//자동로그인을 등록했다면 cookie 에 로그인 정보를 저장해줍니다.	
-				String auto = (String)request.getParameter("AUTO_LOGIN");
+				String auto = (String)request.getParameter("VIEW_AUTO_LOGIN");
 				System.out.println(auto);
 				if(auto != null){
 					Cookie member_id_cookie = new Cookie("MEMBER_ID", data.getModel_member_id());

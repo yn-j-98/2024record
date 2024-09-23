@@ -113,10 +113,10 @@
 									</div>
 									<div class="card-body">
 										<div class="row">
-											<c:forEach var="data" items="${datas}" begin="0" end="3">
+											<c:forEach var="data" items="${model_battle_record_datas}" begin="0" end="3">
 											<div class="col-3 d-flex flex-column align-items-center">
 												<div class="avatar avatar-xl">
-													<img src="${data.model_battle_record_rew_profile}" alt="..."
+													<img src="${data.model_battle_record_crew_profile}" alt="..."
 														class="avatar-img rounded-circle">
 												</div>
 												<small>${data.model_battle_record_crew_name}</small>
@@ -143,11 +143,11 @@
 										<p class="col-md-4">MVP</p>
 									</div>
 									<hr>
-									<c:forEach var="data" items="${datas}">
+									<c:forEach var="allData" items="${model_battle_record_datas}">
 									<div>
-										<p class="col-md-4">${data.model_battle_record_crew_name}</p>
-										<p class="col-md-4">${data.model_battle_record_game_date}</p>
-										<p class="col-md-4">${data.model_battle_record_mvp}</p>
+										<p class="col-md-4">${allData.model_battle_record_crew_name}</p>
+										<p class="col-md-4">${allData.model_battle_record_game_date}</p>
+										<p class="col-md-4">${allData.model_battle_record_mvp_id}</p>
 									</div>
 									</c:forEach>
 								</div>
@@ -228,8 +228,9 @@
 				<div class="modal-body">
 					<form action="CrewBattleApplication.do">
 						<div class="form-group">
-							<input type="hidden" name="VIEW_CREW_MATCH_GYM_NUM" value="${model_gym_num}">
-								신청 날짜 : <input type="text" id="crewMatchDatepicker" name="VIEW_CREW_MATCH_DATE" required>
+							<input type="hidden" name="VIEW_CREW_BATTLE_GYM_NUM" value="${model_gym_num}">
+							<input type="hidden" name="VIEW_CREW_BATTLE_NUM" value="${model_battle_num}">
+								신청 날짜 : <input type="text" id="crewMatchDatepicker" name="VIEW_CREW_BATTLE_DATE" required>
 							
 							
 							<div class="form-group">
@@ -261,9 +262,11 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="gym.jsp">
-						<div class="CrewBattleApplication.do">
-							개최일 : <input type="text" value="${model_gym_battle_game_date}" readonly>
+					<form action="CrewBattleApplication.do">
+						<div class="form-group">
+							<input type="hidden" name="VIEW_CREW_BATTLE_GYM_NUM" value="${model_gym_num}">
+							<input type="hidden" name="VIEW_CREW_BATTLE_NUM" value="${model_battle_num}"> <!--추가했습니다..-->
+							개최일 : <input type="text" name="VIEW_CREW_BATTLE_DATE"  value="${model_gym_battle_game_date}" readonly>
 							<!-- 추후에 상금은 관리자 페이지에서 설정 가능하게 구현 -->
 							<p>상금 10,000pt</p>
 							<div class="form-group">

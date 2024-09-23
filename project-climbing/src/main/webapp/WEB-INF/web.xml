@@ -12,39 +12,4 @@
     <error-code>500</error-code>
     <location>/error/500error.jsp</location>
   </error-page>
-  <listener>
-    <listener-class>model.SampleListener</listener-class>
-  </listener>
-  <servlet>
-    <description></description>
-    <display-name>FileTestServlet</display-name>
-    <servlet-name>FileTestServlet</servlet-name>
-    <servlet-class>controller.asycnServlet.FileTestServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FileTestServlet</servlet-name>
-    <url-pattern>/FileTestServlet</url-pattern>
-  </servlet-mapping>
-  <listener>
-    <listener-class>controller.common.FileManager</listener-class>
-  </listener>
-  <servlet>
-    <description></description>
-    <display-name>CrewBoardInsert</display-name>
-    <servlet-name>CrewBoardInsert</servlet-name>
-    <servlet-class>controller.asycnServlet.CrewBoardInsert</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>CrewBoardInsert</servlet-name>
-    <url-pattern>/CrewBoardInsert</url-pattern>
-  </servlet-mapping>
-  <filter>
-    <display-name>ValidFilter</display-name>
-    <filter-name>ValidFilter</filter-name>
-    <filter-class>controller.common.ValidFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>ValidFilter</filter-name>
-    <url-pattern>/ValidFilter</url-pattern>
-  </filter-mapping>
 </web-app>

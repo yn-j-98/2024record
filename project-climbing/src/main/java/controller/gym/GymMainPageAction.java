@@ -55,11 +55,11 @@ public class GymMainPageAction implements Action {
 		//암벽장 총 개수를 요청 selectOne
 		GymDTO model_gym_total = gymDAO.selectOne(gymDTO_conut);
 		
-		System.out.println("max_gym"+max_gym);
 		System.out.println("min_gym"+min_gym);
+		System.out.println("max_gym"+max_gym);
 		
-		gymDTO_selectALL.setModel_gym_max_num(max_gym);
 		gymDTO_selectALL.setModel_gym_min_num(min_gym);
+		gymDTO_selectALL.setModel_gym_max_num(max_gym);
 		//암벽장 리스트를 model에 요청 selectAll
 		//암벽장 테이블에서 받을 값(암벽장 번호 / 암벽장 이름 / 암벽장 주소)
 		ArrayList<GymDTO> model_gym_datas = gymDAO.selectAll(gymDTO_selectALL);

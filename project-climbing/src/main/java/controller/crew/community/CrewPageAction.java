@@ -41,6 +41,7 @@ public class CrewPageAction implements Action{
 		else {
 			//사용자 크루 정보
 			int crew_num = Integer.parseInt(login[1]);
+			System.out.println("현재 크루"+login[1]);
 			//크루가 없다면
 			if(crew_num<=0) {
 				path = "CrewListPage.do";
@@ -66,7 +67,7 @@ public class CrewPageAction implements Action{
 					filename = crewDTO.getModel_crew_profile(); // 사용자의 프로필을 받아옴
 
 				}
-				request.setAttribute("model_crew_profile", request.getServletContext().getContextPath() + "/profile_img/" + filename);
+				crewDTO.setModel_crew_profile(request.getServletContext().getContextPath() + "/crew_img_folder/" + filename); 
 
 				MemberDTO memberDTO = new MemberDTO();
 				MemberDAO memberDAO = new MemberDAO();

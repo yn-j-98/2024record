@@ -76,8 +76,8 @@ public class GymInformationPageAction implements Action {
 		//---------------------------------------------------------------------------
 		//해당 암벽장에서 승리한 크루 목록 로직 시작
 		//View에서 전달해준 암벽장 번호를 battle_record DTO에 저장하고
-		battle_recordDTO.setModel_battle_record_condition("BATTLE_RECORD_ALL_PARTICIPANT_CREW");//TODO 컨디션 추가해야함 selectAll 필요함
-		battle_recordDTO.setModel_battle_record_num(gym_num);
+		battle_recordDTO.setModel_battle_record_condition("BATTLE_RECORD_ALL_WINNER_PARTICIPANT_GYM");//TODO 컨디션 추가해야함 selectAll 필요함
+		battle_recordDTO.setModel_battle_record_gym_num(gym_num);
 		//battle_record selectAll으로 Model에 해당 암벽장에서 승리한 크루 목록을 요청하고
 		//데이터 : 승리크루 이름 / 승리크루 사진 / 승리크루 경기날짜 / MVP 이름
 		ArrayList<Battle_recordDTO> model_battle_record_datas = battle_recordDAO.selectAll(battle_recordDTO);
@@ -161,7 +161,7 @@ public class GymInformationPageAction implements Action {
 		model_battle_game_date
 		 */
 		request.setAttribute("model_battle_num", model_gym_battle_num);
-		request.setAttribute("model_battle_game_date", model_gym_battle_game_date);
+		request.setAttribute("model_gym_battle_game_date", model_gym_battle_game_date);
 
 		//View로 좋아요 여부 전달 model_favorite
 		System.out.println("GIP 167 model_favorite = "+model_favorite);

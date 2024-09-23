@@ -1,6 +1,5 @@
 package controller.crew.community;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import controller.common.Action;
@@ -65,16 +64,22 @@ public class CrewCommunityPageAction implements Action {
 				crew_boardDTO.setModel_crew_board_max_num(maxBoard);
 				crew_boardDTO.setModel_crew_board_writer_id(member_id);
 				crew_boardDTO.setModel_crew_board_condition("CREW_BOARD_ALL_CREW_BOARD");
-
+				
+				//줄바꿈 처리
+				String br_content = "";
 				// 게시글 목록 가져오기
 				ArrayList<Crew_boardDTO> model_crew_board_datas = crew_boardDAO.selectAll(crew_boardDTO);
-				for(Crew_boardDTO data : model_crew_board_datas) {
-					System.out.println(data);
+				for(int i=0;i<model_crew_board_datas.size();i++) {
+					System.out.println(model_crew_board_datas.get(i));
+					br_content = model_crew_board_datas.get(i).getModel_crew_board_content();
+					br_content = br_content.replace("\n", "<br>");
+					System.err.println("줄바꿈 적용 내용 = "+br_content);
+					model_crew_board_datas.get(i).setModel_crew_board_content(br_content);
 				}
 				// 프로필 이미지 URL 설정
 				for (Crew_boardDTO data : model_crew_board_datas) {
 					String filename = data.getModel_crew_board_member_profile();
-					data.setModel_crew_board_member_profile(request.getServletContext().getContextPath() + "/img/" + filename);
+					data.setModel_crew_board_member_profile(request.getServletContext().getContextPath() + "/profile_img/" + filename);
 				}
 
 				// 총 게시글 수 확인

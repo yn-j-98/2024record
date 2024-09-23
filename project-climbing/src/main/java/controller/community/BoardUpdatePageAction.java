@@ -1,5 +1,6 @@
 package controller.community;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import controller.common.ActionForward;
 import controller.function.LoginCheck;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.board.BoardDAO;
 import model.board.BoardDTO;
 
@@ -34,7 +36,7 @@ public class BoardUpdatePageAction implements Action {
 			BoardDAO boardDAO = new BoardDAO();
 			BoardDTO data = new BoardDTO();
 			//사용자가 선택한 글번호를 받아서
-			data.setModel_board_num(Integer.parseInt(request.getParameter("board_num")));
+			data.setModel_board_num(Integer.parseInt(request.getParameter("model_board_num")));
 			data.setModel_board_writer_id(member_id);
 			data.setModel_board_condition("BOARD_ONE_WRITER_ID");
 			//model 에 전달하여 글 내용을 받아오고
@@ -51,7 +53,21 @@ public class BoardUpdatePageAction implements Action {
 				request.setAttribute("BOARD_NUM", data.getModel_board_num());
 				request.setAttribute("BOARD_TITLE", data.getModel_board_title());
 				request.setAttribute("BOARD_LOCATION", location(data.getModel_board_location()));
-				request.setAttribute("BOARD_CONTENT", data.getModel_board_content());
+				
+				String content = data.getModel_board_content();
+				request.setAttribute("BOARD_CONTENT", content);
+				
+				
+				HttpSession session = request.getSession();
+				try {
+					//글 내용에서 img 태그가 있다면 해당 이미지 폴더의 번호만 가져오는 로직
+					content = content.substring(content.lastIndexOf("img")+3).split("/")[2];
+					System.out.println("BoardUpdatePageAction.java content 로그 : "+content);
+					session.setAttribute("UPDATE_FOLDER_NUM", Integer.parseInt(content));
+				} catch (Exception e) {
+					session.setAttribute("UPDATE_FOLDER_NUM", 0);
+				}
+				
 			}
 
 			

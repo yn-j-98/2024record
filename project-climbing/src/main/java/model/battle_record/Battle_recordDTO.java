@@ -6,18 +6,24 @@ public class Battle_recordDTO {
 	private int model_battle_record_crew_num;     // 크루 FK
 	private String model_battle_record_is_winner; // 승리여부 
 	private String model_battle_record_mvp_id;       // 크루전 MVP
-	
 	//DTO에만 있는 데이터
+	private int model_battle_record_gym_num;	//암벽장 번호
 	private int model_battle_record_total;            // 전체 게시글 총수
 	private String model_battle_record_gym_name;		//크루전 암벽장 이름
 	private String model_battle_record_gym_location;	//크루전 암벽장 지역
-	private String model_battle_record_battle_game_date;	//크루전 날짜
+	private String model_battle_record_game_date;	//크루전 날짜
 	private String model_battle_record_crew_leader; //해당 크루의 크루장
 	private String model_battle_record_crew_name;	//해당 크루의 이름
 	private String model_battle_record_crew_profile; //해당 크루의 사진
 	private String model_battle_record_searchKeyword; // 사용자 텍스트 기반검색
 	private String model_battle_record_condition;      // 개발자 데이터 검색
 	
+	public int getModel_battle_record_gym_num() {
+		return model_battle_record_gym_num;
+	}
+	public void setModel_battle_record_gym_num(int model_battle_record_gym_num) {
+		this.model_battle_record_gym_num = model_battle_record_gym_num;
+	}
 	public String getModel_battle_record_gym_name() {
 		return model_battle_record_gym_name;
 	}
@@ -30,11 +36,12 @@ public class Battle_recordDTO {
 	public void setModel_battle_record_gym_location(String model_battle_record_gym_location) {
 		this.model_battle_record_gym_location = model_battle_record_gym_location;
 	}
-	public String getModel_battle_record_battle_game_date() {
-		return model_battle_record_battle_game_date;
+
+	public String getModel_battle_record_game_date() {
+		return model_battle_record_game_date;
 	}
-	public void setModel_battle_record_battle_game_date(String model_battle_record_battle_game_date) {
-		this.model_battle_record_battle_game_date = model_battle_record_battle_game_date;
+	public void setModel_battle_record_game_date(String model_battle_record_game_date) {
+		this.model_battle_record_game_date = model_battle_record_game_date;
 	}
 	public int getModel_battle_record_num() {
 		return model_battle_record_num;
@@ -108,11 +115,12 @@ public class Battle_recordDTO {
 				+ ", model_battle_record_battle_num=" + model_battle_record_battle_num
 				+ ", model_battle_record_crew_num=" + model_battle_record_crew_num + ", model_battle_record_is_winner="
 				+ model_battle_record_is_winner + ", model_battle_record_mvp_id=" + model_battle_record_mvp_id
-				+ ", model_battle_record_total=" + model_battle_record_total + ", model_battle_record_gym_name="
-				+ model_battle_record_gym_name + ", model_battle_record_gym_location="
-				+ model_battle_record_gym_location + ", model_battle_record_battle_game_date="
-				+ model_battle_record_battle_game_date + ", model_battle_record_crew_leader="
-				+ model_battle_record_crew_leader + ", model_battle_record_crew_name=" + model_battle_record_crew_name
+				+ ", model_battle_record_gym_num=" + model_battle_record_gym_num + ", model_battle_record_total="
+				+ model_battle_record_total + ", model_battle_record_gym_name=" + model_battle_record_gym_name
+				+ ", model_battle_record_gym_location=" + model_battle_record_gym_location
+				+ ", model_battle_record_game_date=" + model_battle_record_game_date
+				+ ", model_battle_record_crew_leader=" + model_battle_record_crew_leader
+				+ ", model_battle_record_crew_name=" + model_battle_record_crew_name
 				+ ", model_battle_record_crew_profile=" + model_battle_record_crew_profile
 				+ ", model_battle_record_searchKeyword=" + model_battle_record_searchKeyword
 				+ ", model_battle_record_condition=" + model_battle_record_condition + "]";

@@ -17,7 +17,7 @@ public class GymReservationInformationPageAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		String path = "reservation.jsp"; // view에서 알려줄 예정
-		String error_path = "Info.jsp";
+		String error_path = "info.jsp";
 		boolean flag_Redirect = false; // 값을 전달해야하게 때문에 forward 방식으로 전달해야한다.
 		ActionForward forward = new ActionForward();
 

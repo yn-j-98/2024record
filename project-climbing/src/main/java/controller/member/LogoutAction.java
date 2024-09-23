@@ -26,6 +26,12 @@ public class LogoutAction implements Action {
 					//쿠키를 저장해 삭제해줍니다.
 					response.addCookie(cookie);
 				}
+				if(cookie.getName().equals("CREW_CHECK")) {
+					//기간을 0으로 하여
+					cookie.setMaxAge(0);
+					//쿠키를 저장해 삭제해줍니다.
+					response.addCookie(cookie);
+				}
 			}			
 		}
 		
@@ -33,6 +39,7 @@ public class LogoutAction implements Action {
 		HttpSession session = request.getSession();
 		//로그아웃이므로 session에 MEMBER_ID 라는 이름을 삭제합니다.
 		session.removeAttribute("MEMBER_ID");
+		session.removeAttribute("CREW_CHECK");
 		        
 		ActionForward forward = new ActionForward();
 		forward.setPath("MAINPAGEACTION.do");

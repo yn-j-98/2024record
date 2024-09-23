@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.battle_record.Battle_recordDAO;
 import model.battle_record.Battle_recordDTO;
 import model.crew.CrewDAO;
-import model.crew.CrewDTO; 
+import model.crew.CrewDTO;
 
 public class CrewInformationPageAction implements Action{
 
@@ -45,15 +45,15 @@ public class CrewInformationPageAction implements Action{
 			//사용자 크루 정보
 			int crew_num = Integer.parseInt(login[1]);
 			int view_crew_num = 0;
-			view_crew_num =	Integer.parseInt(request.getParameter("view_crew_num"));
 			
 			if(request.getParameter("view_crew_num") !=null) {//null체크
 				System.out.println("49 CrewInformationPageAction view_crew_num = "+request.getParameter("view_crew_num"));
 			}//FIXME
+			view_crew_num =	Integer.parseInt(request.getParameter("view_crew_num"));
+			
 			CrewDTO crewDTO = new CrewDTO();
 			CrewDAO crewDAO = new CrewDAO();
 			crewDTO.setModel_crew_num(view_crew_num);
-			
 			crewDTO.setModel_crew_condition("CREW_ONE_COUNT_CURRENT_MEMBER_SIZE");//선택 크루 인원 컨디션
 			crewDTO = crewDAO.selectOne(crewDTO);
 			System.out.println("57 CrewInformationPageAction crewDTO = "+crewDTO);
@@ -67,16 +67,7 @@ public class CrewInformationPageAction implements Action{
 
 			}
 
-			request.setAttribute("model_crew_profile", request.getServletContext().getContextPath() + "/profile_img/" + filename);
-
-
-
-
-			
-
-			
-			
-			
+			request.setAttribute("model_crew_profile", request.getServletContext().getContextPath() + "/crew_img_folder/" + filename);
 
 			Battle_recordDTO battle_recordDTO = new Battle_recordDTO();
 			Battle_recordDAO battle_recordDAO = new Battle_recordDAO();
@@ -84,9 +75,6 @@ public class CrewInformationPageAction implements Action{
 			battle_recordDTO.setModel_battle_record_condition("BATTLE_RECORD_ALL_WINNER");//승리목록 컨디션
 			ArrayList<Battle_recordDTO> model_battle_record_datas = battle_recordDAO.selectAll(battle_recordDTO);
 
-
-			
-			
 			request.setAttribute("CREW", crewDTO);
 			System.out.println("CREW로그 = "+ crewDTO);
 			

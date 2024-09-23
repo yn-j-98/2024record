@@ -130,7 +130,7 @@
 
 		var naver_id_login = new naver_id_login( // 네이버 로그인을 위한 객체 생성
 		"kQSIom2rw1yt29HcbNc8", // 내 client ID: 네이버 개발자 센터에서 발급받은 클라이언트 ID
-		"http://localhost:8088/project-climbing/login.jsp" // 내 callback url: 로그인 후 보여질 URL
+		"http://localhost:8088/COMA_PROJECT_CONTROLLER/login.jsp" // 내 callback url: 로그인 후 보여질 URL
 		//"http://localhost:8088/COMA_PROJECT_CONTROLLER/login.jsp"
 		);
 
@@ -146,7 +146,7 @@
 		// 이 로그인 API를 사용할 페이지의 주소를 설정
 		// 이 주소는 네이버 로그인 API에서 검증하는 페이지 주소
 		naver_id_login
-				.setDomain("http://localhost:8088/project-climbing/login.jsp");
+				.setDomain("http://localhost:8088/COMA_PROJECT_CONTROLLER/login.jsp");
 
 		// 로그인 요청에 사용할 상태 값을 설정
 		naver_id_login.setState(state);
@@ -216,6 +216,9 @@
 						success : function(res) {
 							// 사용자 정보에서 이메일을 추출함
 							var email = res.kakao_account.email;
+							
+							Kakao.Auth.logout();
+							
 							// 추출한 이메일을 C에게 전송
 							sendToController({
 								email : email

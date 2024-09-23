@@ -49,13 +49,18 @@ public class ReservationDAO {
 			+ "	R.RESERVATION_DATE,\r\n"
 			+ "	R.RESERVATION_GYM_NUM,\r\n"
 			+ "	R.RESERVATION_MEMBER_ID,\r\n"
-			+ "	R.RESERVATION_PRICE\r\n"
+			+ "	R.RESERVATION_PRICE,\r\n"
+			+ "	G.GYM_NAME\r\n"
 			+ "FROM\r\n"
 			+ "	RESERVATION R\r\n"
 			+ "JOIN\r\n"
 			+ "	MEMBER M\r\n"
 			+ "ON \r\n"
 			+ "	R.RESERVATION_MEMBER_ID = M.MEMBER_ID\r\n"
+			+ "JOIN \r\n"
+			+ "    GYM G\r\n"
+			+ "ON \r\n"
+			+ "    R.RESERVATION_GYM_NUM = G.GYM_NUM\r\n"
 			+ "WHERE\r\n"
 			+ "	R.RESERVATION_MEMBER_ID = ?";
 	
@@ -227,6 +232,7 @@ public class ReservationDAO {
 				data.setModel_reservation_gym_num(rs.getInt("RESERVATION_GYM_NUM"));
 				data.setModel_reservation_member_id(rs.getString("RESERVATION_MEMBER_ID"));
 				data.setModel_reservation_price(rs.getInt("RESERVATION_PRICE"));
+				data.setModel_reservation_gym_name(rs.getString("GYM_NAME"));
 				datas.add(data);
 				rsCnt++;
 			}
